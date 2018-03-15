@@ -1,26 +1,26 @@
 const router = require('express').Router();
 const events = require('../controllers/events');
 const users = require('../controllers/users');
-// const secureRoute = require('../lib/secureRoute');
+const secureRoute = require('../lib/secureRoute');
 
 router.route('/users')
   .new(users.new);
 
 router.route('/users/:id')
-  .get(users.show)
-  .get(users.edit)
-  .put(users.update)
-  .delete(users.delete);
+  .get(secureRoute, users.show)
+  .get(secureRoute, users.edit)
+  .put(secureRoute, users.update)
+  .delete(secureRoute, users.delete);
 
 //Event Routes
 router.route('/events/new')
-  .get(events.new);
+  .get(secureRoute, events.new);
 
 router.route('/events/:id')
-  .get(events.show)
-  .get(events.edit)
-  .put(events.update)
-  .delete(events.delete);
+  .get(secureRoute,events.show)
+  .get(secureRoute,events.edit)
+  .put(secureRoute, events.update)
+  .delete(secureRoute, events.delete);
 
 router.route('/*')
   .all((req, res) => res.status(404).json({ message: 'Not found' }));
