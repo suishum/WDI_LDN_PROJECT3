@@ -1,24 +1,25 @@
 const router = require('express').Router();
 const events = require('../controllers/events');
+const auth = require('../controllers/auth');
 const users = require('../controllers/users');
 const secureRoute = require('../lib/secureRoute');
 
-router.route('/users')
-  .new(users.new);
+//auth routes
+router.post('/register', auth.register);
+router.post('/login', auth.login);
 
+//user routes
 router.route('/users/:id')
   .get(secureRoute, users.show)
-  .get(secureRoute, users.edit)
   .put(secureRoute, users.update)
   .delete(secureRoute, users.delete);
 
-//Event Routes
-router.route('/events/new')
-  .get(secureRoute, events.new);
+//event Routes
+router.route('/events')
+  .post(secureRoute, events.create);
 
 router.route('/events/:id')
   .get(secureRoute,events.show)
-  .get(secureRoute,events.edit)
   .put(secureRoute, events.update)
   .delete(secureRoute, events.delete);
 
