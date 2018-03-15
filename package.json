@@ -1,0 +1,35 @@
+{
+  "name": "angular-webpack-setup",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start:client": "webpack-dev-server",
+    "start:server": "nodemon",
+    "test": "nyc mocha \"test/**/*_spec.js\" --require \"test/spec_helper\" --recursive --exit"
+  },
+  "author": "Students",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.6.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "copy-webpack-plugin": "^4.4.1",
+    "css-loader": "^0.28.9",
+    "file-loader": "^1.1.8",
+    "html-webpack-plugin": "^2.30.1",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.20.2",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.11.0",
+    "webpack-dev-server": "^2.11.1",
+    "chai": "^4.1.2",
+    "mocha": "^5.0.4",
+    "nyc": "^11.6.0",
+    "supertest": "^3.0.0"
+  }
+}
