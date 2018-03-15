@@ -17,6 +17,7 @@ function updateRoute(req,res,next){
   Event.findById(req.params.id)
     .then(event => Object.assign(event, req.body))
     .then(event => event.save())
+    .then(event => res.json(event))
     .catch(next);
 }
 
