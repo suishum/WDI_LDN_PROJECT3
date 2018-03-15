@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
   email: { type: String, unique: true, required: true },
   password: { type: String, required: true },
   photo: { type: String },
-  preferences: { type: String },
+  preferences: [{ type: String }],
   favorite1: { type: String },
   favorite2: { type: String },
   favorite3: { type: String }
