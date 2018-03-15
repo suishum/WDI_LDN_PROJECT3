@@ -4,7 +4,6 @@ const auth = require('../controllers/auth');
 const users = require('../controllers/users');
 // const secureRoute = require('../lib/secureRoute');
 
-
 router.post('/register', auth.register);
 router.post('/login', auth.login);
 
