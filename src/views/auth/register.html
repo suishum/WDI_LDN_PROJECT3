@@ -1,0 +1,107 @@
+<!-- yarn add angular-messages for form error handling -->
+<section class="section">
+  <div class="container">
+    <!-- <pre>{{ authRegister.form | json }}</pre> -->
+    <!-- <pre>{{ authRegister.form.$submitted | json }}</pre> -->
+    {{ authRegister.user }}
+
+     <!-- we can link the form to the controller by giving it a name attribute, novalidate means don't validate this form -->
+    <form name="authRegister.form" ng-submit="authRegister.handleSubmit()" novalidate>
+      <div class="field">
+        <label for="name">Username</label>
+        <input class="input" userholder="Username" name="username" ng-model="authRegister.user.username" required/>
+        <!-- <div class="notification is-danger" ng-messages="authRegister.form.username.$error" ng-if="authRegister.form.username.$dirty || authRegister.form.$submitted">
+          <div ng-message="required">This field is required.</div>
+        </div> -->
+      </div>
+
+      <div class="field">
+        <label for="name">Name</label>
+        <input class="input" userholder="Name" name="name" ng-model="authRegister.user.name" required/>
+        <!-- <div class="notification is-danger" ng-messages="authRegister.form.name.$error" ng-if="authRegister.form.name.$dirty || authRegister.form.$submitted">
+          <div ng-message="required">This field is required.</div>
+        </div> -->
+      </div>
+
+      <div class="field">
+        <label for="name">Email</label>
+        <input class="input" userholder="Email" name="email" ng-model="authRegister.user.email" required/>
+        <!-- <div class="notification is-danger" ng-messages="authRegister.form.email.$error" ng-if="authRegister.form.email.$dirty || authRegister.form.$submitted">
+          <div ng-message="required">This field is required.</div>
+        </div> -->
+      </div>
+
+      <div class="field">
+        <label for="name">Password</label>
+        <input type="password" class="input" userholder="Password" name="password" ng-model="authRegister.user.password" required/>
+        <!-- <div class="notification is-danger" ng-messages="authRegister.form.email.$error" ng-if="authRegister.form.email.$dirty || authRegister.form.$submitted">
+          <div ng-message="required">This field is required.</div>
+        </div> -->
+      </div>
+
+      <div class="field">
+        <label for="name">Password Confirmation</label>
+        <input type="password" class="input" userholder="PasswordConfirmation" name="passwordConfirmation" ng-model="authRegister.user.passwordConfirmation" required/>
+        <!-- <div class="notification is-danger" ng-messages="authRegister.form.passwordConfirmation.$error" ng-if="authRegister.form.passwordConfirmation.$dirty || authRegister.form.$submitted">
+          <div ng-message="required">This field is required.</div>
+        </div> -->
+      </div>
+
+      <div class="field">
+        <label for="name">Profile Photo</label>
+        <input class="input" userholder="Photo" name="photo" ng-model="authRegister.user.photo" required pattern="https?://.+" />
+        <!-- <div ng-messages="authRegister.form.photo.$error" ng-if="authRegister.form.photo.$dirty || authRegister.form.$submitted">
+          <div class="notification is-danger" ng-message="required">This field is required</div>
+          <div class="notification is-danger" ng-message="pattern">This field must begin with http:// or https://</div>
+        </div> -->
+      </div>
+
+      <div class="field">
+        <label for="name">Preferences</label>
+        <div class="control">
+          <div class="select">
+            <select name="preferences" ng-model="authRegister.user.preferences" required/>
+              <option selected disabled value="">Please choose</option>
+              <option value="1">Category 1</option>
+              <option value="2">Category 2</option>
+              <option value="3">Category 3</option>
+              <option value="4">Category 4</option>
+              <option value="5">Category 5</option>
+            </select>
+            <!-- <div ng-messages="authRegister.form.preferences.$error" ng-if="authRegister.form.preferences.$touched || authRegister.form.$submitted">
+              <div class="notification is-danger" ng-message="required">This field is required</div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="name">Favourites</label>
+        <div class="control">
+          <label for="name">Favourite 1</label>
+          <input class="input" userholder="Favourite1" name="favourite1" ng-model="authRegister.user.favourite1" required/>
+          <!-- <div ng-messages="authRegister.form.favourite1.$error" ng-if="authRegister.form.favourite1.$touched || authRegister.form.$submitted">
+            <div class="notification is-danger" ng-message="required">This field is required.</div>
+          </div> -->
+        </div>
+        <div class="control">
+          <label for="name">Favourite 2</label>
+          <input class="input" userholder="Favourite2" name="favourite2" ng-model="authRegister.user.favourite2" required/>
+          <!-- <div ng-messages="authRegister.form.favourite2.$error" ng-if="authRegister.form.favourite2.$touched || authRegister.form.$submitted">
+            <div class="notification is-danger" ng-message="required">This field is required.</div>
+          </div> -->
+        </div>
+        <div class="control">
+          <label for="name">Favourite 3</label>
+          <input class="input" userholder="Favourite3" name="favourite3" ng-model="authRegister.user.favourite3" required/>
+          <!-- <div ng-messages="authRegister.form.favourite3.$error" ng-if="authRegister.form.favourite3.$touched || authRegister.form.$submitted">
+            <div class="notification is-danger" ng-message="required">This field is required.</div>
+          </div> -->
+        </div>
+      </div>
+
+      <button class="button is-primary">Submit</button>
+    </form>
+
+  </div>
+</section>

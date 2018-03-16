@@ -23,6 +23,10 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
   $locationProvider.html5Mode(true);
 
   $stateProvider
+    .state('home', {
+      url: '/',
+      templateUrl: 'views/home.html'
+    })
     // login route
     .state('login', {
       url: '/login',
@@ -50,12 +54,6 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/events/:id/edit',
       templateUrl: 'views/events/edit.html',
       controller: 'EventsEditCtrl as eventsEdit'
-      // resolve: { secureState }
-    })
-    .state('usersNew', {
-      url: '/users/new',
-      templateUrl: 'views/users/new.html',
-      controller: 'UsersNewCtrl as usersNew'
       // resolve: { secureState }
     })
     .state('usersShow', {
