@@ -1,0 +1,44 @@
+<form name="eventsNew.form" ng-submit="eventsNew.handleSubmit()" novalidate>
+  <div class="field">
+    <label for="name">Event Name</label>
+    <input class="input" placeholder="Name" name="name" ng-model="eventsNew.newPlace.name"  required/>
+    <div ng-messages="eventsNew.form.name.$error" ng-if="eventsNew.form.name.$dirty || eventsNew.form.$submitted ">
+      <div ng-message="required">This field is required</div>
+    </div>
+  </div>
+  <div class="field">
+    <label for="date">Date</label>
+    <input class="input" placeholder="Name" name="date" ng-model="eventsNew.newPlace.date"  required/>
+    <div ng-messages="eventsNew.form.date.$error" ng-if="eventsNew.form.date.$dirty || eventsNew.form.$submitted ">
+      <div ng-message="required">This field is required</div>
+    </div>
+  </div>
+  <div class="field">
+    <label for="time">Time</label>
+    <input class="input" placeholder="Name" name="time" ng-model="eventsNew.newPlace.time"  required/>
+    <div ng-messages="eventsNew.form.time.$error" ng-if="eventsNew.form.time.$dirty || eventsNew.form.$submitted ">
+      <div ng-message="required">This field is required</div>
+    </div>
+  </div>
+  <div class="field">
+      <label for="name">City</label>
+      <select class="input" ng-model="eventsNew.newPlace.location" placeholder="City" name="location" ng-model="eventsNew.newPlace.location" required/>
+        <option>London</option>
+        <option>New York</option>
+        <option>Paris</option>
+        <option>Milan</option>
+      </select>
+      <div ng-messages="eventsNew.form.location.$error" ng-if="eventsNew.form.location.$dirty || eventsNew.form.$submitted">
+        <div ng-message="required">This field is required</div>
+      </div>
+    </div>
+    <div class="field">
+      <label for="name">Restaurants</label>
+      <!-- <input class="input" placeholder="Name" name="name" ng-model="eventsNew.newPlace.name"  required/>
+      <div ng-messages="eventsNew.form.name.$error" ng-if="eventsNew.form.name.$dirty || eventsNew.form.$submitted ">
+        <div ng-message="required">This field is required</div>
+      </div> -->
+    </div>
+
+  <button class="button is-primary">Submit</button>
+</form>
