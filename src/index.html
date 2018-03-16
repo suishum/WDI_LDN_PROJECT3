@@ -1,12 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="project3">
 <head>
   <meta charset="utf-8">
   <title>WDI32 Group Project</title>
 </head>
 <body>
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+        <img src="/assets/images/ga-beer-logo.png" alt="WDI32 Group Project">
+        &nbsp;
+        WDI32 Places
+      </a>
+      <div class="navbar-burger" data-target="#mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <div id="mobile-menu" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" ui-sref="usersShow">Your Profile</a>
+        <a class="navbar-item" ui-sref="login" ng-if="!main.isAuthenticated()">Login</a>
+        <a class="navbar-item" ui-sref="register" ng-if="!main.isAuthenticated()">Register</a>
+        <a class="navbar-item" ng-click="main.logout()" ng-if="main.isAuthenticated()">Logout</a>
+      </div>
+    </div>
+  </nav>
 
   <h1>WDI32 Group Project</h1>
+  <ui-view></ui-view>
 
 </body>
 </html>
