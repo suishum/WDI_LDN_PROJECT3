@@ -1,3 +1,4 @@
+{{ eventsNew.event }}
 <form name="eventsNew.form" ng-submit="eventsNew.handleSubmit()" novalidate>
   <div class="field">
     <label for="name">Event Name</label>
@@ -21,16 +22,23 @@
     </div>
   </div>
   <div class="field">
+    <label for="location">Location</label>
+    <input auto-complete class="input" address="eventsNew.event.address"  location="eventsNew.event.location" placeholder="Address" name="address" ng-model="eventsNew.event.address" required/>
+        <!-- <div ng-messages="eventsNew.form.time.$error" ng-if="eventsNew.form.time.$dirty || eventsNew.form.$submitted ">
+      <div ng-message="required">This field is required</div>
+    </div> -->
+  </div>
+  <!-- <div class="field">
       <label for="name">City</label>
       <select class="select" ng-model="eventsNew.event.location" placeholder="City" name="location" ng-model="eventsNew.event.location" required>
         <option>London</option>
         <option>New York</option>
         <option>Milan</option>
       </select>
-      <!-- <div ng-messages="eventsNew.form.location.$error" ng-if="eventsNew.form.location.$dirty || eventsNew.form.$submitted">
+      <div ng-messages="eventsNew.form.location.$error" ng-if="eventsNew.form.location.$dirty || eventsNew.form.$submitted">
         <div ng-message="required">This field is required</div>
-      </div> -->
-    </div>
+      </div>
+    </div> -->
     <div class="field">
         <label for="name">Restaurants</label>
         <select class="select" placeholder="Restaurant" name="location" required/>
