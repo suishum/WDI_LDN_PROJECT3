@@ -14,31 +14,22 @@ function EventsNewCtrl(Event, $state, $http, $scope) {
   function handleSubmit(){
     if (vm.form.invalid) return false;
     Event.create(vm.event)
-      .then(() => $state.go('/'));
+      .then(() => $state.go('home'));
   }
 
-  function cityCode(){
+  function updateRestaurants(){
     const { lat, lng: lon } = vm.event.location;
-
-    if(lat && lon) {
-      $http({
-        method: 'GET',
-        url: 'https://developers.zomato.com/api/v2.1/search',
-        params: { lat, lon, start: 0, count: 100 },
-        headers: {
-          'user-key': 'bb553f8ef2af47b55acff60d10239333'
-        }
-      })
-        .then(res => {
-          vm.restaurants = [];
-          vm.restaurants = res.data.restaurants;
-        });
-    }
+    $http.get('/api/restaurants', {
+      params: { lat, lon }
+    })
+      .then(res => {
+        vm.restaurants = res.data.businesses;
+      });
   }
 
   vm.handleSubmit = handleSubmit;
 
-  $scope.$watch(() => vm.event.location, cityCode, true);
+  $scope.$watch(() => vm.event.location, updateRestaurants, true);
 }
 
 export default EventsNewCtrl;

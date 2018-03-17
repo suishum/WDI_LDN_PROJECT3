@@ -11,6 +11,7 @@ import AuthLoginCtrl from './controllers/auth/login';
 import EventsNewCtrl from './controllers/events/new';
 import Event from './services/events';
 
+import googleMap from './directives/google-map';
 import autoComplete from './directives/auto-complete';
 
 import 'bulma';
@@ -23,4 +24,5 @@ angular.module('project3', ['ui.router', 'satellizer'])
   .controller('AuthLoginCtrl', AuthLoginCtrl)
   .controller('EventsNewCtrl', EventsNewCtrl)
   .directive('autoComplete', autoComplete)
+  .directive('googleMap', googleMap)
   .service('Event', Event);
