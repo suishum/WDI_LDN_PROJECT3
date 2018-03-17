@@ -16,6 +16,7 @@ import EventsShowCtrl from './controllers/events/show';
 import Event from './services/events';
 import User from './services/users';
 
+import googleMap from './directives/google-map';
 import autoComplete from './directives/auto-complete';
 
 import 'bulma';
@@ -29,5 +30,6 @@ angular.module('project3', ['ui.router', 'satellizer', 'ui.select', 'ngSanitize'
   .controller('EventsNewCtrl', EventsNewCtrl)
   .controller('EventsShowCtrl', EventsShowCtrl)
   .directive('autoComplete', autoComplete)
+  .directive('googleMap', googleMap)
   .service('Event', Event)
-  .service('User', User);
+  .servive('User', User);
