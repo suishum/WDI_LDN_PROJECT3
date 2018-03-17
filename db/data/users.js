@@ -152,4 +152,26 @@ module.exports = [{
   favorite1: 'favourite1',
   favorite2: 'favourite2',
   favorite3: 'favourite3'
+}, {
+  username: 'George',
+  name: 'George',
+  email: 'george@george.com',
+  password: 'george',
+  passwordConfirmation: 'george',
+  photo: 'http://www.placecage.com/c/200/300',
+  preferences: ['a', 'b', 'c'],
+  favorite1: 'favourite1',
+  favorite2: 'favourite2',
+  favorite3: 'favourite3'
+}, {
+  username: 'Mike',
+  name: 'Mike',
+  email: 'mike@mike.com',
+  password: 'mike',
+  passwordConfirmation: 'mike',
+  photo: 'http://www.placecage.com/c/200/300',
+  preferences: ['a', 'b', 'c'],
+  favorite1: 'favourite1',
+  favorite2: 'favourite2',
+  favorite3: 'favourite3'
 }];

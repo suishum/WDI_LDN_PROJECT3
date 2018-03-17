@@ -7,15 +7,16 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmPvJAnbxWywS1dbHe_oxKH29pGquokk4&libraries=places"></script>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
 </head>
-<body>
+<body ng-controller="MainCtrl as main">
+
   <nav class="navbar">
     <div class="navbar-brand">
       <a class="navbar-item" href="/">
-        <img src="http://www.placecage.com/c/200/300" alt="WDI32 Group Project">
+        <img src="http://www.placecage.com/c/200/300" alt="MateDate">
         &nbsp;
-        FindMyFood
+        MateDate
       </a>
-      <div class="navbar-burger ng-class:clicked ? 'is-active' : 'is-not-active'" ng-click="clicked = !clicked" data-target="#mobile-menu">
+      <div class="navbar-burger ng-class:clicked ? 'is-active' : 'is-not-active'" data-target="#mobile-menu" ng-click="clicked = !clicked" >
         <span></span>
         <span></span>
         <span></span>
@@ -25,10 +26,10 @@
       <div class="navbar-end">
         <!-- placesShow({ id: place._id }) -->
         <!-- find a way to direct user to THEIR profile, get their user._id and pass as a parameter? Get from token?-->
-        <a class="navbar-item" ng-click="clicked = !clicked" ui-sref="usersShow">Your Profile</a>
-        <a class="navbar-item" ng-click="clicked = !clicked" ui-sref="login">Login</a>
-        <a class="navbar-item" ng-click="clicked = !clicked" ui-sref="register">Register</a>
-        <a class="navbar-item" ng-click="clicked = !clicked; main.logout()">Logout</a>
+        <a class="navbar-item" ng-click="clicked = !clicked" ng-if="main.isAuthenticated()" ui-sref="usersShow">Your Profile</a>
+        <a class="navbar-item" ng-click="clicked = !clicked" ng-if="!main.isAuthenticated()" ui-sref="login">Login</a>
+        <a class="navbar-item" ng-click="clicked = !clicked" ng-if="!main.isAuthenticated()" ui-sref="register">Register</a>
+        <a class="navbar-item" ng-click="clicked = !clicked; main.logout()" ng-if="main.isAuthenticated()">Logout</a>
       </div>
     </div>
   </nav>
