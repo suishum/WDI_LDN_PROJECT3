@@ -1,6 +1,6 @@
 UsersShowCtrl.$inject = ['User', '$state'];
 function UsersShowCtrl(User, $state) {
-  console.log('show ctrl loaded');
+  // console.log('show ctrl loaded');
   this.user = {};
 
   User.findById($state.params.id)
