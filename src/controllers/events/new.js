@@ -3,48 +3,33 @@ EventsNewCtrl.$inject = ['Event', '$state', '$http', '$scope'];
 function EventsNewCtrl(Event, $state, $http, $scope) {
   const vm = this;
   vm.event = {
-    restaurants: []
+    restaurants: [],
+    location: {
+      lat: 0,
+      lng: 0
+    }
   };
   vm.restaurants = [];
 
   function handleSubmit(){
     if (vm.form.invalid) return false;
     Event.create(vm.event)
-      .then(() => $state.go('/'));
+      .then(() => $state.go('home'));
   }
 
-  function cityCode(){
-    switch (vm.event.location) {
-      case 'London':
-        vm.cityCode = 61;
-        break;
-      case 'New York':
-        vm.cityCode = 280;
-        break;
-      case 'Milan':
-        vm.cityCode = 258;
-    }
-    $http({
-      method: 'GET',
-      url: 'https://developers.zomato.com/api/v2.1/search?',
-      params: {
-        entity_id: vm.cityCode,
-        entity_type: 'city',
-        start: 0,
-        count: 100
-      },
-      headers: {
-        'user-key': 'bb553f8ef2af47b55acff60d10239333'
-      }
+  function updateRestaurants(){
+    const { lat, lng: lon } = vm.event.location;
+    $http.get('/api/restaurants', {
+      params: { lat, lon }
     })
       .then(res => {
-        vm.restaurants = res.data.restaurants;
+        vm.restaurants = res.data.businesses;
       });
   }
 
   vm.handleSubmit = handleSubmit;
 
-  $scope.$watch(() => vm.event.location, cityCode);
+  $scope.$watch(() => vm.event.location, updateRestaurants, true);
 }
 
 export default EventsNewCtrl;
