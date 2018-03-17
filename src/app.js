@@ -32,4 +32,4 @@ angular.module('project3', ['ui.router', 'satellizer', 'ui.select', 'ngSanitize'
   .directive('autoComplete', autoComplete)
   .directive('googleMap', googleMap)
   .service('Event', Event)
-  .servive('User', User);
+  .service('User', User);

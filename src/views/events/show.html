@@ -1,15 +1,21 @@
-
-  {{ eventsShow.event }}
+  <pre>{{ eventsShow.event | json }}</pre>
   <h1 class="title"> {{ eventsShow.event.name }}</h1>
-  <h2 class="subtitle">{{ eventsShow.event.date }}</h2>
-  <h2 class="subtitle">{{ eventsShow.event.time }}</h2>
+  <h2 class="subtitle">{{ eventsShow.event.date.split('T')[0] }}</h2>
+  <h2 class="subtitle">{{ eventsShow.event.time.split('T')[1] }}</h2>
 
+  <ul>
+    <li ng-repeat="attendee in eventsShow.event.attendees">
+      {{ attendee.name }}
+      <button class="button" ng-click="eventsShow.removeAttendee(attendee._id)">x</button>
+    </li>
+  </ul>
 
-  <ui-select ng-model="eventsShow.selected.value">
-     <ui-select-match theme="bootstrap">
-         <span ng-bind="$select.selected.name"></span>
+  <ui-select multiple theme="bootstrap" ng-model="eventsShow.selected.value">
+     <ui-select-match placeholder="Select person...">
+       {{$item.name}} &lt;{{$item.email}}&gt;
      </ui-select-match>
      <ui-select-choices repeat="user in (eventsShow.users | filter: $select.search)">
          <span ng-bind="user.name"></span>
      </ui-select-choices>
- </ui-select>
+   </ui-select>
+   <button class="button" ng-click="eventsShow.invite()">Invite</button>

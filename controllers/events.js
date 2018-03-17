@@ -9,6 +9,7 @@ function createRoute(req,res,next){
 
 function showRoute(req,res,next){
   Event.findById(req.params.id)
+    .populate('attendees')
     .then(event => res.json(event))
     .catch(next);
 }
