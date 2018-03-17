@@ -8,6 +8,7 @@ import Auth from './config/auth';
 import AuthRegisterCtrl from './controllers/auth/register';
 import AuthLoginCtrl from './controllers/auth/login';
 import UsersShowCtrl from './controllers/users/show';
+import UsersEditCtrl from './controllers/users/edit';
 
 import EventsNewCtrl from './controllers/events/new';
 import Event from './services/events';
@@ -25,6 +26,7 @@ angular.module('project3', ['ui.router', 'satellizer'])
   .controller('AuthRegisterCtrl', AuthRegisterCtrl)
   .controller('AuthLoginCtrl', AuthLoginCtrl)
   .controller('UsersShowCtrl', UsersShowCtrl)
+  .controller('UsersEditCtrl', UsersEditCtrl)
   .controller('EventsNewCtrl', EventsNewCtrl)
   .directive('autoComplete', autoComplete)
   .directive('googleMap', googleMap)
