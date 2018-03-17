@@ -1,0 +1,15 @@
+
+  {{ eventsShow.event }}
+  <h1 class="title"> {{ eventsShow.event.name }}</h1>
+  <h2 class="subtitle">{{ eventsShow.event.date }}</h2>
+  <h2 class="subtitle">{{ eventsShow.event.time }}</h2>
+
+
+  <ui-select ng-model="eventsShow.selected.value">
+     <ui-select-match theme="bootstrap">
+         <span ng-bind="$select.selected.name"></span>
+     </ui-select-match>
+     <ui-select-choices repeat="user in (eventsShow.users | filter: $select.search)">
+         <span ng-bind="user.name"></span>
+     </ui-select-choices>
+ </ui-select>

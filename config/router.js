@@ -8,6 +8,9 @@ router.post('/register', auth.register);
 router.post('/login', auth.login);
 
 //user routes
+router.route('/users')
+  .get(users.index);
+  
 router.route('/users/:id')
   .get(users.show)
   .put(users.update)
