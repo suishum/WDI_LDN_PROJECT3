@@ -7,9 +7,11 @@ import Router from './config/router';
 import Auth from './config/auth';
 import AuthRegisterCtrl from './controllers/auth/register';
 import AuthLoginCtrl from './controllers/auth/login';
+import UsersShowCtrl from './controllers/users/show';
 
 import EventsNewCtrl from './controllers/events/new';
 import Event from './services/events';
+import User from './services/users';
 
 
 import 'bulma';
@@ -20,5 +22,7 @@ angular.module('project3', ['ui.router', 'satellizer'])
   .config(Auth)
   .controller('AuthRegisterCtrl', AuthRegisterCtrl)
   .controller('AuthLoginCtrl', AuthLoginCtrl)
+  .controller('UsersShowCtrl', UsersShowCtrl)
   .controller('EventsNewCtrl', EventsNewCtrl)
-  .service('Event', Event);
+  .service('Event', Event)
+  .service('User', User);

@@ -1,0 +1,15 @@
+<pre>
+{{ usersShow.user | json }}
+</pre>
+
+<h1 class="title">Profile</h1>
+<img ng-src="{{ usersShow.user.photo }}" alt="{{ usersShow.user.username }}'s profile photo">
+<h2 class="subtitle">Username: {{ usersShow.user.username }}</h2>
+<h2 class="subtitle">Name: {{ usersShow.user.name }}</h2>
+<h2 class="subtitle">Email: {{ usersShow.user.email }}</h2>
+<h2 class="subtitle">Preferences: <p ng-repeat="preference in usersShow.user.preferences">{{ preference }} </p></h2>
+<h2 class="subtitle">Favorites: {{ usersShow.user.favorite1 }}, {{ usersShow.user.favorite2 }}, {{ usersShow.user.favorite3 }}</h2>
+
+<h1 class="title">Your events</h1>
+<h1 class="title">Joined events</h1>
+<!-- EDIT & DELETE BUTTONS -->
