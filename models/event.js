@@ -17,10 +17,14 @@ const eventSchema = new mongoose.Schema({
     lat: { type: Number },
     lng: { type: Number }
   },
-  restaurants: [{ type: String }],
+  restaurants: [],
   attendees: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
   admin: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
-  comments: [commentSchema]
+  comments: [commentSchema],
+  votes: [{
+    voter: { type: String },
+    restaurant: { type: Object }
+  }]
 });
 
 module.exports = mongoose.model('Event', eventSchema);
