@@ -29,9 +29,22 @@ function deleteRoute(req,res,next){
     .catch(next);
 }
 
+function createVote(req,res,next){
+  req.body.voter = 'katie';
+  console.log(req.body);
+  Event.findById(req.params.id)
+    .then(event => {
+      event.votes.push(req.body);
+      return event.save();
+    })
+    .then(event => res.json(event))
+    .catch(next);
+}
+
 module.exports = {
   create: createRoute,
   show: showRoute,
   update: updateRoute,
-  delete: deleteRoute
+  delete: deleteRoute,
+  createVote: createVote
 };

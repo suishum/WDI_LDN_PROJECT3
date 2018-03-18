@@ -36,6 +36,24 @@ function EventsShowCtrl($http, Event, $state, User){
     updateInviteList();
   }
 
+  function vote(restaurant){
+    Event.createVote($state.params.id, { restaurant: restaurant, voter: '' });
+  }
+
+  function tallyVotes(currentRestaurant){
+    let matches = 0;
+    vm.event.votes.forEach(vote => {
+      if(vote.restaurant.id === currentRestaurant.id) matches += 1;
+    });
+    return matches;
+    // const matches = vm.event.votes.filter(vote => {
+    //   vote.restaurant.id === currentRestaurant.id;
+    // });
+    // console.log(matches.length);
+  }
+
+  this.tallyVotes = tallyVotes;
+  this.vote = vote;
   this.invite = invite;
   this.removeAttendee = removeAttendee;
 }
