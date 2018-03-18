@@ -11,6 +11,7 @@ function restaurants(req,res,next){
     json: true
   })
     .then(response => res.json(response))
+    // .then(() => console.log(process.env.ZOMATO_CLIENT_KEY))
     .catch(next);
 }
 

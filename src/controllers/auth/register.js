@@ -1,16 +1,42 @@
-AuthRegisterCtrl.$inject = ['$auth', '$state']; // $auth is from satellizer
+AuthRegisterCtrl.$inject = ['$auth', '$state', '$http', '$scope']; // $auth is from satellizer
 
-function AuthRegisterCtrl($auth, $state) {
-  this.user = {};
+function AuthRegisterCtrl($auth, $state, $http, $scope) {
+  const vm = this;
+
+  vm.user = {
+    location: {
+      lat: 0,
+      lng: 0
+    }
+  };
+
+  vm.restaurants = [];
 
   function handleSubmit() {
     // uses satellizer to sign up
-    $auth.signup(this.user)
+    $auth.signup(vm.user)
     // satellizer doesnt give the user a token immediately after registering (without extra logic), therefore we will redirect to the login page for now and get them to log in so we can drop a token in.
       .then(() => $state.go('home'));
   }
 
-  this.handleSubmit = handleSubmit;
+  vm.handleSubmit = handleSubmit;
+
+  function updateRestaurants(){
+    const { lat, lng: lon } = vm.user.location;
+    if (lat && lon) {
+      $http.get('/api/restaurants', {
+        params: { lat, lon }
+      })
+        .then(res => {
+          vm.restaurants = res.data.businesses;
+          console.log(res);
+        });
+
+    }
+  }
+
+  $scope.$watch(() => vm.user.location, updateRestaurants, true);
+
 
 }
 

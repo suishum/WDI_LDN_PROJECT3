@@ -11,6 +11,7 @@ function restaurants(req,res,next){
     json: true
   })
     .then(response => res.json(response))
+    .then(() => console.log(process.env.YELP_API_KEY))
     .catch(next);
 }
 

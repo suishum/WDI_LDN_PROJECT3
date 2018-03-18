@@ -4,6 +4,7 @@
     <!-- <pre>{{ authRegister.form | json }}</pre> -->
     <!-- <pre>{{ authRegister.form.$submitted | json }}</pre> -->
     {{ authRegister.user }}
+    <pre>{{ authRegister.restaurants | json }}</pre>
 
      <!-- we can link the form to the controller by giving it a name attribute, novalidate means don't validate this form -->
     <form name="authRegister.form" ng-submit="authRegister.handleSubmit()" novalidate>
@@ -76,14 +77,35 @@
       </div>
 
       <div class="field">
+        <label for="location">Your Location</label>
+        <input auto-complete class="input" address="authRegister.user.address"  location="authRegister.user.location" placeholder="eg: London" name="location" ng-model="authRegister.user.address" required/>
+            <!-- <div ng-messages="authRegister.form.location.$error" ng-if="authRegister.form.location.$dirty || authRegister.form.$submitted ">
+          <div ng-message="required">This field is required</div>
+        </div> -->
+      </div>
+
+
+      <div class="field">
         <label for="name">Favorites</label>
-        <div class="control">
+
+        <div class="field">
+          <label for="name">Favorite 1</label>
+          <select class="select" name="location" required>
+            <option value="" disabled selected>Choose a restaurant</option>
+            <option name="favorite1" ng-model="authRegister.user.favorite1" ng-repeat="restaurant in authRegister.restaurants" value="{{ restaurant }}">{{ restaurant.name }} - {{ restaurant.location.zip_code }}</option>
+              <!-- <div ng-messages="authRegister.form.location.$error" ng-if="authRegister.form.location.$dirty || authRegister.form.$submitted">
+              <div ng-message="required">This field is required</div>
+            </div> -->
+          </select>
+        </div>
+
+        <!-- <div class="control">
           <label for="name">Favorite 1</label>
           <input class="input" userholder="Favorite1" name="favorite1" ng-model="authRegister.user.favorite1" required/>
-          <!-- <div ng-messages="authRegister.form.favorite1.$error" ng-if="authRegister.form.favorite1.$touched || authRegister.form.$submitted">
+          <div ng-messages="authRegister.form.favorite1.$error" ng-if="authRegister.form.favorite1.$touched || authRegister.form.$submitted">
             <div class="notification is-danger" ng-message="required">This field is required.</div>
-          </div> -->
-        </div>
+          </div>
+        </div> -->
         <div class="control">
           <label for="name">Favorite 2</label>
           <input class="input" userholder="Favorite2" name="favorite2" ng-model="authRegister.user.favorite2" required/>
@@ -98,6 +120,7 @@
             <div class="notification is-danger" ng-message="required">This field is required.</div>
           </div> -->
         </div>
+
       </div>
 
       <button class="button is-primary">Submit</button>
