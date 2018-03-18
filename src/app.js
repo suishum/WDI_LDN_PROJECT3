@@ -9,6 +9,7 @@ import Router from './config/router';
 import Auth from './config/auth';
 import AuthRegisterCtrl from './controllers/auth/register';
 import AuthLoginCtrl from './controllers/auth/login';
+import MainCtrl from './controllers/main';
 import UsersShowCtrl from './controllers/users/show';
 import UsersEditCtrl from './controllers/users/edit';
 
@@ -29,6 +30,7 @@ angular.module('project3', ['ui.router', 'satellizer', 'ui.select', 'ngSanitize'
   .config(Auth)
   .controller('AuthRegisterCtrl', AuthRegisterCtrl)
   .controller('AuthLoginCtrl', AuthLoginCtrl)
+  .controller('MainCtrl', MainCtrl)
   .controller('UsersShowCtrl', UsersShowCtrl)
   .controller('UsersEditCtrl', UsersEditCtrl)
   .controller('EventsNewCtrl', EventsNewCtrl)

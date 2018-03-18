@@ -3,9 +3,9 @@ AuthLoginCtrl.$inject = ['$auth', '$state', '$rootScope']; // $auth is from sate
 function AuthLoginCtrl($auth, $state, $rootScope) {
   this.credentials = {};
 
-  // function authenticate(provider) {
-  //   $auth.authenticate(provider);
-  // }
+  function authenticate(provider) {
+    $auth.authenticate(provider);
+  }
 
   function handleSubmit() {
     // uses satellizer to login
@@ -22,7 +22,7 @@ function AuthLoginCtrl($auth, $state, $rootScope) {
       });
   }
 
-  // this.authenticate = authenticate;
+  this.authenticate = authenticate;
   this.handleSubmit = handleSubmit;
 }
 
