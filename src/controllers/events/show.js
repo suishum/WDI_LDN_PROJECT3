@@ -4,6 +4,7 @@ function EventsShowCtrl($http, Event, $state, User){
   const vm = this;
   vm.event = {};
   vm.users = [];
+  vm.comment = '';
 
   Event.findById($state.params.id)
     .then(res => {
@@ -36,8 +37,9 @@ function EventsShowCtrl($http, Event, $state, User){
     updateInviteList();
   }
 
+  //TODO: Write logic to avoid same user voting twice
   function vote(restaurant){
-    Event.createVote($state.params.id, { restaurant: restaurant, voter: '' });
+    Event.voteCreate($state.params.id, { restaurant: restaurant, voter: '' });
   }
 
   function tallyVotes(currentRestaurant){
@@ -52,6 +54,12 @@ function EventsShowCtrl($http, Event, $state, User){
     // console.log(matches.length);
   }
 
+  function submitComment(){
+    console.log('working!');
+    // Event.commentCreate($state.params.id, { content: vm.comment, user: '' });
+  }
+
+  this.submitComment = submitComment;
   this.tallyVotes = tallyVotes;
   this.vote = vote;
   this.invite = invite;

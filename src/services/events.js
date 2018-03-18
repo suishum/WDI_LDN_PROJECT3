@@ -17,15 +17,20 @@ function Event($http){
     return $http.delete( `/api/events/${event._id}`);
   }
 
-  function createVote(id, restaurant){
+  function voteCreate(id, restaurant){
     return $http.post(`/api/events/${id}/vote`, restaurant);
+  }
+
+  function commentCreate(id, comment){
+    return $http.post( `/api/events/${id}/comment`, comment);
   }
 
   this.findById = findById;
   this.create = create;
   this.update = update;
   this.remove = remove;
-  this.createVote = createVote;
+  this.voteCreate = voteCreate;
+  this.commentCreate = commentCreate;
 }
 
 export default Event;

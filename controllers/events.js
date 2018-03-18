@@ -29,12 +29,22 @@ function deleteRoute(req,res,next){
     .catch(next);
 }
 
-function createVote(req,res,next){
-  req.body.voter = 'katie';
-  console.log(req.body);
+function voteCreateRoute(req,res,next){
+  req.body.voter = req.currentUser;
   Event.findById(req.params.id)
     .then(event => {
       event.votes.push(req.body);
+      return event.save();
+    })
+    .then(event => res.json(event))
+    .catch(next);
+}
+
+function commentCreateRoute(req,res,next){
+  req.body.voter = req.currentUser;
+  Event.findById(req.params.id)
+    .then(event => {
+      event.comments.push(req.body);
       return event.save();
     })
     .then(event => res.json(event))
@@ -46,5 +56,6 @@ module.exports = {
   show: showRoute,
   update: updateRoute,
   delete: deleteRoute,
-  createVote: createVote
+  voteCreate: voteCreateRoute,
+  commentCreate: commentCreateRoute
 };

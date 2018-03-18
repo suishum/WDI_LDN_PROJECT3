@@ -14,7 +14,40 @@
     <button ng-click="eventsShow.vote(restaurant)" class="button">Vote</button>
     <p>Votes: {{ eventsShow.tallyVotes(restaurant) }}</p>
   </li>
-  </div>
+</ul>
+
+  <ul class="comments">
+    <li ng-repeat="comment in eventsShow.event.comments">
+        <div class="box">
+          <form class="delete" method="POST" action="/cheeses/<%= cheese._id %>/comments/<%= comment._id %>">
+                <input type="hidden" name="_method" value="DELETE">
+                <button class="delete">x</button>
+          </form>
+          <article class="media">
+            <div class="media-left">
+              <figure class="image is-64x64">
+                <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+              </figure>
+            </div>
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <%= comment.content %>
+                </p>
+                  <% if (comment.user) { %>
+                    <strong><%= comment.user.username %></strong>
+                  <% } %>
+                </p>
+              </div>
+            </div>
+          </article>
+        </div>
+    </li>
+  </ul>
+
+<textarea class="textarea" name="content" ng-model="eventsShow.comment"></textarea>
+<button class="button is-primary" ng-submit="eventsShow.commentCreate()">Submit</button>
+
 
 <div class="invite">
   <ui-select multiple theme="bootstrap" ng-model="eventsShow.selected.value">

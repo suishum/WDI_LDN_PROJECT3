@@ -28,7 +28,10 @@ router.route('/events/:id')
   .delete(events.delete);
 
 router.route('/events/:id/vote')
-  .post(events.createVote);
+  .post(events.voteCreate);
+
+router.route('/events/:id/comments')
+  .post(events.commentCreate);
 
 // router.get('/restaurants', zomato.restaurants);
 router.get('/restaurants', yelp.restaurants);
