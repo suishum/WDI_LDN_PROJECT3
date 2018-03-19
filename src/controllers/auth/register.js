@@ -2,8 +2,16 @@ AuthRegisterCtrl.$inject = ['$auth', '$state', '$http', '$scope']; // $auth is f
 
 function AuthRegisterCtrl($auth, $state, $http, $scope) {
   const vm = this;
+  vm.categories = [];
+
+  $http.get('/api/categories')
+    .then(res => {
+      // console.log(res.data);
+      vm.categories = res.data;
+    });
 
   vm.user = {
+    address: '',
     location: {
       lat: 0,
       lng: 0
@@ -29,7 +37,7 @@ function AuthRegisterCtrl($auth, $state, $http, $scope) {
       })
         .then(res => {
           vm.restaurants = res.data.businesses;
-          console.log(res);
+          // console.log(res);
         });
 
     }
