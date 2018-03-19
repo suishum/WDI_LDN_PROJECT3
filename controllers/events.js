@@ -1,5 +1,11 @@
 const Event = require('../models/event');
 
+function indexRoute(req,res,next){
+  Event.find()
+    .then(events => res.json(events))
+    .catch(next);
+}
+
 function createRoute(req,res,next){
   req.body.admin = req.currentUser;
   Event.create(req.body)
@@ -91,6 +97,7 @@ function attendeeDeleteRoute(req,res,next){
 }
 
 module.exports = {
+  index: indexRoute,
   create: createRoute,
   show: showRoute,
   update: updateRoute,

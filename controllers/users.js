@@ -9,6 +9,7 @@ function indexRoute(req,res,next){
 function showRoute(req, res, next) {
   User.findById(req.params.id)
     .then(user => res.json(user))
+    .then(() => console.log(req.currentUser))
     .catch(next);
 }
 
