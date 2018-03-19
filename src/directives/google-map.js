@@ -28,7 +28,6 @@ function googleMap() {
         var marker, i;
 
         for (i = 0; i < $scope.restaurants.length; i++) {
-          console.log($scope.restaurants[i]);
           const myLatLng = { lat: parseFloat($scope.restaurants[i].coordinates.latitude), lng: parseFloat($scope.restaurants[i].coordinates.longitude)};
           marker = new google.maps.Marker({
             position: myLatLng,

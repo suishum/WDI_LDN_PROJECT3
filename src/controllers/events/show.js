@@ -5,8 +5,9 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
   vm.event = {};
   vm.users = [];
   vm.comment = '';
-  const currentUser = $auth.getPayload().sub;
   vm.isAdmin = false;
+  const currentUser = $auth.getPayload().sub;
+
   // may not be able to initialise this boolean here b/c on page reload, the poll will show up again. Do it in HTML?
   vm.displayPoll = true;
 

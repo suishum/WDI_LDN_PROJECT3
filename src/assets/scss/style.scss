@@ -1,7 +1,15 @@
+.subtitle {
+  font-weight:bold;
+}
+
+.is-flexed {
+  display:flex;
+  align-items:center;
+}
 
 //events new page
 .google-map {
-  width: 600px;
+  max-width: 600px;
   height: 350px;
 }
 
@@ -9,6 +17,7 @@
 .restaurants {
   display:flex;
   justify-content: space-between;
+  align-items:center;
 }
 
 
@@ -17,7 +26,34 @@
   width:100% !important;
 }
 
+.attendeeButtons {
+  float:right;
+}
+
+li {
+  overflow: auto;
+  margin: 20px 0;
+  p {
+    display:inline-block;
+  }
+
+  hr {
+    margin:5px;
+  }
+}
+
+.voteBtn {
+  float:right;
+}
 
 .invite {
   margin: 20px;
+}
+
+
+//mobile
+@media only screen and (max-width: 600px) {
+  .is-flexed {
+    display:block;
+  }
 }

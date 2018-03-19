@@ -15,7 +15,7 @@ function createRoute(req,res,next){
 
 function showRoute(req,res,next){
   Event.findById(req.params.id)
-    .populate('comments.user attendees votes.voter')
+    .populate('comments.user attendees votes.voter admin')
     // .populate('comments.user')
     .then(event => res.json(event))
     .catch(next);

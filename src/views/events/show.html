@@ -1,30 +1,52 @@
-  {{ eventsShow.event.admin }}
-  <h1 class="title"> {{ eventsShow.event.name }}</h1>
-  <h2 class="subtitle">{{ eventsShow.event.date.split('T')[0] }}</h2>
-  <h2 class="subtitle">{{ eventsShow.event.time.split('T')[1] }}</h2>
+<h1 class="title"> {{ eventsShow.event.name }}</h1>
+<h2 class="subtitle">{{ eventsShow.event.date.split('T')[0] }} at {{ eventsShow.event.time.split('T')[1] }}</h2>
 
-  <h2 class="subtitle">Attendees</h2>
-  <ul>
-    <li ng-repeat="attendee in eventsShow.event.attendees">
-      {{ attendee.name }}
-      <!-- IF THE USER IS ADMIN -->
-      <div ng-if="eventsShow.isAdmin">
-        <button class="button" ng-click="eventsShow.removeAttendee(attendee)">x</button>
-        <button class="button" ng-click="eventsShow.makeAdmin(attendee)">Make Admin</button>
+
+<div class="columns">
+  <div class="column is-half">
+    <h2 class="subtitle">Attendees</h2>
+    <ul>
+      <li ng-repeat="attendee in eventsShow.event.attendees">
+        <a ui-sref="usersShow({ id: attendee._id })">{{ attendee.name }}</a>
+        <!-- IF THE USER IS ADMIN -->
+        <div class="attendeeButtons" ng-if="eventsShow.isAdmin">
+          <button class="button" ng-click="eventsShow.removeAttendee(attendee)">x</button>
+          <button class="button" ng-click="eventsShow.makeAdmin(attendee)">Make Admin</button>
+        </div>
+        <!-- IF THE USER IS ADMIN -->
+      </li>
+    </ul>
+  </div>
+  <div class="column is-half">
+    <h2 class="subtitle">Admin</h2>
+    <ul>
+      <li ng-repeat="admin in eventsShow.event.admin">
+        <a ui-sref="usersShow({ id: admin._id })">{{ admin.name }}</a>
+      </li>
+    </ul>
+  </div>
+
+</div>
+<div class="columns is-flexed">
+  <div class="column is-half">
+    <div ng-if="eventsShow.displayPoll">
+        <h2 class="subtitle">Restaurants</h2>
+        <ul>
+          <li ng-repeat="restaurant in eventsShow.event.restaurants">
+            <p>{{ restaurant.name }}
+              <br>
+              Yelp Rating: {{ restaurant.rating }}
+              <br>
+            Votes: {{ eventsShow.tallyVotes(restaurant)}}</p>
+            <button ng-click="eventsShow.vote(restaurant)" class="button voteBtn"><i class="fas fa-thumbs-up"></i></button>
+            <hr/>
+          </li>
+        </ul>
       </div>
-      <!-- IF THE USER IS ADMIN -->
-    </li>
-  </ul>
-
-<div ng-if="eventsShow.displayPoll">
-  <h2 class="subtitle">Restaurants</h2>
-  <ul>
-    <li ng-repeat="restaurant in eventsShow.event.restaurants">
-      <p>{{ restaurant.name }}</p>
-      <button ng-click="eventsShow.vote(restaurant)" class="button">Vote</button>
-      <p>Votes: {{ eventsShow.tallyVotes(restaurant) }}</p>
-    </li>
-  </ul>
+    </div>
+    <div class="column is-half">
+      <google-map zoom="13" center="eventsShow.event.location" restaurants=" eventsShow.event.restaurants"></google-map>
+    </div>
 </div>
 
 <div ng-if="!eventsShow.displayPoll">
