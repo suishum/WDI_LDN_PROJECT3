@@ -1,9 +1,11 @@
 .google-map {
-  width: 300px;
-  height: 300px;
+  width: 600px;
+  height: 350px;
   float:right;
 }
 
-form {
-  width:50%;
+// events new page
+.restaurants {
+  display:flex;
+  justify-content: space-between;
 }
