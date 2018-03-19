@@ -13,8 +13,8 @@ function Event($http){
     return $http.put(`/api/events/${event._id}`, event);
   }
 
-  function remove(event){
-    return $http.delete( `/api/events/${event._id}`);
+  function remove(id){
+    return $http.delete( `/api/events/${id}`);
   }
 
   function voteCreate(id, restaurant){

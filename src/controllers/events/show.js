@@ -1,10 +1,11 @@
-EventsShowCtrl.$inject = ['$http', 'Event', '$state', 'User'];
+EventsShowCtrl.$inject = ['$http', 'Event', '$state', 'User', '$auth'];
 
-function EventsShowCtrl($http, Event, $state, User){
+function EventsShowCtrl($http, Event, $state, User, $auth){
   const vm = this;
   vm.event = {};
   vm.users = [];
   vm.comment = '';
+  const currentUser = $auth.getPayload().sub;
 
   Event.findById($state.params.id)
     .then(res => {
@@ -35,18 +36,18 @@ function EventsShowCtrl($http, Event, $state, User){
       .attendeeDelete($state.params.id, attendee)
       .then(res => vm.event = res.data)
       .catch(err => console.error(err));
-    // const i = vm.event.attendees.findIndex(obj => obj._id === id);
-    // vm.event.attendees.splice(i, 1);
-    // Event.update(vm.event);
     updateInviteList();
   }
 
-  //TODO: Write logic to avoid same user voting twice
-  function vote(restaurant){
-    Event
-      .voteCreate($state.params.id, { restaurant: restaurant, voter: '' })
-      .then(res => vm.event = res.data)
-      .catch(err => console.error(err));
+  function vote(restaurant) {
+    if (vm.event.votes.filter(obj => obj.voter._id === currentUser).length > 0) {
+      return false;
+    } else {
+      Event
+        .voteCreate($state.params.id, { restaurant: restaurant })
+        .then(res => vm.event = res.data)
+        .catch(err => console.error(err));
+    }
   }
 
   function tallyVotes(currentRestaurant){
@@ -77,6 +78,16 @@ function EventsShowCtrl($http, Event, $state, User){
       .catch(err => console.error(err));
   }
 
+  // function isAdmin(){
+  //
+  // }
+
+  function deleteEvent(){
+    Event.remove($state.params.id)
+      .then(() => $state.go('home'));
+  }
+
+  this.deleteEvent = deleteEvent;
   this.deleteComment = deleteComment;
   this.submitComment = submitComment;
   this.tallyVotes = tallyVotes;
