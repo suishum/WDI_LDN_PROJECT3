@@ -25,9 +25,7 @@
     </div>
     <div id="mobile-menu" class="navbar-menu ng-class:clicked ? 'is-active' : 'is-not-active'">
       <div class="navbar-end">
-        <!-- placesShow({ id: place._id }) -->
-        <!-- find a way to direct user to THEIR profile, get their user._id and pass as a parameter? Get from token?-->
-        <a class="navbar-item" ng-click="clicked = !clicked" ng-if="main.isAuthenticated()" ui-sref="usersShow">Your Profile</a>
+        <a class="navbar-item" ng-click="clicked = !clicked" ng-if="main.isAuthenticated()" ui-sref="usersShow({ id: main.payload.sub })">My Profile</a>
         <a class="navbar-item" ng-click="clicked = !clicked" ng-if="main.isAuthenticated()" ui-sref="eventsNew">New Event</a>
         <a class="navbar-item" ng-click="clicked = !clicked" ng-if="!main.isAuthenticated()" ui-sref="login">Login</a>
         <a class="navbar-item" ng-click="clicked = !clicked" ng-if="!main.isAuthenticated()" ui-sref="register">Register</a>

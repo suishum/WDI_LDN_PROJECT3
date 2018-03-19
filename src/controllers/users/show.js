@@ -1,23 +1,40 @@
-UsersShowCtrl.$inject = ['User', '$state'];
-function UsersShowCtrl(User, $state) {
+UsersShowCtrl.$inject = ['User', '$state', '$auth', '$http'];
+function UsersShowCtrl(User, $state, $auth, $http) {
   // console.log('show ctrl loaded');
-  this.user = {};
+  const vm = this;
+  vm.user = {};
 
   User.findById($state.params.id)
-    .then(res => this.user = res.data);
+    .then(res => vm.user = res.data);
   // .then(() => {
-  //   const lat = this.user.location.lat;
-  //   const lng = this.user.location.lng;
+  //   const lat = vm.user.location.lat;
+  //   const lng = vm.user.location.lng;
   //   User.getForecast(lat, lng)
   //     .then(res => console.log(res));
   // });
 
+  // get the user id of the person logged in by accessing the payload information
+  vm.payload = $auth.getPayload();
+  console.log(vm.payload.sub);
+
+  vm.allEvents = [];
+  vm.myEvents = [];
+  vm.joinedEvents = [];
+
+  $http.get('/api/events')
+    .then(res => {
+      // console.log(res.data);
+      vm.allEvents = res.data;
+      vm.myEvents = vm.allEvents.filter(event => event.admin.includes(vm.payload.sub));
+      console.log(vm.myEvents);
+    });
+
   // function remove() {
-  //   User.remove(this.user)
+  //   User.remove(vm.user)
   //     .then(() => $state.go('home'));
   // }
   //
-  // this.remove = remove;
+  // vm.remove = remove;
 }
 
 export default UsersShowCtrl;

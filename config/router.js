@@ -20,6 +20,7 @@ router.route('/users/:id')
 
 //event routes
 router.route('/events')
+  .get(events.index)
   .post(secureRoute, events.create);
 
 router.route('/events/:id')
