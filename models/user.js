@@ -9,9 +9,14 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   photo: { type: String },
   preferences: [{ type: String }],
-  favorite1: { type: String },
-  favorite2: { type: String },
-  favorite3: { type: String }
+  address: { type: String },
+  location: {
+    lat: { type: Number },
+    lng: { type: Number }
+  },
+  favorite1: { type: Object },
+  favorite2: { type: Object },
+  favorite3: { type: Object }
 });
 
 // CHECK PASSWORD MATCHES THE PASSWORD CONFIRMATION

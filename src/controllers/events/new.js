@@ -19,12 +19,15 @@ function EventsNewCtrl(Event, $state, $http, $scope) {
 
   function updateRestaurants(){
     const { lat, lng: lon } = vm.event.location;
-    $http.get('/api/restaurants', {
-      params: { lat, lon }
-    })
-      .then(res => {
-        vm.restaurants = res.data.businesses;
-      });
+    if (lat && lon) {
+      $http.get('/api/restaurants', {
+        params: { lat, lon }
+      })
+        .then(res => {
+          vm.restaurants = res.data.businesses;
+        });
+
+    }
   }
 
   vm.handleSubmit = handleSubmit;

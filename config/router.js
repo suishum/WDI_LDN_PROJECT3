@@ -3,6 +3,7 @@ const events = require('../controllers/events');
 const auth = require('../controllers/auth');
 const users = require('../controllers/users');
 const yelp = require('../controllers/yelp');
+const categories = require('../controllers/categories');
 const secureRoute = require('../lib/secureRoute');
 
 router.post('/register', auth.register);
@@ -14,20 +15,20 @@ router.route('/users')
 
 router.route('/users/:id')
   .get(users.show)
-  .put(users.update)
-  .delete(users.delete);
+  .put(secureRoute, users.update)
+  .delete(secureRoute, users.delete);
 
-//event Routes
+//event routes
 router.route('/events')
-  .post(events.create);
+  .post(secureRoute, events.create);
 
 router.route('/events/:id')
-  .get(events.show)
-  .put(events.update)
-  .delete(events.delete);
+  .get(secureRoute, events.show)
+  .put(secureRoute, events.update)
+  .delete(secureRoute, events.delete);
 
 router.route('/events/:id/vote')
-  .post(events.voteCreate);
+  .post(secureRoute, events.voteCreate);
 
 router.route('/events/:id/comments')
   .post(secureRoute, events.commentCreate);
@@ -42,6 +43,8 @@ router.route('/events/:id/attendees/:attendeeId')
   .delete(events.attendeeDelete);
 
 router.get('/restaurants', yelp.restaurants);
+
+router.get('/categories', categories.index);
 
 router.route('/*')
   .all((req, res) => res.status(404).json({ message: 'Not found' }));

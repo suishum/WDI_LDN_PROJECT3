@@ -1,15 +1,22 @@
 <section class="section">
   <div class="container">
-    <form ng-submit="authLogin.handleSubmit()">
+    <!-- <pre>{{ authLogin.form | json }}</pre> -->
+    <form name="authLogin.form" ng-submit="authLogin.handleSubmit()">
 
       <div class="field">
         <label for="email">Email</label>
-        <input class="input" placeholder="Email" name="email" ng-model="authLogin.credentials.email" />
+        <input class="input" placeholder="Email" name="email" ng-model="authLogin.credentials.email" required/>
       </div>
-      
+      <div ng-messages="authLogin.form.email.$error" ng-if="authLogin.form.email.$touched || authLogin.form.$submitted">
+        <div class="notification is-danger" ng-message="required">This field is required</div>
+      </div>
+
       <div class="field">
         <label for="password">Password</label>
-        <input type="password" class="input" placeholder="Password" name="password" ng-model="authLogin.credentials.password" />
+        <input type="password" class="input" placeholder="Password" name="password" ng-model="authLogin.credentials.password" required/>
+      </div>
+      <div ng-messages="authLogin.form.password.$error" ng-if="authLogin.form.password.$touched || authLogin.form.$submitted">
+        <div class="notification is-danger" ng-message="required">This field is required</div>
       </div>
 
       <button class="button is-primary">Submit</button>
