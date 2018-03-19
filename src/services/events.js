@@ -22,7 +22,7 @@ function Event($http){
   }
 
   function commentCreate(id, comment){
-    return $http.post( `/api/events/${id}/comment`, comment);
+    return $http.post( `/api/events/${id}/comments`, comment);
   }
 
   this.findById = findById;

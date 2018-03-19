@@ -55,8 +55,8 @@ function EventsShowCtrl($http, Event, $state, User){
   }
 
   function submitComment(){
-    console.log('working!');
-    // Event.commentCreate($state.params.id, { content: vm.comment, user: '' });
+    Event.commentCreate($state.params.id, { content: vm.comment, user: '' });
+    vm.comment = [];
   }
 
   this.submitComment = submitComment;
