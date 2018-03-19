@@ -1,6 +1,6 @@
-EventsNewCtrl.$inject = ['Event', '$state', '$http', '$scope'];
+EventsNewCtrl.$inject = ['Event', '$state', '$http', '$scope', '$auth'];
 
-function EventsNewCtrl(Event, $state, $http, $scope) {
+function EventsNewCtrl(Event, $state, $http, $scope, $auth) {
   const vm = this;
   vm.event = {
     restaurants: [],
@@ -11,10 +11,12 @@ function EventsNewCtrl(Event, $state, $http, $scope) {
   };
   vm.restaurants = [];
 
+  const currentUserId = $auth.getPayload().sub;
+
   function handleSubmit(){
     if (vm.form.invalid) return false;
     Event.create(vm.event)
-      .then(() => $state.go('home'));
+      .then(() => $state.go('usersShow', { id: currentUserId }));
   }
 
   function updateRestaurants(){
