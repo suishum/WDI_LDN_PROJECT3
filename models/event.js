@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 
 const commentSchema = new mongoose.Schema({
   content: { type: String },
-  user: { type: String }
-  // user: { type: mongoose.Schema.ObjectId, ref: 'User' }
+  user: { type: mongoose.Schema.ObjectId, ref: 'User' }
 });
 
 commentSchema.methods.isOwnedBy = function(user) {

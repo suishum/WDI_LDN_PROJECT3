@@ -43,7 +43,6 @@ function voteCreateRoute(req,res,next){
 
 function commentCreateRoute(req,res,next){
   req.body.user = req.currentUser;
-  console.log(req.currentUser);
   Event.findById(req.params.id)
     .then(event => {
       event.comments.push(req.body);
