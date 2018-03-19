@@ -69,6 +69,7 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
     vm.comment = [];
   }
 
+
   function deleteComment(comment){
     Event
       .commentDelete($state.params.id, comment)
@@ -78,15 +79,16 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
       .catch(err => console.error(err));
   }
 
-  // function isAdmin(){
-  //
-  // }
+  function isAdmin(){
+    return (vm.event.admin.findIndex(user => user.toString() === currentUser) !== -1);
+  }
 
   function deleteEvent(){
     Event.remove($state.params.id)
       .then(() => $state.go('home'));
   }
 
+  this.isAdmin = isAdmin;
   this.deleteEvent = deleteEvent;
   this.deleteComment = deleteComment;
   this.submitComment = submitComment;
