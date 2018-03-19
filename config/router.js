@@ -35,6 +35,12 @@ router.route('/events/:id/comments')
 router.route('/events/:id/comments/:commentId')
   .delete(events.commentDelete);
 
+router.route('/events/:id/attendees')
+  .post(events.attendeeCreate);
+
+router.route('/events/:id/attendees/:attendeeId')
+  .delete(events.attendeeDelete);
+
 router.get('/restaurants', yelp.restaurants);
 
 router.route('/*')

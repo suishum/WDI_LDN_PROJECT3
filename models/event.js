@@ -22,7 +22,7 @@ const eventSchema = new mongoose.Schema({
   admin: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
   comments: [commentSchema],
   votes: [{
-    voter: { type: String },
+    voter: { type: mongoose.Schema.ObjectId, ref: 'User' },
     restaurant: { type: Object }
   }]
 });
