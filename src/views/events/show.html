@@ -16,42 +16,12 @@
   </li>
 </ul>
 
-  <ul class="comments">
-    <li ng-repeat="comment in eventsShow.event.comments">
-        <div class="box">
-          <form class="delete" method="POST" action="/cheeses/<%= cheese._id %>/comments/<%= comment._id %>">
-                <input type="hidden" name="_method" value="DELETE">
-                <button class="delete">x</button>
-          </form>
-          <article class="media">
-            <div class="media-left">
-              <figure class="image is-64x64">
-                <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-              </figure>
-            </div>
-            <div class="media-content">
-              <div class="content">
-                <p>
-                  <%= comment.content %>
-                </p>
-                  <% if (comment.user) { %>
-                    <strong><%= comment.user.username %></strong>
-                  <% } %>
-                </p>
-              </div>
-            </div>
-          </article>
-        </div>
-    </li>
-  </ul>
-
-<textarea class="textarea" name="content" ng-model="eventsShow.comment"></textarea>
-<button class="button is-primary" ng-submit="eventsShow.commentCreate()">Submit</button>
-
+  <a class="button is-primary" ui-sref="eventsEdit({ id: eventsShow.event._id })">Edit Event</a>
+  <button class="button is-danger" ng-click="eventsShow.deleteEvent()">Delete Event</button>
 
 <div class="invite">
-  <ui-select multiple theme="bootstrap" ng-model="eventsShow.selected.value">
-     <ui-select-match placeholder="Select person...">
+  <ui-select multiple theme="select2" ng-model="eventsShow.selected.value">
+     <ui-select-match placeholder="Select person..." selected>
        {{$item.name}} &lt;{{$item.email}}&gt;
      </ui-select-match>
      <ui-select-choices repeat="user in (eventsShow.users | filter: $select.search)">
@@ -60,3 +30,30 @@
    </ui-select>
    <button class="button" ng-click="eventsShow.invite()">Invite</button>
 </div>
+
+<ul class="comments">
+  <li ng-repeat="comment in eventsShow.event.comments">
+    <div class="box">
+      <button ng-click="eventsShow.deleteComment(comment)" class="delete">x</button>
+      <article class="media">
+        <div class="media-left">
+          <figure class="image is-64x64">
+            <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+          </figure>
+        </div>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              {{ comment.content }}
+            </p>
+            <strong>{{ comment.user.username }}</strong>
+          </p>
+        </div>
+      </div>
+    </article>
+  </div>
+</li>
+</ul>
+
+<textarea class="textarea" name="content" ng-model="eventsShow.comment"></textarea>
+<button class="button is-primary" ng-click="eventsShow.submitComment()">Submit</button>

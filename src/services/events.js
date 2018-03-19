@@ -22,7 +22,11 @@ function Event($http){
   }
 
   function commentCreate(id, comment){
-    return $http.post( `/api/events/${id}/comment`, comment);
+    return $http.post( `/api/events/${id}/comments`, comment);
+  }
+
+  function commentDelete(id, comment){
+    return $http.delete(`/api/events/${id}/comments/${comment._id}`);
   }
 
   this.findById = findById;
@@ -31,6 +35,7 @@ function Event($http){
   this.remove = remove;
   this.voteCreate = voteCreate;
   this.commentCreate = commentCreate;
+  this.commentDelete = commentDelete;
 }
 
 export default Event;

@@ -2,7 +2,6 @@ const router = require('express').Router();
 const events = require('../controllers/events');
 const auth = require('../controllers/auth');
 const users = require('../controllers/users');
-// const zomato = require('../controllers/zomato');
 const yelp = require('../controllers/yelp');
 const categories = require('../controllers/categories');
 const secureRoute = require('../lib/secureRoute');
@@ -34,7 +33,9 @@ router.route('/events/:id/vote')
 router.route('/events/:id/comments')
   .post(secureRoute, events.commentCreate);
 
-// router.get('/restaurants', zomato.restaurants);
+router.route('/events/:id/comments/:commentId')
+  .delete(events.commentDelete);
+
 router.get('/restaurants', yelp.restaurants);
 
 router.get('/categories', categories.index);

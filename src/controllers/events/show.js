@@ -48,17 +48,29 @@ function EventsShowCtrl($http, Event, $state, User){
       if(vote.restaurant.id === currentRestaurant.id) matches += 1;
     });
     return matches;
-    // const matches = vm.event.votes.filter(vote => {
-    //   vote.restaurant.id === currentRestaurant.id;
-    // });
-    // console.log(matches.length);
   }
 
   function submitComment(){
-    console.log('working!');
-    // Event.commentCreate($state.params.id, { content: vm.comment, user: '' });
+    Event
+      .commentCreate($state.params.id, { content: vm.comment, user: '' })
+      .then(res => {
+        vm.event = res.data;
+      })
+      .catch(err => console.error(err));
+
+    vm.comment = [];
   }
 
+  function deleteComment(comment){
+    Event
+      .commentDelete($state.params.id, comment)
+      .then(res => {
+        vm.event = res.data;
+      })
+      .catch(err => console.error(err));
+  }
+
+  this.deleteComment = deleteComment;
   this.submitComment = submitComment;
   this.tallyVotes = tallyVotes;
   this.vote = vote;

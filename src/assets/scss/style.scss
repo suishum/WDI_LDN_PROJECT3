@@ -1,31 +1,22 @@
 
 //events new page
 .google-map {
-  width: 300px;
-  height: 300px;
+  width: 600px;
+  height: 350px;
 }
 
-form {
-  width:50%;
+// events new page
+.restaurants {
+  display:flex;
+  justify-content: space-between;
 }
 
 
 //events show page
-.bar {
-  height: 50px;
-  width: 200px;
-  margin: 20px;
-  button {
-    display: inline-block;
-  }
+.select2-input {
+  width:100% !important;
 }
 
-#loading {
-  background-color: red;
-  width: 20px;
-  height: 20px;
-  display:inline-block;
-}
 
 .invite {
   margin: 20px;
