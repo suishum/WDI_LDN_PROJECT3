@@ -14,12 +14,14 @@
   "dependencies": {
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.6.9",
+    "angular-sanitize": "^1.6.9",
     "bcrypt": "^1.0.3",
     "bulma": "^0.6.2",
     "jsonwebtoken": "^8.2.0",
     "mongoose": "^5.0.10",
     "request-promise": "^4.2.2",
-    "satellizer": "^0.15.5"
+    "satellizer": "^0.15.5",
+    "ui-select": "^0.19.8"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",

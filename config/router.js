@@ -10,6 +10,9 @@ router.post('/register', auth.register);
 router.post('/login', auth.login);
 
 //user routes
+router.route('/users')
+  .get(users.index);
+
 router.route('/users/:id')
   .get(users.show)
   .put(users.update)
@@ -23,6 +26,12 @@ router.route('/events/:id')
   .get(events.show)
   .put(events.update)
   .delete(events.delete);
+
+router.route('/events/:id/vote')
+  .post(events.voteCreate);
+
+router.route('/events/:id/comments')
+  .post(events.commentCreate);
 
 // router.get('/restaurants', zomato.restaurants);
 router.get('/restaurants', yelp.restaurants);

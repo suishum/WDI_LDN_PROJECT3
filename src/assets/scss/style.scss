@@ -1,11 +1,34 @@
+
+//events new page
 .google-map {
   width: 600px;
   height: 350px;
-  float:right;
 }
 
 // events new page
 .restaurants {
   display:flex;
   justify-content: space-between;
+}
+
+
+//events show page
+.bar {
+  height: 50px;
+  width: 200px;
+  margin: 20px;
+  button {
+    display: inline-block;
+  }
+}
+
+#loading {
+  background-color: red;
+  width: 20px;
+  height: 20px;
+  display:inline-block;
+}
+
+.invite {
+  margin: 20px;
 }
