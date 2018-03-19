@@ -15,6 +15,7 @@ import UsersEditCtrl from './controllers/users/edit';
 
 import EventsNewCtrl from './controllers/events/new';
 import EventsShowCtrl from './controllers/events/show';
+import EventsEditCtrl from './controllers/events/edit';
 
 import Event from './services/events';
 import User from './services/users';
@@ -28,6 +29,9 @@ import './assets/scss/style.scss';
 angular.module('project3', ['ui.router', 'satellizer', 'ui.select', 'ngSanitize'])
   .config(Router)
   .config(Auth)
+  .config(function(uiSelectConfig) {
+    uiSelectConfig.theme = 'select2';
+  })
   .controller('AuthRegisterCtrl', AuthRegisterCtrl)
   .controller('AuthLoginCtrl', AuthLoginCtrl)
   .controller('MainCtrl', MainCtrl)
@@ -35,10 +39,8 @@ angular.module('project3', ['ui.router', 'satellizer', 'ui.select', 'ngSanitize'
   .controller('UsersEditCtrl', UsersEditCtrl)
   .controller('EventsNewCtrl', EventsNewCtrl)
   .controller('EventsShowCtrl', EventsShowCtrl)
+  .controller('EventsEditCtrl', EventsEditCtrl)
   .directive('autoComplete', autoComplete)
   .directive('googleMap', googleMap)
   .service('Event', Event)
-  .service('User', User)
-  .config(function(uiSelectConfig) {
-    uiSelectConfig.theme = 'select2';
-  });
+  .service('User', User);
