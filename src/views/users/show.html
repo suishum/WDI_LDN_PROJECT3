@@ -14,6 +14,9 @@
 </ul>
 
 <h1 class="title">Joined events</h1>
+<ul>
+  <li ng-repeat="event in usersShow.joinedEvents"><a ui-sref="eventsShow({ id: event._id })">{{ event.name }}, {{ event.date }}, {{ event.time }}</a></li>
+</ul>
 
 <a ui-sref="usersEdit({ id: usersShow.user._id })" class="button">Edit Profile</a>
 <!-- ADD DELETE BUTTON -->
