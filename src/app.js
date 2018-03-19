@@ -38,4 +38,7 @@ angular.module('project3', ['ui.router', 'satellizer', 'ui.select', 'ngSanitize'
   .directive('autoComplete', autoComplete)
   .directive('googleMap', googleMap)
   .service('Event', Event)
-  .service('User', User);
+  .service('User', User)
+  .config(function(uiSelectConfig) {
+    uiSelectConfig.theme = 'select2';
+  });

@@ -43,8 +43,20 @@ function voteCreateRoute(req,res,next){
 function commentCreateRoute(req,res,next){
   req.body.voter = req.currentUser;
   Event.findById(req.params.id)
+    .populate('comment.user')
     .then(event => {
       event.comments.push(req.body);
+      return event.save();
+    })
+    .then(event => res.json(event))
+    .catch(next);
+}
+
+function commentDeleteRoute(req,res,next){
+  Event.findById(req.params.id)
+    .then(event => {
+      const comment = event.comments.id(req.params.commentId);
+      comment.remove();
       return event.save();
     })
     .then(event => res.json(event))
@@ -57,5 +69,6 @@ module.exports = {
   update: updateRoute,
   delete: deleteRoute,
   voteCreate: voteCreateRoute,
-  commentCreate: commentCreateRoute
+  commentCreate: commentCreateRoute,
+  commentDelete: commentDeleteRoute
 };

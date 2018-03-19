@@ -48,10 +48,6 @@ function EventsShowCtrl($http, Event, $state, User){
       if(vote.restaurant.id === currentRestaurant.id) matches += 1;
     });
     return matches;
-    // const matches = vm.event.votes.filter(vote => {
-    //   vote.restaurant.id === currentRestaurant.id;
-    // });
-    // console.log(matches.length);
   }
 
   function submitComment(){
@@ -59,6 +55,11 @@ function EventsShowCtrl($http, Event, $state, User){
     vm.comment = [];
   }
 
+  function deleteComment(comment){
+    Event.commentDelete($state.params.id, comment);
+  }
+
+  this.deleteComment = deleteComment;
   this.submitComment = submitComment;
   this.tallyVotes = tallyVotes;
   this.vote = vote;

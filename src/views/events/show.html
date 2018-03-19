@@ -19,10 +19,7 @@
   <ul class="comments">
     <li ng-repeat="comment in eventsShow.event.comments">
         <div class="box">
-          <form class="delete" method="POST" action="/cheeses/<%= cheese._id %>/comments/<%= comment._id %>">
-                <input type="hidden" name="_method" value="DELETE">
-                <button class="delete">x</button>
-          </form>
+          <button ng-click="eventsShow.deleteComment(comment)" class="delete">x</button>
           <article class="media">
             <div class="media-left">
               <figure class="image is-64x64">
@@ -32,11 +29,9 @@
             <div class="media-content">
               <div class="content">
                 <p>
-                  <%= comment.content %>
+                  {{ comment.content }}
                 </p>
-                  <% if (comment.user) { %>
-                    <strong><%= comment.user.username %></strong>
-                  <% } %>
+                    <strong>{{ comment.user.username }}</strong>
                 </p>
               </div>
             </div>
@@ -50,8 +45,8 @@
 
 
 <div class="invite">
-  <ui-select multiple theme="bootstrap" ng-model="eventsShow.selected.value">
-     <ui-select-match placeholder="Select person...">
+  <ui-select multiple theme="select2" ng-model="eventsShow.selected.value">
+     <ui-select-match placeholder="Select person..." selected>
        {{$item.name}} &lt;{{$item.email}}&gt;
      </ui-select-match>
      <ui-select-choices repeat="user in (eventsShow.users | filter: $select.search)">

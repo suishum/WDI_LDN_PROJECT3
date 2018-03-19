@@ -33,7 +33,9 @@ router.route('/events/:id/vote')
 router.route('/events/:id/comments')
   .post(events.commentCreate);
 
-// router.get('/restaurants', zomato.restaurants);
+router.route('/events/:id/comments/:commentId')
+  .delete(events.commentDelete);
+
 router.get('/restaurants', yelp.restaurants);
 
 router.route('/*')

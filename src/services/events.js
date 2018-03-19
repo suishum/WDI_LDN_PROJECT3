@@ -25,12 +25,17 @@ function Event($http){
     return $http.post( `/api/events/${id}/comments`, comment);
   }
 
+  function commentDelete(id, comment){
+    return $http.delete(`/api/events/${id}/comments/${comment._id}`);
+  }
+
   this.findById = findById;
   this.create = create;
   this.update = update;
   this.remove = remove;
   this.voteCreate = voteCreate;
   this.commentCreate = commentCreate;
+  this.commentDelete = commentDelete;
 }
 
 export default Event;
