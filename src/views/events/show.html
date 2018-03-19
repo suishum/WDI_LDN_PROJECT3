@@ -10,6 +10,7 @@
       <!-- IF THE USER IS ADMIN -->
       <div ng-if="eventsShow.isAdmin">
         <button class="button" ng-click="eventsShow.removeAttendee(attendee)">x</button>
+        <button class="button" ng-click="eventsShow.makeAdmin(attendee)">Make Admin</button>
       </div>
       <!-- IF THE USER IS ADMIN -->
     </li>
