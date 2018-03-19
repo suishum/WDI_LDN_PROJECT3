@@ -9,7 +9,7 @@ function createRoute(req,res,next){
 
 function showRoute(req,res,next){
   Event.findById(req.params.id)
-    .populate('comments.user attendees')
+    .populate('comments.user attendees votes.voter')
     // .populate('comments.user')
     .then(event => res.json(event))
     .catch(next);
@@ -33,11 +33,13 @@ function deleteRoute(req,res,next){
 function voteCreateRoute(req,res,next){
   req.body.voter = req.currentUser;
   Event.findById(req.params.id)
-    .populate('comments.user attendees')
     .then(event => {
+      console.log(req.body);
       event.votes.push(req.body);
+      console.log(event.votes);
       return event.save();
     })
+    .then(event => Event.populate(event, { path: 'comments.user attendees' }))
     .then(event => res.json(event))
     .catch(next);
 }
