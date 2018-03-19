@@ -10,7 +10,7 @@ function MainCtrl($auth, $state, $scope) {
   // get the user id of the person logged in by accessing the payload information
   $scope.$on('loggedIn', () => vm.payload = $auth.getPayload());
   // console.log(vm.payload.sub);
-
+  vm.clicked = false;
 
   function logout() {
     $auth.logout();

@@ -6,13 +6,20 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
   vm.users = [];
   vm.comment = '';
   const currentUser = $auth.getPayload().sub;
+  vm.isAdmin = false;
+  // may not be able to initialise this boolean here b/c on page reload, the poll will show up again. Do it in HTML?
+  vm.displayPoll = true;
 
   Event.findById($state.params.id)
     .then(res => {
       vm.event = res.data;
+      // Find out if the user is an admin
+      if (vm.event.admin.includes(currentUser)) {
+        vm.isAdmin = true;
+      }
+      // console.log(vm.event);
     })
     .then(() => updateInviteList());
-
 
   function updateInviteList() {
     User.find()
@@ -78,15 +85,24 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
       .catch(err => console.error(err));
   }
 
-  // function isAdmin(){
-  //
-  // }
+  function togglePoll() {
+    console.log('clicked');
+    if (vm.displayPoll === true) {
+      vm.displayPoll = false;
+    } else {
+      vm.displayPoll = true;
+    }
+    // write something to display info of restaurant with the most votes
+    // opening hours, telephone number (for bookings),
+    // remove the voting buttons?
+  }
 
   function deleteEvent(){
     Event.remove($state.params.id)
       .then(() => $state.go('home'));
   }
 
+  this.togglePoll = togglePoll;
   this.deleteEvent = deleteEvent;
   this.deleteComment = deleteComment;
   this.submitComment = submitComment;
