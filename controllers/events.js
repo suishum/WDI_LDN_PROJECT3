@@ -15,8 +15,8 @@ function createRoute(req,res,next){
 
 function showRoute(req,res,next){
   Event.findById(req.params.id)
-    .populate('comments.user')
-    .populate('attendees')
+    .populate('comments.user attendees')
+    // .populate('comments.user')
     .then(event => res.json(event))
     .catch(next);
 }
@@ -39,6 +39,7 @@ function deleteRoute(req,res,next){
 function voteCreateRoute(req,res,next){
   req.body.voter = req.currentUser;
   Event.findById(req.params.id)
+    .populate('comments.user attendees')
     .then(event => {
       event.votes.push(req.body);
       return event.save();
@@ -50,7 +51,7 @@ function voteCreateRoute(req,res,next){
 function commentCreateRoute(req,res,next){
   req.body.user = req.currentUser;
   Event.findById(req.params.id)
-    .populate('comments.user')
+    .populate('comments.user attendees')
     .then(event => {
       event.comments.push(req.body);
       return event.save();
@@ -61,12 +62,34 @@ function commentCreateRoute(req,res,next){
 
 function commentDeleteRoute(req,res,next){
   Event.findById(req.params.id)
-    .populate('comments.user')
+    .populate('comments.user attendees')
     .then(event => {
       const comment = event.comments.id(req.params.commentId);
       comment.remove();
       return event.save();
     })
+    .then(event => res.json(event))
+    .catch(next);
+}
+
+function attendeeCreateRoute(req,res,next){
+  Event.findById(req.params.id)
+    .then(event => {
+      event.attendees = event.attendees.concat(req.body);
+      return event.save();
+    })
+    .then(event => Event.populate(event, { path: 'comments.user attendees' }))
+    .then(event => res.json(event))
+    .catch(next);
+}
+
+function attendeeDeleteRoute(req,res,next){
+  Event.findById(req.params.id)
+    .then(event => {
+      event.attendees = event.attendees.filter(attendeeId => !attendeeId.equals(req.params.attendeeId));
+      return event.save();
+    })
+    .then(event => Event.populate(event, { path: 'comments.user attendees' }))
     .then(event => res.json(event))
     .catch(next);
 }
@@ -79,5 +102,7 @@ module.exports = {
   delete: deleteRoute,
   voteCreate: voteCreateRoute,
   commentCreate: commentCreateRoute,
-  commentDelete: commentDeleteRoute
+  commentDelete: commentDeleteRoute,
+  attendeeCreate: attendeeCreateRoute,
+  attendeeDelete: attendeeDeleteRoute
 };

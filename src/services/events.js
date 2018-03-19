@@ -29,6 +29,14 @@ function Event($http){
     return $http.delete(`/api/events/${id}/comments/${comment._id}`);
   }
 
+  function attendeeCreate(id, attendees){
+    return $http.post(`/api/events/${id}/attendees`, attendees);
+  }
+
+  function attendeeDelete(id,attendee){
+    return $http.delete(`/api/events/${id}/attendees/${attendee._id}`);
+  }
+
   this.findById = findById;
   this.create = create;
   this.update = update;
@@ -36,6 +44,8 @@ function Event($http){
   this.voteCreate = voteCreate;
   this.commentCreate = commentCreate;
   this.commentDelete = commentDelete;
+  this.attendeeCreate = attendeeCreate;
+  this.attendeeDelete = attendeeDelete;
 }
 
 export default Event;
