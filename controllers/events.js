@@ -9,6 +9,7 @@ function createRoute(req,res,next){
 
 function showRoute(req,res,next){
   Event.findById(req.params.id)
+    .populate('comments.user')
     .populate('attendees')
     .then(event => res.json(event))
     .catch(next);
@@ -41,9 +42,9 @@ function voteCreateRoute(req,res,next){
 }
 
 function commentCreateRoute(req,res,next){
-  req.body.voter = req.currentUser;
+  req.body.user = req.currentUser;
+  console.log(req.currentUser);
   Event.findById(req.params.id)
-    .populate('comment.user')
     .then(event => {
       event.comments.push(req.body);
       return event.save();
