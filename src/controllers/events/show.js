@@ -51,12 +51,23 @@ function EventsShowCtrl($http, Event, $state, User){
   }
 
   function submitComment(){
-    Event.commentCreate($state.params.id, { content: vm.comment, user: '' });
+    Event
+      .commentCreate($state.params.id, { content: vm.comment, user: '' })
+      .then(res => {
+        vm.event = res.data;
+      })
+      .catch(err => console.error(err));
+
     vm.comment = [];
   }
 
   function deleteComment(comment){
-    Event.commentDelete($state.params.id, comment);
+    Event
+      .commentDelete($state.params.id, comment)
+      .then(res => {
+        vm.event = res.data;
+      })
+      .catch(err => console.error(err));
   }
 
   this.deleteComment = deleteComment;

@@ -44,6 +44,7 @@ function voteCreateRoute(req,res,next){
 function commentCreateRoute(req,res,next){
   req.body.user = req.currentUser;
   Event.findById(req.params.id)
+    .populate('comments.user')
     .then(event => {
       event.comments.push(req.body);
       return event.save();
@@ -54,6 +55,7 @@ function commentCreateRoute(req,res,next){
 
 function commentDeleteRoute(req,res,next){
   Event.findById(req.params.id)
+    .populate('comments.user')
     .then(event => {
       const comment = event.comments.id(req.params.commentId);
       comment.remove();
