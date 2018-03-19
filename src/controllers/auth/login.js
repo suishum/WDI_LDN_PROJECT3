@@ -17,6 +17,7 @@ function AuthLoginCtrl($auth, $state, $rootScope) {
           type: 'success',
           content: res.data.message // pull the personalised message from the response. check console.log(res). This is the message we set earlier in the backend (controllers/auth.js)
         });
+        $rootScope.$broadcast('loggedIn');
 
         $state.go('home');
       });

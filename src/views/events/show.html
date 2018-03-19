@@ -2,38 +2,57 @@
   <h1 class="title"> {{ eventsShow.event.name }}</h1>
   <h2 class="subtitle">{{ eventsShow.event.date.split('T')[0] }}</h2>
   <h2 class="subtitle">{{ eventsShow.event.time.split('T')[1] }}</h2>
+
+  <h2 class="subtitle">Attendees</h2>
   <ul>
     <li ng-repeat="attendee in eventsShow.event.attendees">
       {{ attendee.name }}
-      <button class="button" ng-click="eventsShow.removeAttendee(attendee)">x</button>
+      <!-- IF THE USER IS ADMIN -->
+      <div ng-if="eventsShow.isAdmin">
+        <button class="button" ng-click="eventsShow.removeAttendee(attendee)">x</button>
+      </div>
+      <!-- IF THE USER IS ADMIN -->
     </li>
   </ul>
 
-<ul>
-  <li ng-repeat="restaurant in eventsShow.event.restaurants">
-    <p>{{ restaurant.name }}</p>
-    <button ng-click="eventsShow.vote(restaurant)" class="button">Vote</button>
-    <p>Votes: {{ eventsShow.tallyVotes(restaurant) }}</p>
-  </li>
-</ul>
+<div ng-if="eventsShow.displayPoll">
+  <h2 class="subtitle">Restaurants</h2>
+  <ul>
+    <li ng-repeat="restaurant in eventsShow.event.restaurants">
+      <p>{{ restaurant.name }}</p>
+      <button ng-click="eventsShow.vote(restaurant)" class="button">Vote</button>
+      <p>Votes: {{ eventsShow.tallyVotes(restaurant) }}</p>
+    </li>
+  </ul>
+</div>
 
-  <div ng-if="eventsShow.isAdmin()">
-    <a class="button is-primary" ui-sref="eventsEdit({ id: eventsShow.event._id })">Edit Event</a>
-    <button class="button is-danger" ng-click="eventsShow.deleteEvent()">Delete Event</button>
+<div ng-if="!eventsShow.displayPoll">
+  <h2 class="subtitle">Chosen Restaurant</h2>
+  <p>Display poll winner here, gmap and booking options</p>
+</div>
+
+<!-- IF THE USER IS ADMIN -->
+<div ng-if="eventsShow.isAdmin">
+  <a class="button is-danger" ng-if="eventsShow.displayPoll" ng-click="eventsShow.togglePoll()">Close Poll</a>
+  <a class="button is-danger" ng-if="!eventsShow.displayPoll" ng-click="eventsShow.togglePoll()">Open Poll</a>
+  <a class="button is-primary" ui-sref="eventsEdit({ id: eventsShow.event._id })">Edit Event</a>
+  <button class="button is-danger" ng-click="eventsShow.deleteEvent()">Delete Event</button>
 
   <div class="invite">
     <ui-select multiple theme="select2" ng-model="eventsShow.selected.value">
-       <ui-select-match placeholder="Select person..." selected>
-         {{$item.name}} &lt;{{$item.email}}&gt;
-       </ui-select-match>
-       <ui-select-choices repeat="user in (eventsShow.users | filter: $select.search)">
-           <span ng-bind="user.name"></span>
-       </ui-select-choices>
-     </ui-select>
-     <button class="button" ng-click="eventsShow.inviteAttendee()">Invite</button>
+      <ui-select-match placeholder="Select person..." selected>
+        {{$item.name}} &lt;{{$item.email}}&gt;
+      </ui-select-match>
+      <ui-select-choices repeat="user in (eventsShow.users | filter: $select.search)">
+        <span ng-bind="user.name"></span>
+      </ui-select-choices>
+    </ui-select>
+    <button class="button" ng-click="eventsShow.inviteAttendee()">Invite</button>
   </div>
 </div>
+<!-- IF THE USER IS ADMIN -->
 
+<h2 class="subtitle">Comments</h2>
 <ul class="comments">
   <li ng-repeat="comment in eventsShow.event.comments">
     <div class="box">

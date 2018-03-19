@@ -17,19 +17,19 @@
         &nbsp;
         MateDate
       </a>
-      <div class="navbar-burger ng-class:clicked ? 'is-active' : 'is-not-active'" data-target="#mobile-menu" ng-click="clicked = !clicked" >
+      <div class="navbar-burger ng-class:main.clicked ? 'is-active' : 'is-not-active'" data-target="#mobile-menu" ng-click="main.clicked = !main.clicked" >
         <span></span>
         <span></span>
         <span></span>
       </div>
     </div>
-    <div id="mobile-menu" class="navbar-menu ng-class:clicked ? 'is-active' : 'is-not-active'">
+    <div id="mobile-menu" class="navbar-menu ng-class:main.clicked ? 'is-active' : 'is-not-active'">
       <div class="navbar-end">
-        <a class="navbar-item" ng-click="clicked = !clicked" ng-if="main.isAuthenticated()" ui-sref="usersShow({ id: main.payload.sub })">My Profile</a>
-        <a class="navbar-item" ng-click="clicked = !clicked" ng-if="main.isAuthenticated()" ui-sref="eventsNew">New Event</a>
-        <a class="navbar-item" ng-click="clicked = !clicked" ng-if="!main.isAuthenticated()" ui-sref="login">Login</a>
-        <a class="navbar-item" ng-click="clicked = !clicked" ng-if="!main.isAuthenticated()" ui-sref="register">Register</a>
-        <a class="navbar-item" ng-click="clicked = !clicked; main.logout()" ng-if="main.isAuthenticated()">Logout</a>
+        <a class="navbar-item" ng-click="main.clicked = !main.clicked" ng-if="main.isAuthenticated()" ui-sref="usersShow({ id: main.payload.sub })">My Profile</a>
+        <a class="navbar-item" ng-click="main.clicked = !main.clicked" ng-if="main.isAuthenticated()" ui-sref="eventsNew">New Event</a>
+        <a class="navbar-item" ng-click="main.clicked = !main.clicked" ng-if="!main.isAuthenticated()" ui-sref="login">Login</a>
+        <a class="navbar-item" ng-click="main.clicked = !main.clicked" ng-if="!main.isAuthenticated()" ui-sref="register">Register</a>
+        <a class="navbar-item" ng-click="main.clicked = !main.clicked; main.logout()" ng-if="main.isAuthenticated()">Logout</a>
       </div>
     </div>
   </nav>

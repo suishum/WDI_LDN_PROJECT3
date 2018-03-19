@@ -35,13 +35,13 @@ router.route('/events/:id/comments')
   .post(secureRoute, events.commentCreate);
 
 router.route('/events/:id/comments/:commentId')
-  .delete(events.commentDelete);
+  .delete(secureRoute, events.commentDelete);
 
 router.route('/events/:id/attendees')
-  .post(events.attendeeCreate);
+  .post(secureRoute, events.attendeeCreate);
 
 router.route('/events/:id/attendees/:attendeeId')
-  .delete(events.attendeeDelete);
+  .delete(secureRoute, events.attendeeDelete);
 
 router.get('/restaurants', yelp.restaurants);
 

@@ -15,7 +15,7 @@ function UsersShowCtrl(User, $state, $auth, $http) {
 
   // get the user id of the person logged in by accessing the payload information
   vm.payload = $auth.getPayload();
-  console.log(vm.payload.sub);
+  // console.log(vm.payload.sub);
 
   vm.allEvents = [];
   vm.myEvents = [];
@@ -26,7 +26,9 @@ function UsersShowCtrl(User, $state, $auth, $http) {
       // console.log(res.data);
       vm.allEvents = res.data;
       vm.myEvents = vm.allEvents.filter(event => event.admin.includes(vm.payload.sub));
-      console.log(vm.myEvents);
+      // console.log(vm.myEvents);
+      vm.joinedEvents = vm.allEvents.filter(event => event.attendees.includes(vm.payload.sub));
+      // console.log(vm.joinedEvents);
     });
 
   // function remove() {

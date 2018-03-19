@@ -1,8 +1,5 @@
-<pre>{{ eventsNew.event | json }}</pre>
-
 <h1 class="title">Create a New Event</h1>
-<div class="columns">
-  <form class="column is-half" name="eventsNew.form" ng-submit="eventsNew.handleSubmit()" novalidate>
+  <form name="eventsNew.form" ng-submit="eventsNew.handleSubmit()" novalidate>
 
     <div class="field">
       <label class="label" for="name">Event Name</label>
@@ -100,4 +97,3 @@
 
     <button class="button is-primary">Submit</button>
   </form>
-</div>

@@ -43,8 +43,8 @@ function AuthRegisterCtrl($auth, $state, $http, $scope) {
     }
   }
 
-  $scope.$watch(() => vm.user.location, updateRestaurants, true);
 
+  $scope.$watch(() => vm.user.location, updateRestaurants, true);
 
 }
 
