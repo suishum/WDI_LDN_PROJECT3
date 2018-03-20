@@ -6,6 +6,7 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
   vm.users = [];
   vm.comment = '';
   vm.isAdmin = false;
+  vm.isInvited = false;
   const currentUser = $auth.getPayload().sub;
 
   // may not be able to initialise this boolean here b/c on page reload, the poll will show up again. Do it in HTML?
@@ -14,9 +15,15 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
   Event.findById($state.params.id)
     .then(res => {
       vm.event = res.data;
+      console.log(currentUser);
+      console.log(vm.event.attendees);
       // Find out if the user is an admin
-      if (vm.event.admin.includes(currentUser)) {
+      if (vm.event.admin.findIndex(admin => admin._id === currentUser) !== -1) {
         vm.isAdmin = true;
+        vm.isInvited = true;
+      }
+      if (vm.event.attendees.findIndex(attendee => attendee._id === currentUser) !== -1) {
+        vm.isInvited = true;
       }
     })
     .then(() => updateInviteList());
