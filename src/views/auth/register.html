@@ -1,4 +1,5 @@
 <h1 class="title">Register</h1>
+<pre>{{ authRegister.user | json }}</pre>
 <!-- yarn add angular-messages for form error handling -->
 <section class="section">
   <div class="container">
@@ -12,7 +13,7 @@
       <div class="field">
         <label for="name">Username</label>
         <input class="input" placeholder="Username" userholder="Username" name="username" ng-model="authRegister.user.username" required/>
-        <div class="notification is-danger" ng-messages="authRegister.form.username.$error" ng-if="authRegister.form.username.$touched || authRegister.form.$submitted">
+        <div class="notification is-danger" ng-messages="authRegister.form.username.$error" ng-if="authRegister.form.username.$dirty || authRegister.form.$submitted">
           <div ng-message="required">This field is required.</div>
         </div>
       </div>
@@ -50,8 +51,42 @@
       </div>
 
       <div class="field">
-        <label for="name">Profile Photo</label>
-        <input class="input" placeholder="Photo Link" userholder="Photo" name="photo" ng-model="authRegister.user.photo" required pattern="https?://.+" />
+        <!-- <label for="name">Profile Photo</label>
+        <input class="button" type="BUTTON" value="Upload Image" id="image-btn" name="image" ng-model="authRegister.user.photo" upload-image> -->
+        <!-- <input type ="hidden" class="input" type="text"  userholder="Photo" name="photo" ng-model="authRegister.user.photo" required pattern="https?://.+" placeholder="Image Url" id="image-url"> -->
+        <div class="control">
+          <div class="file">
+            <label class="file-label">
+              <input class="file-input" type="file" ng-model="authRegister.user.photo" upload-image>
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="fa fa-upload"></i>
+                </span>
+                <span class="file-label">
+                  Choose a file…
+                </span>
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+        <div class="field" ng-if="authRegister.user.photo">
+          <label class="label">Profile Picture Preview</label>
+          <div class="control">
+            <figure class="image is-128x128">
+              <img ng-src="{{ authRegister.user.photo }}">
+            </figure>
+          </div>
+        </div>
+
+
+
+
+      <div class="field">
+        <img class="hidden img-preview" src="{{ authRegister.user.photo }}" alt="image-preview">
+      </div>
+
         <div ng-messages="authRegister.form.photo.$error" ng-if="authRegister.form.photo.$touched || authRegister.form.$submitted">
           <div class="notification is-danger" ng-message="required">This field is required</div>
           <div class="notification is-danger" ng-message="pattern">This field must begin with http:// or https://</div>

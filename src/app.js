@@ -3,10 +3,13 @@ import '@uirouter/angularjs';
 import 'ui-select';
 import 'angular-sanitize';
 import 'satellizer';
+import 'filepicker-js';
+import 'angular-filepicker/dist/angular_filepicker';
 
 import Router from './config/router';
-
+import Upload from './config/filepicker';
 import Auth from './config/auth';
+
 import AuthRegisterCtrl from './controllers/auth/register';
 import AuthLoginCtrl from './controllers/auth/login';
 import MainCtrl from './controllers/main';
@@ -22,13 +25,18 @@ import User from './services/users';
 
 import googleMap from './directives/google-map';
 import autoComplete from './directives/auto-complete';
+import uploadImage from './directives/upload-image';
 
 import 'bulma';
 import './assets/scss/style.scss';
 
-angular.module('project3', ['ui.router', 'satellizer', 'ui.select', 'ngSanitize'])
+angular.module('project3', ['ui.router', 'satellizer', 'ui.select', 'ngSanitize', 'angular-filepicker'])
   .config(Router)
   .config(Auth)
+  .config(Upload)
+  // .config(function (filepickerProvider) {
+  //   filepickerProvider.setKey('AMhrFhOkSQUmQcpOYxLqJz');
+  // })
   .config(function(uiSelectConfig) {
     uiSelectConfig.theme = 'select2';
   })
@@ -42,5 +50,6 @@ angular.module('project3', ['ui.router', 'satellizer', 'ui.select', 'ngSanitize'
   .controller('EventsEditCtrl', EventsEditCtrl)
   .directive('autoComplete', autoComplete)
   .directive('googleMap', googleMap)
+  .directive('uploadImage', uploadImage)
   .service('Event', Event)
   .service('User', User);

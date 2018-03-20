@@ -43,9 +43,7 @@ function AuthRegisterCtrl($auth, $state, $http, $scope) {
     }
   }
 
-
   $scope.$watch(() => vm.user.location, updateRestaurants, true);
-
 }
 
 export default AuthRegisterCtrl;

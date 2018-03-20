@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
   name: { type: String },
   email: { type: String, unique: true, required: true },
   password: { type: String, required: true },
-  photo: { type: String },
+  photo: { type: String }  || 'https://bulma.io/images/placeholders/128x128.png',
   preferences: [{ type: String }],
   address: { type: String },
   location: {

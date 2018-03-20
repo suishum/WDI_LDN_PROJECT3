@@ -40,9 +40,7 @@ function voteCreateRoute(req,res,next){
   req.body.voter = req.currentUser;
   Event.findById(req.params.id)
     .then(event => {
-      console.log(req.body);
       event.votes.push(req.body);
-      console.log(event.votes);
       return event.save();
     })
     .then(event => Event.populate(event, { path: 'comments.user attendees' }))
