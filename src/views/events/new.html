@@ -1,4 +1,5 @@
-<h1 class="title">Create a New Event</h1>
+<div class="container">
+  <h1 class="title">Create a New Event</h1>
   <form name="eventsNew.form" ng-submit="eventsNew.handleSubmit()" novalidate>
 
     <div class="field">
@@ -47,53 +48,55 @@
           </select>
         </div>
 
-          <div class="field">
-            <label class="label" for="name">Restaurant 2</label>
-            <select class="select" placeholder="Restaurant" name="location" ng-model="eventsNew.event.restaurants[1]" required>
-              <option value="" disabled selected>Choose a restaurant</option>
-              <option ng-repeat="restaurant in eventsNew.restaurants" ng-value="{{ restaurant }}">{{ restaurant.name }} - {{ restaurant.location.zip_code }}</option>
-              <div ng-messages="eventsNew.form.location.$error" ng-if="eventsNew.form.location.$touched || eventsNew.form.$submitted">
-                <div class="notification is-danger" ng-message="required">This field is required</div>
-              </div>
-            </select>
-          </div>
+        <div class="field">
+          <label class="label" for="name">Restaurant 2</label>
+          <select class="select" placeholder="Restaurant" name="location" ng-model="eventsNew.event.restaurants[1]" required>
+            <option value="" disabled selected>Choose a restaurant</option>
+            <option ng-repeat="restaurant in eventsNew.restaurants" ng-value="{{ restaurant }}">{{ restaurant.name }} - {{ restaurant.location.zip_code }}</option>
+            <div ng-messages="eventsNew.form.location.$error" ng-if="eventsNew.form.location.$touched || eventsNew.form.$submitted">
+              <div class="notification is-danger" ng-message="required">This field is required</div>
+            </div>
+          </select>
+        </div>
 
-          <div class="field">
-            <label class="label" for="name">Restaurant 3</label>
-            <select class="select" placeholder="Restaurant" name="location" ng-model="eventsNew.event.restaurants[2]" required/>
-              <option value="" disabled selected>Choose a restaurant</option>
-              <option   ng-repeat="restaurant in eventsNew.restaurants" ng-value="{{ restaurant }}">{{ restaurant.name }} - {{ restaurant.location.zip_code }}</option>
-              <div ng-messages="eventsNew.form.location.$error" ng-if="eventsNew.form.location.$touched || eventsNew.form.$submitted">
-                <div class="notification is-danger" ng-message="required">This field is required</div>
-              </div>
-            </select>
+        <div class="field">
+          <label class="label" for="name">Restaurant 3</label>
+          <select class="select" placeholder="Restaurant" name="location" ng-model="eventsNew.event.restaurants[2]" required/>
+          <option value="" disabled selected>Choose a restaurant</option>
+          <option   ng-repeat="restaurant in eventsNew.restaurants" ng-value="{{ restaurant }}">{{ restaurant.name }} - {{ restaurant.location.zip_code }}</option>
+          <div ng-messages="eventsNew.form.location.$error" ng-if="eventsNew.form.location.$touched || eventsNew.form.$submitted">
+            <div class="notification is-danger" ng-message="required">This field is required</div>
           </div>
-
-          <div class="field">
-            <label class="label" for="name">Restaurant 4</label>
-            <select class="select" placeholder="Restaurant" name="location" ng-model="eventsNew.event.restaurants[3]" required/>
-              <option value="" disabled selected>Choose a restaurant</option>
-              <option ng-repeat="restaurant in eventsNew.restaurants" ng-value="{{ restaurant }}">{{ restaurant.name }} - {{ restaurant.location.zip_code }}</option>
-              <div ng-messages="eventsNew.form.location.$error" ng-if="eventsNew.form.location.$touched || eventsNew.form.$submitted">
-                <div class="notification is-danger" ng-message="required">This field is required</div>
-              </div>
-            </select>
-          </div>
-
-          <div class="field">
-            <label class="label" for="name">Restaurant 5</label>
-            <select class="select" placeholder="Restaurant" name="location" ng-model="eventsNew.event.restaurants[4]" required/>
-              <option value="" disabled selected>Choose a restaurant</option>
-              <option ng-repeat="restaurant in eventsNew.restaurants" ng-value="{{ restaurant }}">{{ restaurant.name }} - {{ restaurant.location.zip_code }}</option>
-              <div ng-messages="eventsNew.form.location.$error" ng-if="eventsNew.form.location.$touched || eventsNew.form.$submitted">
-                <div class="notification is-danger" ng-message="required">This field is required</div>
-              </div>
-            </select>
-          </div>
-
-          </div>
-        <google-map zoom="13" center="eventsNew.event.location" restaurants=" eventsNew.restaurants"></google-map>
+        </select>
       </div>
 
-    <button class="button is-primary">Submit</button>
-  </form>
+      <div class="field">
+        <label class="label" for="name">Restaurant 4</label>
+        <select class="select" placeholder="Restaurant" name="location" ng-model="eventsNew.event.restaurants[3]" required/>
+        <option value="" disabled selected>Choose a restaurant</option>
+        <option ng-repeat="restaurant in eventsNew.restaurants" ng-value="{{ restaurant }}">{{ restaurant.name }} - {{ restaurant.location.zip_code }}</option>
+        <div ng-messages="eventsNew.form.location.$error" ng-if="eventsNew.form.location.$touched || eventsNew.form.$submitted">
+          <div class="notification is-danger" ng-message="required">This field is required</div>
+        </div>
+      </select>
+    </div>
+
+    <div class="field">
+      <label class="label" for="name">Restaurant 5</label>
+      <select class="select" placeholder="Restaurant" name="location" ng-model="eventsNew.event.restaurants[4]" required/>
+      <option value="" disabled selected>Choose a restaurant</option>
+      <option ng-repeat="restaurant in eventsNew.restaurants" ng-value="{{ restaurant }}">{{ restaurant.name }} - {{ restaurant.location.zip_code }}</option>
+      <div ng-messages="eventsNew.form.location.$error" ng-if="eventsNew.form.location.$touched || eventsNew.form.$submitted">
+        <div class="notification is-danger" ng-message="required">This field is required</div>
+      </div>
+    </select>
+  </div>
+
+</div>
+<google-map zoom="13" center="eventsNew.event.location" restaurants=" eventsNew.restaurants"></google-map>
+</div>
+
+<button class="button is-primary">Submit</button>
+</form>
+  
+</div>

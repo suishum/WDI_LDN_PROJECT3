@@ -17,15 +17,12 @@ function googleMap() {
       });
       $scope.$watch('center', () => {
         map.setCenter($scope.center);
-        console.log($scope.center);
+        // console.log($scope.center);
       }, true);
-
 
       $scope.$watch('restaurants', () => {
         var infowindow = new google.maps.InfoWindow();
-
         var marker, i;
-
         for (i = 0; i < $scope.restaurants.length; i++) {
           const myLatLng = { lat: parseFloat($scope.restaurants[i].coordinates.latitude), lng: parseFloat($scope.restaurants[i].coordinates.longitude)};
           marker = new google.maps.Marker({
