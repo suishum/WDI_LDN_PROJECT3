@@ -22,17 +22,23 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
     .then(() => updateInviteList());
 
   function updateInviteList() {
+    // get all users
     User.find()
       .then(res => {
-        const filtered = res.data.filter(user => vm.event.attendees.findIndex(obj => obj._id === user._id) === -1 );
+        // filter all users in our database to see who HASN'T been invited.
+        const filtered = res.data.filter(user => vm.event.attendees.findIndex(userObj => userObj._id === user._id) === -1 );
         vm.users = filtered;
       });
   }
 
-  function inviteAttendee(){
+  function inviteAttendee() {
     Event
+      // create an attendee on the event from ui select drop down
       .attendeeCreate($state.params.id, vm.selected.value)
-      .then(res => vm.event = res.data)
+      .then(res => {
+        vm.event = res.data;
+        console.log(res.data);
+      })
       .catch(err => console.error(err));
     vm.selected.value = [];
     updateInviteList();
@@ -87,7 +93,7 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
   }
 
   function togglePoll() {
-    console.log('clicked');
+    // console.log('clicked');
     if (vm.displayPoll === true) {
       vm.displayPoll = false;
     } else {
