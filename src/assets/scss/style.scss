@@ -24,6 +24,7 @@
 //events show page
 .select2-input {
   width:100% !important;
+  margin: 0;
 }
 
 .attendeeButtons {
@@ -45,11 +46,6 @@ li {
 .voteBtn {
   float:right;
 }
-
-.invite {
-  margin: 20px;
-}
-
 
 //mobile
 @media only screen and (max-width: 600px) {
