@@ -124,6 +124,9 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
     Event.winnerCreate($state.params.id, vm.voteWinner[0])
       .then(res => {
         vm.event = res.data;
+        // get winner co-ordinates in the form of { 'lat': 123, 'lng': 123 }
+        vm.voteWinnerLocation.lat = vm.event.winner.coordinates.latitude;
+        vm.voteWinnerLocation.lng = vm.event.winner.coordinates.longitude;
       })
       .catch(err => console.error(err));
   }

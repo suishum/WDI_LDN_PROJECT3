@@ -1,52 +1,53 @@
-<div ng-if="eventsShow.isInvited">
-  <h1 class="title"> {{ eventsShow.event.name }}</h1>
-  <h2 class="subtitle">{{ eventsShow.event.date.split('T')[0] }} at {{ eventsShow.event.time.split('T')[1] }}</h2>
+<div class="container">
+  <div ng-if="eventsShow.isInvited">
+    <h1 class="title"> {{ eventsShow.event.name }}</h1>
+    <h2 class="subtitle">{{ eventsShow.event.date.split('T')[0] }} at {{ eventsShow.event.time.split('T')[1] }}</h2>
 
-  <div ng-if="eventsShow.isAdmin">
-    <a class="button is-primary" ui-sref="eventsEdit({ id: eventsShow.event._id })">Edit Event</a>
-    <button class="button is-danger" ng-click="eventsShow.deleteEvent()">Delete Event</button>
-  </div>
+    <div ng-if="eventsShow.isAdmin">
+      <a class="button is-primary" ui-sref="eventsEdit({ id: eventsShow.event._id })">Edit Event</a>
+      <button class="button is-danger" ng-click="eventsShow.deleteEvent()">Delete Event</button>
+    </div>
 
 
-  <div class="columns">
-    <div class="column is-half">
-      <h2 class="subtitle">Attendees</h2>
-      <ul>
-        <li ng-repeat="attendee in eventsShow.event.attendees">
-          <a ui-sref="usersShow({ id: attendee._id })">{{ attendee.name }}</a>
-          <!-- ADMIN ONLY -->
-          <div class="attendeeButtons" ng-if="eventsShow.isAdmin">
-            <button class="button" ng-click="eventsShow.removeAttendee(attendee)">x</button>
-            <button class="button" ng-click="eventsShow.makeAdmin(attendee)">Make Admin</button>
-          </div>
-          <!-- ADMIN ONLY -->
-        </li>
-      </ul>
-      <div ng-if="eventsShow.isAdmin" class="invite">
-        <ui-select multiple theme="select2" ng-model="eventsShow.selected.value">
-          <ui-select-match placeholder="Select person..." selected>
-            {{$item.name}} &lt;{{$item.email}}&gt;
-          </ui-select-match>
-          <ui-select-choices repeat="user in (eventsShow.users | filter: $select.search)">
-            <span ng-bind="user.name"></span>
-          </ui-select-choices>
-        </ui-select>
-        <button class="button" ng-click="eventsShow.inviteAttendee()">Invite</button>
+    <div class="columns">
+      <div class="column is-half">
+        <h2 class="subtitle">Attendees</h2>
+        <ul>
+          <li ng-repeat="attendee in eventsShow.event.attendees">
+            <a ui-sref="usersShow({ id: attendee._id })">{{ attendee.name }}</a>
+            <!-- ADMIN ONLY -->
+            <div class="attendeeButtons" ng-if="eventsShow.isAdmin">
+              <button class="button" ng-click="eventsShow.removeAttendee(attendee)">x</button>
+              <button class="button" ng-click="eventsShow.makeAdmin(attendee)">Make Admin</button>
+            </div>
+            <!-- ADMIN ONLY -->
+          </li>
+        </ul>
+        <div ng-if="eventsShow.isAdmin" class="invite">
+          <ui-select multiple theme="select2" ng-model="eventsShow.selected.value">
+            <ui-select-match placeholder="Select person..." selected>
+              {{$item.name}} &lt;{{$item.email}}&gt;
+            </ui-select-match>
+            <ui-select-choices repeat="user in (eventsShow.users | filter: $select.search)">
+              <span ng-bind="user.name"></span>
+            </ui-select-choices>
+          </ui-select>
+          <button class="button" ng-click="eventsShow.inviteAttendee()">Invite</button>
+        </div>
       </div>
-    </div>
-    <div class="column is-half">
-      <h2 class="subtitle">Admin</h2>
-      <ul>
-        <li ng-repeat="admin in eventsShow.event.admin">
-          <a ui-sref="usersShow({ id: admin._id })">{{ admin.name }}</a>
-        </li>
-      </ul>
-    </div>
+      <div class="column is-half">
+        <h2 class="subtitle">Admin</h2>
+        <ul>
+          <li ng-repeat="admin in eventsShow.event.admin">
+            <a ui-sref="usersShow({ id: admin._id })">{{ admin.name }}</a>
+          </li>
+        </ul>
+      </div>
 
-  </div>
-  <div class="columns is-flexed">
-    <div class="column is-half">
-      <div ng-if="eventsShow.displayPoll">
+    </div>
+    <div class="columns is-flexed">
+      <div class="column is-half">
+        <div ng-if="eventsShow.displayPoll">
           <h2 class="subtitle">Restaurants</h2>
           <ul>
             <li ng-repeat="restaurant in eventsShow.event.restaurants">
@@ -54,29 +55,29 @@
                 <br>
                 Yelp Rating: {{ restaurant.rating }}
                 <br>
-              Votes: {{ eventsShow.tallyVotes(restaurant) }}</p>
-              <button ng-click="eventsShow.vote(restaurant)" class="button voteBtn"><i class="fas fa-thumbs-up"></i></button>
-              <hr/>
-            </li>
-          </ul>
-          <a ng-if="eventsShow.isAdmin" class="button is-danger" ng-if="eventsShow.displayPoll" ng-click="eventsShow.togglePoll()">Close Poll</a>
-        </div>
+                Votes: {{ eventsShow.tallyVotes(restaurant) }}</p>
+                <button ng-click="eventsShow.vote(restaurant)" class="button voteBtn"><i class="fas fa-thumbs-up"></i></button>
+                <hr/>
+              </li>
+            </ul>
+            <a ng-if="eventsShow.isAdmin" class="button is-danger" ng-if="eventsShow.displayPoll" ng-click="eventsShow.togglePoll()">Close Poll</a>
+          </div>
 
-        <!-- VOTE WINNER -->
-        <div ng-if="!eventsShow.displayPoll">
-          <h2 class="subtitle">Chosen Restaurant</h2>
-          <p><a href="{{ eventsShow.event.winner.url }}">{{ eventsShow.event.winner.name }}</a>
-            <br>
-            Category: {{ eventsShow.event.winner.categories[0].title }} &nbsp; Rating: {{ eventsShow.event.winner.rating }} &nbsp; Price: {{ eventsShow.event.winner.price }}
-            <img src="{{ eventsShow.event.winner.image_url }}">
-            <br>
-            Location: {{ eventsShow.event.winner.location.display_address[0] }}, {{ eventsShow.event.winner.location.display_address[1] }}
-            <br>
-            Phone: {{ eventsShow.event.winner.display_phone }}
-          </p>
+          <!-- VOTE WINNER -->
+          <div ng-if="!eventsShow.displayPoll">
+            <h2 class="subtitle">Chosen Restaurant</h2>
+            <p><a href="{{ eventsShow.event.winner.url }}">{{ eventsShow.event.winner.name }}</a>
+              <br>
+              Category: {{ eventsShow.event.winner.categories[0].title }} &nbsp; Rating: {{ eventsShow.event.winner.rating }} &nbsp; Price: {{ eventsShow.event.winner.price }}
+              <img src="{{ eventsShow.event.winner.image_url }}">
+              <br>
+              Location: {{ eventsShow.event.winner.location.display_address[0] }}, {{ eventsShow.event.winner.location.display_address[1] }}
+              <br>
+              Phone: {{ eventsShow.event.winner.display_phone }}
+            </p>
+          </div>
+          <!-- VOTE WINNER -->
         </div>
-        <!-- VOTE WINNER -->
-      </div>
 
       <div class="column is-half">
         <div ng-if="eventsShow.displayPoll">
@@ -86,48 +87,50 @@
         <div ng-if="!eventsShow.displayPoll">
           <google-map zoom="16" center="eventsShow.voteWinnerLocation" restaurants="[eventsShow.event.winner]" destination="eventsShow.voteWinnerLocation" origin="main.coordinates"></google-map>
         </div>
-        <!-- VOTE WINNER -->
+
       </div>
 
   </div>
 
-  <h2 class="subtitle">Comments</h2>
-  <ul class="comments">
-    <li ng-repeat="comment in eventsShow.event.comments">
-      <div class="box">
-        <button ng-click="eventsShow.deleteComment(comment)" class="delete">x</button>
-        <article class="media">
-          <div class="media-left">
-            <figure class="image is-64x64">
-              <img src="comment.user.photo" alt="Image">
-            </figure>
-          </div>
-          <div class="media-content">
-            <div class="content">
-              <p>
-                {{ comment.content }}
-              </p>
-              <strong>{{ comment.user.username }}</strong>
-            </p>
-          </div>
+      <h2 class="subtitle">Comments</h2>
+      <ul class="comments">
+        <li ng-repeat="comment in eventsShow.event.comments">
+          <div class="box">
+            <button ng-click="eventsShow.deleteComment(comment)" class="delete">x</button>
+            <article class="media">
+              <div class="media-left">
+                <figure class="image is-64x64">
+                  <img src="comment.user.photo" alt="Image">
+                </figure>
+              </div>
+              <div class="media-content">
+                <div class="content">
+                  <p>
+                    {{ comment.content }}
+                  </p>
+                  <strong>{{ comment.user.username }}</strong>
+                </p>
+              </div>
+            </div>
+          </article>
         </div>
-      </article>
-    </div>
-  </li>
-  </ul>
+      </li>
+    </ul>
 
-  <textarea class="textarea" name="content" ng-model="eventsShow.comment"></textarea>
-  <button class="button is-primary" ng-click="eventsShow.submitComment()">Submit</button>
-</div>
-<section ng-if="!eventsShow.isInvited" class="hero is-fullheight">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title">
-        You do not have permission to view this event.
-      </h1>
-      <h2 class="subtitle">
-        You must be invited by an admin.
-      </h2>
-    </div>
+    <textarea class="textarea" name="content" ng-model="eventsShow.comment"></textarea>
+    <button class="button is-primary" ng-click="eventsShow.submitComment()">Submit</button>
   </div>
-</section>
+  <section ng-if="!eventsShow.isInvited" class="hero is-fullheight">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          You do not have permission to view this event.
+        </h1>
+        <h2 class="subtitle">
+          You must be invited by an admin.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+</div>

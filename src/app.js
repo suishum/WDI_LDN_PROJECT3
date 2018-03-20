@@ -14,6 +14,7 @@ import Select from './config/ui-select';
 import AuthRegisterCtrl from './controllers/auth/register';
 import AuthLoginCtrl from './controllers/auth/login';
 import MainCtrl from './controllers/main';
+import HomeCtrl from './controllers/home';
 import UsersShowCtrl from './controllers/users/show';
 import UsersEditCtrl from './controllers/users/edit';
 
@@ -39,6 +40,7 @@ angular.module('project3', ['ui.router', 'satellizer', 'ui.select', 'ngSanitize'
   .controller('AuthRegisterCtrl', AuthRegisterCtrl)
   .controller('AuthLoginCtrl', AuthLoginCtrl)
   .controller('MainCtrl', MainCtrl)
+  .controller('HomeCtrl', HomeCtrl)
   .controller('UsersShowCtrl', UsersShowCtrl)
   .controller('UsersEditCtrl', UsersEditCtrl)
   .controller('EventsNewCtrl', EventsNewCtrl)
