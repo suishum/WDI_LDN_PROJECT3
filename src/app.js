@@ -9,6 +9,7 @@ import 'angular-filepicker/dist/angular_filepicker';
 import Router from './config/router';
 import Upload from './config/filepicker';
 import Auth from './config/auth';
+import Select from './config/ui-select';
 
 import AuthRegisterCtrl from './controllers/auth/register';
 import AuthLoginCtrl from './controllers/auth/login';
@@ -34,12 +35,7 @@ angular.module('project3', ['ui.router', 'satellizer', 'ui.select', 'ngSanitize'
   .config(Router)
   .config(Auth)
   .config(Upload)
-  // .config(function (filepickerProvider) {
-  //   filepickerProvider.setKey('AMhrFhOkSQUmQcpOYxLqJz');
-  // })
-  .config(function(uiSelectConfig) {
-    uiSelectConfig.theme = 'select2';
-  })
+  .config(Select)
   .controller('AuthRegisterCtrl', AuthRegisterCtrl)
   .controller('AuthLoginCtrl', AuthLoginCtrl)
   .controller('MainCtrl', MainCtrl)

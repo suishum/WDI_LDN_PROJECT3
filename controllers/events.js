@@ -16,7 +16,6 @@ function createRoute(req,res,next){
 function showRoute(req,res,next){
   Event.findById(req.params.id)
     .populate('comments.user attendees votes.voter admin')
-    // .populate('comments.user')
     .then(event => res.json(event))
     .catch(next);
 }
@@ -43,7 +42,7 @@ function voteCreateRoute(req,res,next){
       event.votes.push(req.body);
       return event.save();
     })
-    .then(event => Event.populate(event, { path: 'comments.user attendees' }))
+    .then(event => Event.populate(event, { path: 'comments.user attendees votes.voter admin' }))
     .then(event => res.json(event))
     .catch(next);
 }
@@ -51,7 +50,7 @@ function voteCreateRoute(req,res,next){
 function commentCreateRoute(req,res,next){
   req.body.user = req.currentUser;
   Event.findById(req.params.id)
-    .populate('comments.user attendees')
+    .populate('comments.user attendees votes.voter admin')
     .then(event => {
       event.comments.push(req.body);
       return event.save();
@@ -62,7 +61,7 @@ function commentCreateRoute(req,res,next){
 
 function commentDeleteRoute(req,res,next){
   Event.findById(req.params.id)
-    .populate('comments.user attendees')
+    .populate('comments.user attendees votes.voter admin')
     .then(event => {
       const comment = event.comments.id(req.params.commentId);
       comment.remove();
@@ -78,7 +77,7 @@ function attendeeCreateRoute(req,res,next){
       event.attendees = event.attendees.concat(req.body);
       return event.save();
     })
-    .then(event => Event.populate(event, { path: 'comments.user attendees' }))
+    .then(event => Event.populate(event, { path: 'comments.user attendees votes.voter admin' }))
     .then(event => res.json(event))
     .catch(next);
 }
@@ -86,10 +85,22 @@ function attendeeCreateRoute(req,res,next){
 function attendeeDeleteRoute(req,res,next){
   Event.findById(req.params.id)
     .then(event => {
+      event.admin = event.admin.filter(attendeeId => !attendeeId.equals(req.params.attendeeId));
       event.attendees = event.attendees.filter(attendeeId => !attendeeId.equals(req.params.attendeeId));
       return event.save();
     })
-    .then(event => Event.populate(event, { path: 'comments.user attendees' }))
+    .then(event => Event.populate(event, { path: 'comments.user attendees votes.voter admin' }))
+    .then(event => res.json(event))
+    .catch(next);
+}
+
+function adminCreateRoute(req,res,next){
+  Event.findById(req.params.id)
+    .then(event => {
+      event.admin.push(req.body);
+      return event.save();
+    })
+    .then(event => Event.populate(event, { path: 'comments.user attendees votes.voter admin' }))
     .then(event => res.json(event))
     .catch(next);
 }
@@ -104,5 +115,6 @@ module.exports = {
   commentCreate: commentCreateRoute,
   commentDelete: commentDeleteRoute,
   attendeeCreate: attendeeCreateRoute,
-  attendeeDelete: attendeeDeleteRoute
+  attendeeDelete: attendeeDeleteRoute,
+  adminCreate: adminCreateRoute
 };

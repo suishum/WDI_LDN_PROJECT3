@@ -24,7 +24,7 @@ router.route('/events')
   .post(secureRoute, events.create);
 
 router.route('/events/:id')
-  .get(secureRoute, events.show)
+  .get(events.show)
   .put(secureRoute, events.update)
   .delete(secureRoute, events.delete);
 
@@ -42,6 +42,9 @@ router.route('/events/:id/attendees')
 
 router.route('/events/:id/attendees/:attendeeId')
   .delete(secureRoute, events.attendeeDelete);
+
+router.route('/events/:id/admin')
+  .post(events.adminCreate);
 
 router.get('/restaurants', yelp.restaurants);
 

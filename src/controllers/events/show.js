@@ -53,6 +53,13 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
     updateInviteList();
   }
 
+  function makeAdmin(user){
+    Event
+      .adminCreate($state.params.id, { _id: user._id })
+      .then(res => vm.event = res.data)
+      .catch(err => console.error(err));
+  }
+
   function vote(restaurant) {
     if (vm.event.votes.filter(obj => obj.voter._id === currentUser).length > 0) {
       return false;
@@ -109,7 +116,7 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
     Event.remove($state.params.id)
       .then(() => $state.go('home'));
   }
-
+  this.makeAdmin = makeAdmin;
   this.togglePoll = togglePoll;
   this.deleteEvent = deleteEvent;
   this.deleteComment = deleteComment;
