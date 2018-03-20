@@ -14,12 +14,12 @@
       <ul>
         <li ng-repeat="attendee in eventsShow.event.attendees">
           <a ui-sref="usersShow({ id: attendee._id })">{{ attendee.name }}</a>
-          <!-- IF THE USER IS ADMIN -->
+          <!-- ADMIN ONLY -->
           <div class="attendeeButtons" ng-if="eventsShow.isAdmin">
             <button class="button" ng-click="eventsShow.removeAttendee(attendee)">x</button>
             <button class="button" ng-click="eventsShow.makeAdmin(attendee)">Make Admin</button>
           </div>
-          <!-- IF THE USER IS ADMIN -->
+          <!-- ADMIN ONLY -->
         </li>
       </ul>
       <div ng-if="eventsShow.isAdmin" class="invite">
@@ -54,24 +54,42 @@
                 <br>
                 Yelp Rating: {{ restaurant.rating }}
                 <br>
-              Votes: {{ eventsShow.tallyVotes(restaurant)}}</p>
+              Votes: {{ eventsShow.tallyVotes(restaurant) }}</p>
               <button ng-click="eventsShow.vote(restaurant)" class="button voteBtn"><i class="fas fa-thumbs-up"></i></button>
               <hr/>
             </li>
           </ul>
           <a ng-if="eventsShow.isAdmin" class="button is-danger" ng-if="eventsShow.displayPoll" ng-click="eventsShow.togglePoll()">Close Poll</a>
         </div>
+
+        <!-- VOTE WINNER -->
+        <div ng-if="!eventsShow.displayPoll">
+          <h2 class="subtitle">Chosen Restaurant</h2>
+          <p><a href="{{ eventsShow.event.winner.url }}">{{ eventsShow.event.winner.name }}</a>
+            <br>
+            Category: {{ eventsShow.event.winner.categories[0].title }} &nbsp; Rating: {{ eventsShow.event.winner.rating }} &nbsp; Price: {{ eventsShow.event.winner.price }}
+            <img src="{{ eventsShow.event.winner.image_url }}">
+            <br>
+            Location: {{ eventsShow.event.winner.location.display_address[0] }}, {{ eventsShow.event.winner.location.display_address[1] }}
+            <br>
+            Phone: {{ eventsShow.event.winner.display_phone }}
+          </p>
+        </div>
+        <!-- VOTE WINNER -->
       </div>
+
       <div class="column is-half">
-        <google-map zoom="13" center="eventsShow.event.location" restaurants=" eventsShow.event.restaurants"></google-map>
+        <div ng-if="eventsShow.displayPoll">
+          <google-map zoom="13" center="eventsShow.event.location" restaurants="eventsShow.event.restaurants"></google-map>
+        </div>
+        <!-- VOTE WINNER -->
+        <div ng-if="!eventsShow.displayPoll">
+          <google-map zoom="16" center="eventsShow.voteWinnerLocation" restaurants="[eventsShow.event.winner]"></google-map>
+        </div>
+        <!-- VOTE WINNER -->
       </div>
+      
   </div>
-
-  <div ng-if="!eventsShow.displayPoll">
-    <h2 class="subtitle">Chosen Restaurant</h2>
-    <p>Display poll winner here, gmap and booking options</p>
-  </div>
-
 
   <h2 class="subtitle">Comments</h2>
   <ul class="comments">

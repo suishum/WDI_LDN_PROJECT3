@@ -25,7 +25,7 @@ const eventSchema = new mongoose.Schema({
     voter: { type: mongoose.Schema.ObjectId, ref: 'User' },
     restaurant: { type: Object }
   }],
-  winner: { type: String }
+  winner: { type: Object }
 });
 
 module.exports = mongoose.model('Event', eventSchema);
