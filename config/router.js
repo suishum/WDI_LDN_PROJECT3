@@ -26,7 +26,8 @@ router.route('/events')
 router.route('/events/:id')
   .get(events.show)
   .put(secureRoute, events.update)
-  .delete(secureRoute, events.delete);
+  .delete(secureRoute, events.delete)
+  .post(secureRoute, events.winnerCreate);
 
 router.route('/events/:id/vote')
   .post(secureRoute, events.voteCreate);

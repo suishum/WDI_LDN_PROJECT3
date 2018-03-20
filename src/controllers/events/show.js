@@ -7,6 +7,12 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
   vm.comment = '';
   vm.isAdmin = false;
   vm.isInvited = false;
+  vm.talliedVotes;
+  vm.voteWinner;
+  vm.voteWinnerLocation = {
+    lat: 0,
+    lng: 0
+  };
   const currentUser = $auth.getPayload().sub;
 
   // may not be able to initialise this boolean here b/c on page reload, the poll will show up again. Do it in HTML?
@@ -15,8 +21,14 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
   Event.findById($state.params.id)
     .then(res => {
       vm.event = res.data;
-      console.log(currentUser);
-      console.log(vm.event.attendees);
+      console.log(vm.event);
+      // Check if poll has been closed (if vote winner has been decided)
+      if (vm.event.winner) {
+        // get winner co-ordinates in the form of { 'lat': 123, 'lng': 123 }
+        vm.voteWinnerLocation.lat = vm.event.winner.coordinates.latitude;
+        vm.voteWinnerLocation.lng = vm.event.winner.coordinates.longitude;
+        vm.displayPoll = false;
+      }
       // Find out if the user is an admin
       if (vm.event.admin.findIndex(admin => admin._id === currentUser) !== -1) {
         vm.isAdmin = true;
@@ -29,20 +41,28 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
     .then(() => updateInviteList());
 
   function updateInviteList() {
+    // get all users
     User.find()
       .then(res => {
-        const filtered = res.data.filter(user => vm.event.attendees.findIndex(obj => obj._id === user._id) === -1 );
+        // filter all users in our database to see who HASN'T been invited.
+        const filtered = res.data.filter(user => vm.event.attendees.findIndex(userObj => userObj._id === user._id) === -1 );
         vm.users = filtered;
       });
   }
 
-  function inviteAttendee(){
+  function inviteAttendee() {
     Event
+      // create an attendee on the event from ui select drop down
       .attendeeCreate($state.params.id, vm.selected.value)
+      // update event data
       .then(res => vm.event = res.data)
+      .then(() => {
+        // clear the input field
+        vm.selected.value = [];
+        // update invite list
+        updateInviteList();
+      })
       .catch(err => console.error(err));
-    vm.selected.value = [];
-    updateInviteList();
   }
 
   function removeAttendee(attendee){
@@ -61,12 +81,17 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
   }
 
   function vote(restaurant) {
+    // stop user from voting if they have voted already
     if (vm.event.votes.filter(obj => obj.voter._id === currentUser).length > 0) {
       return false;
     } else {
+      // add a vote
       Event
         .voteCreate($state.params.id, { restaurant: restaurant })
-        .then(res => vm.event = res.data)
+        .then(res => {
+          vm.event = res.data;
+          // console.log(vm.event.votes);
+        })
         .catch(err => console.error(err));
     }
   }
@@ -77,6 +102,31 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
       if(vote.restaurant.id === currentRestaurant.id) matches += 1;
     });
     return matches;
+  }
+
+  function calcVoteWinner() {
+    // clear obj before calc
+    vm.talliedVotes = {};
+    vm.voteWinner = [];
+    // put votes into an object with restaurant/votes is key/value pairs
+    vm.event.votes.forEach(vote => {
+      if (!(vote.restaurant.id in vm.talliedVotes)) {
+        // console.log('key did not exist, added to the talliedVotes obj');
+        vm.talliedVotes[vote.restaurant.id] = 1;
+      } else {
+        // console.log('key exists, added +1 to value');
+        vm.talliedVotes[vote.restaurant.id] += 1;
+      }
+    });
+    // find the id of the winner
+    const winnerId = Object.keys(vm.talliedVotes).reduce((a, b) => vm.talliedVotes[a] > vm.talliedVotes[b] ? a : b);
+    // get the winner object
+    vm.voteWinner = vm.event.restaurants.filter(restaurant => restaurant.id === winnerId);
+    Event.winnerCreate($state.params.id, vm.voteWinner[0])
+      .then(res => {
+        vm.event = res.data;
+      })
+      .catch(err => console.error(err));
   }
 
   function submitComment(){
@@ -101,15 +151,12 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
   }
 
   function togglePoll() {
-    console.log('clicked');
+    calcVoteWinner();
     if (vm.displayPoll === true) {
       vm.displayPoll = false;
     } else {
       vm.displayPoll = true;
     }
-    // write something to display info of restaurant with the most votes
-    // opening hours, telephone number (for bookings),
-    // remove the voting buttons?
   }
 
   function deleteEvent(){
@@ -121,6 +168,7 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
   this.deleteEvent = deleteEvent;
   this.deleteComment = deleteComment;
   this.submitComment = submitComment;
+  this.calcVoteWinner = calcVoteWinner;
   this.tallyVotes = tallyVotes;
   this.vote = vote;
   this.inviteAttendee = inviteAttendee;

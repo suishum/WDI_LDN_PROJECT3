@@ -11,7 +11,6 @@ function googleMap() {
     },
     link($scope, $element) {
 
-
       const map = new google.maps.Map($element[0], {
         zoom: $scope.zoom,
         center: $scope.center

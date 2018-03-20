@@ -94,6 +94,18 @@ function attendeeDeleteRoute(req,res,next){
     .catch(next);
 }
 
+function winnerCreateRoute(req,res,next){
+  Event.findById(req.params.id)
+    .then(event => {
+      console.log(req.body);
+      event.winner = req.body;
+      return event.save();
+    })
+    .then(event => Event.populate(event, { path: 'comments.user attendees votes.voter admin' }))
+    .then(event => res.json(event))
+    .catch(next);
+}
+
 function adminCreateRoute(req,res,next){
   Event.findById(req.params.id)
     .then(event => {
@@ -116,5 +128,6 @@ module.exports = {
   commentDelete: commentDeleteRoute,
   attendeeCreate: attendeeCreateRoute,
   attendeeDelete: attendeeDeleteRoute,
+  winnerCreate: winnerCreateRoute,
   adminCreate: adminCreateRoute
 };
