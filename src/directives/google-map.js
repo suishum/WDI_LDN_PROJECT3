@@ -22,25 +22,25 @@ function googleMap() {
         // console.log($scope.center);
       }, true);
 
-      // const directionsService = new google.maps.DirectionsService();
-      // const directionsDisplay = new google.maps.DirectionsRenderer();
-      // directionsDisplay.setMap(map);
-      //
-      // $scope.$watch('center', () => map.setCenter($scope.center), true);
-      // $scope.$watchGroup(['origin', 'destination', 'travelMode'], displayRoute);
-      //
-      // // DISPLAY ROUTE
-      // function displayRoute() {
-      //   if(!$scope.origin || !$scope.destination || !$scope.travelMode) return false;
-      //
-      //   directionsService.route({
-      //     origin: $scope.origin,
-      //     destination: $scope.destination
-      //     // travelMode: $scope.travelMode
-      //   }, (response) => {
-      //     directionsDisplay.setMap(response);
-      //   });
-      // }
+      const directionsService = new google.maps.DirectionsService();
+      const directionsDisplay = new google.maps.DirectionsRenderer();
+      directionsDisplay.setMap(map);
+
+      $scope.$watch('center', () => map.setCenter($scope.center), true);
+      $scope.$watchGroup(['origin', 'destination', 'travelMode'], displayRoute);
+
+      // DISPLAY ROUTE
+      function displayRoute() {
+        if(!$scope.origin || !$scope.destination || !$scope.travelMode) return false;
+
+        directionsService.route({
+          origin: $scope.origin,
+          destination: $scope.destination
+          // travelMode: $scope.travelMode
+        }, (response) => {
+          directionsDisplay.setMap(response);
+        });
+      }
 
       // directionsDisplay.setPanel(directionsShow);
 

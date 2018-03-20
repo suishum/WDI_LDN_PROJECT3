@@ -52,18 +52,19 @@ li {
   color:red;
 }
 
+
+// div.homepage {
+//   height: calc(100vh - 52px);
+//   width: 100vw;
+//   .google-map {
+//     height: 100%;
+//     max-width: 100%;
+//   }
+// }
+
 //mobile
 @media only screen and (max-width: 600px) {
   .is-flexed {
     display:block;
-  }
-}
-
-div.homepage {
-  height: calc(100vh - 52px);
-  width: 100vw;
-  .google-map {
-    height: 100%;
-    max-width: 100%;
   }
 }
