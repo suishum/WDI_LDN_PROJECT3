@@ -7,10 +7,11 @@ function googleMap() {
     scope: {
       center: '=',
       zoom: '=',
-      restaurants: '='
+      restaurants: '=',
+      origin: '=',
+      destination: '='
     },
     link($scope, $element) {
-
 
       const map = new google.maps.Map($element[0], {
         zoom: $scope.zoom,
@@ -34,8 +35,8 @@ function googleMap() {
 
         directionsService.route({
           origin: $scope.origin,
-          destination: $scope.destination,
-          travelMode: $scope.travelMode
+          destination: $scope.destination
+          // travelMode: $scope.travelMode
         }, (response) => {
           directionsDisplay.setMap(response);
         });

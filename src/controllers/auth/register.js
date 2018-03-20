@@ -39,9 +39,7 @@ function AuthRegisterCtrl($auth, $state, $http, $scope) {
       })
         .then(res => {
           vm.restaurants = res.data.businesses;
-          // console.log(res);
         });
-
     }
   }
 
