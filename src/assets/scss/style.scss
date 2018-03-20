@@ -18,8 +18,13 @@
   display:flex;
   justify-content: space-between;
   align-items:center;
+  .dropdowns {
+    width: 50%;
+  }
+  .google-map {
+    width: 50%;
+  }
 }
-
 
 //events show page
 .select2-input {
