@@ -3,6 +3,8 @@ const jwt = require('jsonwebtoken');
 const { secret } = require('../config/environment');
 
 function register(req, res, next) {
+  if (!req.body.photo) req.body.photo = 'https://bulma.io/images/placeholders/128x128.png';
+
   User.create(req.body)
     .then(user => {
       // Send a token, create a token, put the user ID in it.  We never store a token in our database, this gets sent to the client.
@@ -14,7 +16,10 @@ function register(req, res, next) {
         token
       });
     })
-    .catch(next);
+    .catch((err) => {
+      console.log(err);
+      next();
+    });
 }
 
 function login(req, res, next) {

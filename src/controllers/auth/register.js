@@ -1,23 +1,15 @@
-AuthRegisterCtrl.$inject = ['$auth', '$state', '$http', '$scope']; // $auth is from satellizer
+AuthRegisterCtrl.$inject = ['$auth', '$state', '$http']; // $auth is from satellizer
 
-function AuthRegisterCtrl($auth, $state, $http, $scope) {
+function AuthRegisterCtrl($auth, $state, $http) {
   const vm = this;
   vm.categories = [];
 
   $http.get('/api/categories')
     .then(res => {
-      // console.log(res.data);
       vm.categories = res.data;
     });
 
-  vm.user = {
-    address: '',
-    location: {
-      lat: 0,
-      lng: 0
-    }
-  };
-
+  vm.user = {};
   vm.restaurants = [];
 
   function handleSubmit() {
@@ -31,19 +23,6 @@ function AuthRegisterCtrl($auth, $state, $http, $scope) {
 
   vm.handleSubmit = handleSubmit;
 
-  function updateRestaurants(){
-    const { lat, lng: lon } = vm.user.location;
-    if (lat && lon) {
-      $http.get('/api/restaurants', {
-        params: { lat, lon }
-      })
-        .then(res => {
-          vm.restaurants = res.data.businesses;
-        });
-    }
-  }
-
-  $scope.$watch(() => vm.user.location, updateRestaurants, true);
 }
 
 export default AuthRegisterCtrl;
