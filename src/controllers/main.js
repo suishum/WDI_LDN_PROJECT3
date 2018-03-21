@@ -4,27 +4,33 @@ MainCtrl.$inject = ['$auth', '$state', '$scope'];
 
 function MainCtrl($auth, $state, $scope) {
   const vm = this;
+  vm.clicked = false;
+  vm.currentUser = '';
   // $auth has a function called .isAuthenticated which checks to see if a token is present in your local storage
   vm.isAuthenticated = $auth.isAuthenticated;
-  vm.clicked = false;
+
+  function getCurrentUser() {
+    if ($auth.getPayload()) {
+      vm.currentUser = $auth.getPayload().sub;
+      console.log(`authenticated user: ${vm.currentUser}`);
+    }
+  }
+
   // get the user id of the person logged in by accessing the payload information
   $scope.$on('loggedIn', () => {
-    vm.currentUser = $auth.getPayload().sub;
+    // vm.currentUser = $auth.getPayload().sub;
+    // console.log(`immediately after logging in: ${vm.currentUser}`);
   });
 
-  // get our current location
-  navigator.geolocation.getCurrentPosition(pos => {
-    vm.coordinates = {lat: pos.coords.latitude, lng: pos.coords.longitude };
-    console.log(vm.coordinates);
-  });
-
+  // console.log(`outside if statement and outside scope: ${vm.currentUser}`);
   function logout() {
     $auth.logout();
     $state.go('home');
-    vm.payload = '';
   }
 
   vm.logout = logout;
+
+  $scope.$watch(() => vm.isAuthenticated, getCurrentUser, true);
 }
 
 export default MainCtrl;

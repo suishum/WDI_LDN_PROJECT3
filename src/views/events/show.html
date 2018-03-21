@@ -3,18 +3,12 @@
     <h1 class="title"> {{ eventsShow.event.name }}</h1>
     <h2 class="subtitle">{{ eventsShow.event.date.split('T')[0] }} at {{ eventsShow.event.time.split('T')[1] }}</h2>
 
-    <div ng-if="eventsShow.isAdmin">
-      <a class="button is-primary" ui-sref="eventsEdit({ id: eventsShow.event._id })">Edit Event</a>
-      <button class="button is-danger" ng-click="eventsShow.deleteEvent()">Delete Event</button>
-    </div>
-
-
     <div class="columns">
       <div class="column is-half">
         <h2 class="subtitle">Attendees</h2>
         <ul>
           <li ng-repeat="attendee in eventsShow.event.attendees">
-            <a ui-sref="usersShow({ id: attendee._id })">{{ attendee.name }}</a>
+            {{ attendee.name }}
             <!-- ADMIN ONLY -->
             <div class="attendeeButtons" ng-if="eventsShow.isAdmin">
               <button class="button" ng-click="eventsShow.removeAttendee(attendee)">x</button>
@@ -39,9 +33,13 @@
         <h2 class="subtitle">Admin</h2>
         <ul>
           <li ng-repeat="admin in eventsShow.event.admin">
-            <a ui-sref="usersShow({ id: admin._id })">{{ admin.name }}</a>
+          {{ admin.name }}
           </li>
         </ul>
+        <div ng-if="eventsShow.isAdmin">
+          <a class="button is-primary" ui-sref="eventsEdit({ id: eventsShow.event._id })">Edit Event</a>
+          <button class="button is-danger" ng-click="eventsShow.deleteEvent()">Delete Event</button>
+        </div>
       </div>
 
     </div>
@@ -100,7 +98,7 @@
             <article class="media">
               <div class="media-left">
                 <figure class="image is-64x64">
-                  <img src="comment.user.photo" alt="Image">
+                  <img src="{{ comment.user.photo }}" alt="Image">
                 </figure>
               </div>
               <div class="media-content">
@@ -108,8 +106,9 @@
                   <p>
                     {{ comment.content }}
                   </p>
-                  <strong>{{ comment.user.username }}</strong>
-                </p>
+                  <p>
+                    <strong>{{ comment.user.username }}</strong> at {{ comment.createdAt.split('T')[1].split('.')[0] }} on {{ comment.createdAt.split('T')[0]  }}
+                  </p>
               </div>
             </div>
           </article>
