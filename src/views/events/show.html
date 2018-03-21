@@ -8,12 +8,13 @@
         <h2 class="subtitle">Attendees</h2>
         <ul>
           <li ng-repeat="attendee in eventsShow.event.attendees">
-            {{ attendee.name }}
-            <!-- ADMIN ONLY -->
-            <div class="attendeeButtons" ng-if="eventsShow.isAdmin">
-              <button class="button" ng-click="eventsShow.removeAttendee(attendee)">x</button>
-              <button class="button" ng-if="eventsShow.hideAdminButton(attendee)" ng-click="eventsShow.makeAdmin(attendee)">Make Organizer</button>
+            <div ng-if="eventsShow.isAdmin">
+              <button class="button delete" ng-click="eventsShow.removeAttendee(attendee)">x</button>
+              <!-- <button class="button" ng-if="eventsShow.hideAdminButton(attendee)" ng-click="eventsShow.makeAdmin(attendee)">Make Organizer</button> -->
             </div>
+            {{ attendee.name }}
+            <button class="smallBtn" ng-if="eventsShow.hideAdminButton(attendee)" ng-click="eventsShow.makeAdmin(attendee)">Make Organizer</button>
+            <!-- ADMIN ONLY -->
             <!-- ADMIN ONLY -->
           </li>
         </ul>
@@ -49,13 +50,15 @@
           <h2 class="subtitle">Restaurants</h2>
           <ul>
             <li ng-repeat="restaurant in eventsShow.event.restaurants">
-              <p>{{ restaurant.name }}
+              <button ng-click="eventsShow.vote(restaurant)" ng-if="eventsShow.votedFor(restaurant)" class="button voteBtn"><i class="fas fa-thumbs-up"></i></button>
+              <button ng-click="eventsShow.vote(restaurant)" ng-if="!eventsShow.votedFor(restaurant)" class="button voteBtn voted"><i class="fas fa-thumbs-up"></i></button>
+                <p>
+                {{ restaurant.name }}
                 <br>
                 Yelp Rating: {{ restaurant.rating }}
                 <br>
                 Votes {{ eventsShow.talliedVotes[restaurant.id] || 0 }}
-                <button ng-click="eventsShow.vote(restaurant)" ng-if="eventsShow.votedFor(restaurant)" class="button voteBtn"><i class="fas fa-thumbs-up"></i></button>
-                <button ng-click="eventsShow.vote(restaurant)" ng-if="!eventsShow.votedFor(restaurant)" class="button voteBtn voted"><i class="fas fa-thumbs-up"></i></button>
+                </p>
                 <hr/>
               </li>
             </ul>
@@ -98,7 +101,7 @@
             <button ng-click="eventsShow.deleteComment(comment)" class="delete">x</button>
             <article class="media">
               <div class="media-left">
-                <figure class="image is-64x64">
+                <figure class="image is-48x48">
                   <img src="{{ comment.user.photo }}" alt="Image">
                 </figure>
               </div>

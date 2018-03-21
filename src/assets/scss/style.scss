@@ -32,9 +32,14 @@
   margin: 0;
 }
 
-.attendeeButtons {
-  float:right;
+.smallBtn {
+  display:block;
+  border:none;
+  text-decoration: underline;
+  padding: 2px 0;
+  cursor:pointer;
 }
+
 
 li {
   overflow: auto;
@@ -57,20 +62,30 @@ li {
   color:white;
   background-color:#363636;
 }
+
+.comments {
+  margin-bottom: 1.5rem;
+}
+
+.delete {
+  display: inline-block;
+  float: right;
+}
+
 //register page
 .svg-inline--fa.fa-exclamation-circle {
   color:red;
 }
 
 
-// div.homepage {
-//   height: calc(100vh - 52px);
-//   width: 100vw;
-//   .google-map {
-//     height: 100%;
-//     max-width: 100%;
-//   }
-// }
+div.homepage {
+  height: calc(100vh - 52px);
+  width: 100vw;
+  .google-map {
+    height: 100%;
+    max-width: 100%;
+  }
+}
 
 //mobile
 @media only screen and (max-width: 600px) {
