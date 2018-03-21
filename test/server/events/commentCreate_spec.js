@@ -50,7 +50,7 @@ let token;
 let newEvent;
 let newUser;
 
-describe('GET /api/events/:id/comments', () => {
+describe('POST /api/events/:id/comments', () => {
   beforeEach(done => {
     Promise.all([
       User.remove({}),
