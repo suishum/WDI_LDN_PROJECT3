@@ -9,6 +9,7 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
   vm.isInvited = false;
   vm.talliedVotes;
   vm.voteWinner;
+  vm.closePollClicked = false;
   vm.voteWinnerLocation = {
     lat: 0,
     lng: 0
@@ -48,7 +49,7 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
       .then(res => {
         // filter all users in our database to see who HASN'T been invited.
         const filtered = res.data.filter(user => vm.event.attendees.findIndex(userObj => userObj._id === user._id) === -1 );
-        vm.users = filtered;
+        vm.users = filtered.filter(user => vm.event.admin.findIndex(admin => admin._id === user._id) === -1);
       });
   }
 
@@ -169,6 +170,14 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
       .catch(err => console.error(err));
   }
 
+  function closePoll(){
+    vm.closePollClicked = true;
+  }
+
+  function closeMessage(){
+    vm.closePollClicked = false;
+  }
+
   function togglePoll() {
     calcVoteWinner();
     if (vm.displayPoll === true) {
@@ -176,6 +185,7 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
     } else {
       vm.displayPoll = true;
     }
+    vm.closePollClicked = false;
   }
 
   function deleteEvent(){
@@ -186,6 +196,8 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
   this.makeAdmin = makeAdmin;
   this.hideAdminButton = hideAdminButton;
   this.togglePoll = togglePoll;
+  this.closePoll = closePoll;
+  this.closeMessage = closeMessage;
   this.deleteEvent = deleteEvent;
   this.deleteComment = deleteComment;
   this.submitComment = submitComment;
