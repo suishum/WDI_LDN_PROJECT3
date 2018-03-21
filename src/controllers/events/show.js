@@ -182,6 +182,7 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
     Event.remove($state.params.id)
       .then(() => $state.go('home'));
   }
+
   this.makeAdmin = makeAdmin;
   this.hideAdminButton = hideAdminButton;
   this.togglePoll = togglePoll;

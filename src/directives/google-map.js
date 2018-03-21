@@ -1,5 +1,6 @@
 /* global google */ //this is just used to stop the linter caring about google
 function googleMap() {
+  let currentLocation = {};
   return {
     restrict: 'E',
     template: '<div class="google-map"></div>',
@@ -8,8 +9,7 @@ function googleMap() {
       center: '=',
       zoom: '=',
       restaurants: '=',
-      origin: '=',
-      destination: '='
+      origin: '='
     },
     link($scope, $element) {
 
@@ -19,26 +19,31 @@ function googleMap() {
       });
       $scope.$watch('center', () => {
         map.setCenter($scope.center);
-        // console.log($scope.center);
       }, true);
 
       const directionsService = new google.maps.DirectionsService();
-      const directionsDisplay = new google.maps.DirectionsRenderer();
+      const directionsDisplay = new google.maps.DirectionsRenderer({ suppressMarkers: true});
       directionsDisplay.setMap(map);
 
       $scope.$watch('center', () => map.setCenter($scope.center), true);
-      $scope.$watchGroup(['origin', 'destination', 'travelMode'], displayRoute);
+      $scope.$watch('origin', displayRoute);
+
+      navigator.geolocation.getCurrentPosition(pos => {
+        currentLocation = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+        console.log(currentLocation);
+        displayRoute();
+      });
 
       // DISPLAY ROUTE
       function displayRoute() {
-        if(!$scope.origin || !$scope.destination || !$scope.travelMode) return false;
+        if(!$scope.origin) return false;
 
         directionsService.route({
-          origin: $scope.origin,
-          destination: $scope.destination
-          // travelMode: $scope.travelMode
+          origin: currentLocation,
+          destination: $scope.center,
+          travelMode: 'DRIVING'
         }, (response) => {
-          directionsDisplay.setMap(response);
+          directionsDisplay.setDirections(response);
         });
       }
 

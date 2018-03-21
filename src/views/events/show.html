@@ -87,7 +87,7 @@
         </div>
         <!-- VOTE WINNER -->
         <div ng-if="!eventsShow.displayPoll">
-          <google-map zoom="16" center="eventsShow.voteWinnerLocation" restaurants="[eventsShow.event.winner]" destination="eventsShow.voteWinnerLocation" origin="main.coordinates"></google-map>
+          <google-map zoom="16" center="eventsShow.voteWinnerLocation" restaurants="[eventsShow.event.winner]" origin="{lat: 0, lng: 0}"></google-map>
         </div>
 
       </div>
