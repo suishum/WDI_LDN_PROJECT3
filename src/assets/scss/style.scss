@@ -13,13 +13,17 @@
   height: 350px;
 }
 
-// events new page
 .restaurants {
   display:flex;
   justify-content: space-between;
   align-items:center;
+  .dropdowns {
+    width: 50%;
+  }
+  .google-map {
+    width: 50%;
+  }
 }
-
 
 //events show page
 .select2-input {
@@ -27,17 +31,45 @@
   margin: 0;
 }
 
-.attendeeButtons {
-  float:right;
+.is-half{
+  .box {
+    padding-left:0;
+    padding-right:0;
+  }
+}
+
+.warning-message {
+  color:white;
+  font-size:28px;
+  text-align: center;
+}
+
+.buttons {
+  display:flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.smallBtn {
+  display:block;
+  border:none;
+  text-decoration: underline;
+  padding: 2px 0;
+  cursor:pointer;
+}
+
+div.eventsShowPage {
+  height: 600px;
+  width: 600px;
+  .google-map {
+    height: 100%;
+    width: 100%;
+  }
 }
 
 li {
   overflow: auto;
   margin: 20px 0;
-  p {
-    display:inline-block;
-  }
-
   hr {
     margin:5px;
   }
@@ -47,11 +79,39 @@ li {
   float:right;
 }
 
+.voted {
+  color:white;
+  background-color:#363636;
+}
+
+.voted:hover {
+  color:white;
+  background-color:#363636;
+}
+
+.comments {
+  margin-bottom: 1.5rem;
+}
+
+.delete {
+  display: inline-block;
+  float: right;
+}
+
 //register page
 .svg-inline--fa.fa-exclamation-circle {
   color:red;
 }
 
+
+div.homepage {
+  height: calc(100vh - 52px);
+  width: 100vw;
+  .google-map {
+    height: 100%;
+    max-width: 100%;
+  }
+}
 
 //mobile
 @media only screen and (max-width: 600px) {

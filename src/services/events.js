@@ -21,6 +21,10 @@ function Event($http){
     return $http.post(`/api/events/${id}/vote`, restaurant);
   }
 
+  function voteDelete(id, vote){
+    return $http.delete(`/api/events/${id}/vote/${vote._id}`);
+  }
+
   function commentCreate(id, comment){
     return $http.post( `/api/events/${id}/comments`, comment);
   }
@@ -50,6 +54,7 @@ function Event($http){
   this.update = update;
   this.remove = remove;
   this.voteCreate = voteCreate;
+  this.voteDelete = voteDelete;
   this.commentCreate = commentCreate;
   this.commentDelete = commentDelete;
   this.attendeeCreate = attendeeCreate;

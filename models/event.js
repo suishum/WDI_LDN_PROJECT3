@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 const commentSchema = new mongoose.Schema({
   content: { type: String },
   user: { type: mongoose.Schema.ObjectId, ref: 'User' }
+},
+{
+  timestamps: true
 });
 
 commentSchema.methods.isOwnedBy = function(user) {

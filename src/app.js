@@ -2,6 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'ui-select';
 import 'angular-sanitize';
+import 'angular-messages';
 import 'satellizer';
 import 'filepicker-js';
 import 'angular-filepicker/dist/angular_filepicker';
@@ -14,6 +15,7 @@ import Select from './config/ui-select';
 import AuthRegisterCtrl from './controllers/auth/register';
 import AuthLoginCtrl from './controllers/auth/login';
 import MainCtrl from './controllers/main';
+import HomeCtrl from './controllers/home';
 import UsersShowCtrl from './controllers/users/show';
 import UsersEditCtrl from './controllers/users/edit';
 
@@ -31,7 +33,7 @@ import uploadImage from './directives/upload-image';
 import 'bulma';
 import './assets/scss/style.scss';
 
-angular.module('project3', ['ui.router', 'satellizer', 'ui.select', 'ngSanitize', 'angular-filepicker'])
+angular.module('project3', ['ui.router', 'satellizer', 'ui.select', 'ngSanitize', 'angular-filepicker', 'ngMessages'])
   .config(Router)
   .config(Auth)
   .config(Upload)
@@ -39,6 +41,7 @@ angular.module('project3', ['ui.router', 'satellizer', 'ui.select', 'ngSanitize'
   .controller('AuthRegisterCtrl', AuthRegisterCtrl)
   .controller('AuthLoginCtrl', AuthLoginCtrl)
   .controller('MainCtrl', MainCtrl)
+  .controller('HomeCtrl', HomeCtrl)
   .controller('UsersShowCtrl', UsersShowCtrl)
   .controller('UsersEditCtrl', UsersEditCtrl)
   .controller('EventsNewCtrl', EventsNewCtrl)

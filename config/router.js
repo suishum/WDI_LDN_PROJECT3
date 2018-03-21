@@ -32,6 +32,9 @@ router.route('/events/:id')
 router.route('/events/:id/vote')
   .post(secureRoute, events.voteCreate);
 
+router.route('/events/:id/vote/:voteId')
+  .delete(secureRoute, events.voteDelete);
+
 router.route('/events/:id/comments')
   .post(secureRoute, events.commentCreate);
 

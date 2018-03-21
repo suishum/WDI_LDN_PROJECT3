@@ -1,22 +1,25 @@
 const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
 
 const bcrypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
-  username: { type: String, unique: true, required: true },
-  name: { type: String },
-  email: { type: String, unique: true, required: true },
+  username: { type: String, unique: 'Woops! That username is already taken.', minLength: 2, uniqueCaseInsensitive: true, required: true },
+  firstname: { type: String , required: true },
+  lastname: { type: String },
+  email: { type: String, unique: 'Uh oh. That email is already taken.', uniqueCaseInsensitive: true, required: true },
   password: { type: String, required: true },
-  photo: { type: String }  || 'https://bulma.io/images/placeholders/128x128.png',
-  preferences: [{ type: String }],
-  address: { type: String },
-  location: {
-    lat: { type: Number },
-    lng: { type: Number }
-  },
-  favorite1: { type: Object },
-  favorite2: { type: Object },
-  favorite3: { type: Object }
+  photo: { type: String },
+  preferences: { type: String, required: true }
+});
+
+userSchema.plugin(uniqueValidator);
+
+userSchema.set('toJSON', {
+  transform(doc, json){
+    delete json.password;
+    return json;
+  }
 });
 
 // CHECK PASSWORD MATCHES THE PASSWORD CONFIRMATION
