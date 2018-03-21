@@ -1,8 +1,8 @@
 /* global navigator */
 
-MainCtrl.$inject = ['$auth', '$state', '$scope'];
+MainCtrl.$inject = ['$auth', '$state', '$scope', '$rootScope', '$timeout'];
 
-function MainCtrl($auth, $state, $scope) {
+function MainCtrl($auth, $state, $scope, $rootScope, $timeout) {
   const vm = this;
   vm.clicked = false;
   vm.currentUser = '';
@@ -11,7 +11,7 @@ function MainCtrl($auth, $state, $scope) {
 
   function getCurrentUser() {
     vm.currentUser = $auth.getPayload().sub;
-    console.log(`authenticated user: ${vm.currentUser}`);
+    // console.log(`authenticated user: ${vm.currentUser}`);
   }
 
   function logout() {
@@ -20,6 +20,14 @@ function MainCtrl($auth, $state, $scope) {
   }
 
   vm.logout = logout;
+
+  // set up a listener for flash messages.
+  $rootScope.$on('flashMessage', (e, data) => {
+    // console.log('message received', data);
+    vm.flashMessage = data;
+    // set timeout on the flash message. this is because we never reload the page therefore it will stay there FOREVER without a set timeout
+    $timeout(() => vm.flashMessage = null, 2000);
+  });
 
   $scope.$watch(() => vm.isAuthenticated() === true, getCurrentUser, true);
 }

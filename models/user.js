@@ -1,16 +1,19 @@
 const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
 
 const bcrypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
-  username: { type: String, unique: true, required: true, minLength: 2 },
+  username: { type: String, unique: 'Woops! That username is already taken.', minLength: 2, uniqueCaseInsensitive: true, required: true },
   firstname: { type: String , required: true },
   lastname: { type: String },
-  email: { type: String, unique: true, required: true },
+  email: { type: String, unique: 'Uh oh. That email is already taken.', uniqueCaseInsensitive: true, required: true },
   password: { type: String, required: true },
   photo: { type: String },
   preferences: { type: String, required: true }
 });
+
+userSchema.plugin(uniqueValidator);
 
 userSchema.set('toJSON', {
   transform(doc, json){

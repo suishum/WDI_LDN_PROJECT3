@@ -2,6 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'ui-select';
 import 'angular-sanitize';
+import 'angular-messages';
 import 'satellizer';
 import 'filepicker-js';
 import 'angular-filepicker/dist/angular_filepicker';
@@ -32,7 +33,7 @@ import uploadImage from './directives/upload-image';
 import 'bulma';
 import './assets/scss/style.scss';
 
-angular.module('project3', ['ui.router', 'satellizer', 'ui.select', 'ngSanitize', 'angular-filepicker'])
+angular.module('project3', ['ui.router', 'satellizer', 'ui.select', 'ngSanitize', 'angular-filepicker', 'ngMessages'])
   .config(Router)
   .config(Auth)
   .config(Upload)

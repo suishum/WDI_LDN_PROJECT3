@@ -4,19 +4,27 @@
     <form name="authLogin.form" ng-submit="authLogin.handleSubmit()">
 
       <div class="field">
-        <label for="email">Email</label>
-        <input class="input" placeholder="Email" name="email" ng-model="authLogin.credentials.email" required/>
+        <label class="label" for="email">Email</label>
+        <div class="control has-icons-left">
+          <input class="input" placeholder="Email" name="email" ng-model="authLogin.credentials.email" pattern="^.*@.*\..*$" required/>
+          <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
+        </div>
       </div>
-      <div ng-messages="authLogin.form.email.$error" ng-if="authLogin.form.email.$touched || authLogin.form.$submitted">
-        <div class="notification is-danger" ng-message="required">This field is required</div>
+      <div ng-messages="authLogin.form.email.$error" ng-if="authLogin.form.email.$dirty || authLogin.form.$submitted">
+        <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required.</div>
+        <div ng-message="pattern"><i class="fas fa-exclamation-circle"></i> This field must have the format of example@email.com</div>
       </div>
 
       <div class="field">
-        <label for="password">Password</label>
-        <input type="password" class="input" placeholder="Password" name="password" ng-model="authLogin.credentials.password" required/>
+        <label class="label" for="password">Password</label>
+        <div class="control has-icons-left">
+          <input type="password" class="input" placeholder="Password" name="password" ng-model="authLogin.credentials.password" required/>
+          <span class="icon is-small is-left"><i class="fas fa-unlock"></i></span>
+        </div>
       </div>
-      <div ng-messages="authLogin.form.password.$error" ng-if="authLogin.form.password.$touched || authLogin.form.$submitted">
-        <div class="notification is-danger" ng-message="required">This field is required</div>
+      <div ng-messages="authLogin.form.password.$error" ng-if="authLogin.form.password.$dirty || authLogin.form.$submitted">
+        <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required.</div>
+        <!-- <div ng-message="minlength"><i class="fas fa-exclamation-circle"></i>  You must use at least 8 characters</div> -->
       </div>
 
       <button class="button is-primary">Submit</button>
