@@ -9,6 +9,7 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
   vm.isInvited = false;
   vm.talliedVotes;
   vm.voteWinner;
+  vm.zeroVotes = true;
   vm.closePollClicked = false;
   vm.voteWinnerLocation = {
     lat: 0,
@@ -171,6 +172,8 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
   }
 
   function closePoll(){
+    tallyVotes();
+    vm.zeroVotes = (Object.values(vm.talliedVotes).some(val => val > 0)) ? false : true;
     vm.closePollClicked = true;
   }
 

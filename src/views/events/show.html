@@ -21,7 +21,7 @@
                   <div class="content">
                     <p>
                       {{ attendee.name }}
-                      <button class="smallBtn" ng-if="eventsShow.hideAdminButton(attendee)" ng-click="eventsShow.makeAdmin(attendee)">Make Organizer</button>
+                      <button class="smallBtn" ng-if="eventsShow.hideAdminButton(attendee) && eventsShow.isAdmin" ng-click="eventsShow.makeAdmin(attendee)">Make Organizer</button>
                     </p>
                 </div>
               </div>
@@ -54,7 +54,6 @@
                   <div class="content">
                     <p>
                       {{ admin.name }}
-                      <button class="smallBtn" ng-if="eventsShow.hideAdminButton(attendee)" ng-click="eventsShow.makeAdmin(attendee)">Make Organizer</button>
                     </p>
                   </div>
                 </div>
@@ -90,12 +89,14 @@
             <div class="modal is-active" ng-if="eventsShow.closePollClicked">
                 <div class="modal-background"></div>
                   <div class="modal-content">
-                    <p class="warning-message">Wait! If you close this poll you will not be able to reopen it and your mates won't be able to vote on the date. Are you sure?</p>
+                    <p ng-if="!eventsShow.zeroVotes" class="warning-message">Wait! If you close this poll you will not be able to reopen it and your mates won't be able to vote on the date. Are you sure?</p>
+                      <p ng-if="eventsShow.zeroVotes" class="warning-message">You can't close a poll with zero votes!</p>
                     <div class="buttons">
-                      <button ng-if="eventsShow.isAdmin" class="button is-danger" ng-click="eventsShow.closeMessage()">Maybe Not</button>
-                      <button ng-if="eventsShow.isAdmin" class="button is-primary" ng-click="eventsShow.togglePoll()">I'm Sure!</button>
+                      <button ng-if="!eventsShow.zeroVotes" class="button is-danger" ng-click="eventsShow.closeMessage()">Maybe Not</button>
+                      <button ng-if="!eventsShow.zeroVotes"  class="button is-primary" ng-click="eventsShow.togglePoll()">I'm Sure!</button>
                     </div>
                   </div>
+                  <button ng-click="eventsShow.closeMessage()" class="modal-close is-large" aria-label="close"></button>
             </div>
           </div>
 

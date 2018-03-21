@@ -5,15 +5,13 @@
 const User = require('../../../models/user');
 const userData = {
   username: 'test',
-  name: 'test',
+  firstname: 'test',
+  lastname: 'test',
   email: 'test@test.com',
   password: 'test',
   passwordConfirmation: 'test',
   photo: 'http://www.placecage.com/c/200/300',
-  preferences: ['prefa', 'prefb', 'prefc'],
-  favorite1: 'testfavourite1',
-  favorite2: 'testfavourite2',
-  favorite3: 'testfavourite3'
+  preferences: 'prefa'
 };
 
 // we already had a user in the database from out register_spec.js tests, but we still want to remove that user and repopulate. This is because we should be able to run each test in isolation and no rely on other tests.
