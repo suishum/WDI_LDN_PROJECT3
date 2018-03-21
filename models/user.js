@@ -15,6 +15,13 @@ const userSchema = new mongoose.Schema({
 
 userSchema.plugin(uniqueValidator);
 
+userSchema.set('toJSON', {
+  transform(doc, json){
+    delete json.password;
+    return json;
+  }
+});
+
 // CHECK PASSWORD MATCHES THE PASSWORD CONFIRMATION
 // 1. Set the temporary variable with the passwordConfirmation field.
 // _variable means its a temporary variable.

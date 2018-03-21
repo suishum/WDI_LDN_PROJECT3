@@ -14,14 +14,13 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
     lng: 0
   };
   const currentUser = $auth.getPayload().sub;
-
-  // may not be able to initialise this boolean here b/c on page reload, the poll will show up again. Do it in HTML?
   vm.displayPoll = true;
+  vm.talliedVotes = {};
+  vm.currentUserVoted = false;
 
   Event.findById($state.params.id)
     .then(res => {
       vm.event = res.data;
-      console.log(vm.event);
       // Check if poll has been closed (if vote winner has been decided)
       if (vm.event.winner) {
         // get winner co-ordinates in the form of { 'lat': 123, 'lng': 123 }
@@ -38,7 +37,10 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
         vm.isInvited = true;
       }
     })
-    .then(() => updateInviteList());
+    .then(() => {
+      updateInviteList();
+      tallyVotes();
+    });
 
   function updateInviteList() {
     // get all users
@@ -80,44 +82,59 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
       .catch(err => console.error(err));
   }
 
+  function hideAdminButton(attendee){
+    return (vm.event.admin.findIndex(admin => admin._id === attendee._id) === -1);
+  }
+
   function vote(restaurant) {
-    // stop user from voting if they have voted already
+    //delete user's previous votes
     if (vm.event.votes.filter(obj => obj.voter._id === currentUser).length > 0) {
-      return false;
+      const vote = vm.event.votes.filter(obj => obj.voter._id === currentUser);
+      vote.forEach(vote => {
+        vm.talliedVotes[vote.restaurant.id] -= 1;
+        Event
+          .voteDelete($state.params.id, vote)
+          .then(() => {
+            //add a vote
+            Event.voteCreate($state.params.id, { restaurant: restaurant })
+              .then(res => {
+                vm.event = res.data;
+              })
+              .catch(err => console.error(err));
+          });
+      });
     } else {
-      // add a vote
+    // else just add a vote
       Event
         .voteCreate($state.params.id, { restaurant: restaurant })
         .then(res => {
           vm.event = res.data;
-          // console.log(vm.event.votes);
         })
         .catch(err => console.error(err));
     }
+    if (vm.talliedVotes[restaurant.id]) vm.talliedVotes[restaurant.id] += 1;
+    else vm.talliedVotes[restaurant.id] = 1;
   }
 
-  function tallyVotes(currentRestaurant){
-    let matches = 0;
-    vm.event.votes.forEach(vote => {
-      if(vote.restaurant.id === currentRestaurant.id) matches += 1;
-    });
-    return matches;
+  function votedFor(restaurant){
+    return (vm.event.votes.findIndex(vote => vote.voter._id === currentUser && vote.restaurant.id === restaurant.id) === -1);
   }
 
-  function calcVoteWinner() {
-    // clear obj before calc
-    vm.talliedVotes = {};
-    vm.voteWinner = [];
-    // put votes into an object with restaurant/votes is key/value pairs
+
+  function tallyVotes() {
     vm.event.votes.forEach(vote => {
       if (!(vote.restaurant.id in vm.talliedVotes)) {
-        // console.log('key did not exist, added to the talliedVotes obj');
         vm.talliedVotes[vote.restaurant.id] = 1;
       } else {
-        // console.log('key exists, added +1 to value');
         vm.talliedVotes[vote.restaurant.id] += 1;
       }
     });
+  }
+
+
+  function calcVoteWinner() {
+    vm.voteWinner = [];
+    tallyVotes();
     // find the id of the winner
     const winnerId = Object.keys(vm.talliedVotes).reduce((a, b) => vm.talliedVotes[a] > vm.talliedVotes[b] ? a : b);
     // get the winner object
@@ -139,7 +156,6 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
         vm.event = res.data;
       })
       .catch(err => console.error(err));
-
     vm.comment = [];
   }
 
@@ -166,14 +182,17 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
     Event.remove($state.params.id)
       .then(() => $state.go('home'));
   }
+
   this.makeAdmin = makeAdmin;
+  this.hideAdminButton = hideAdminButton;
   this.togglePoll = togglePoll;
   this.deleteEvent = deleteEvent;
   this.deleteComment = deleteComment;
   this.submitComment = submitComment;
-  this.calcVoteWinner = calcVoteWinner;
-  this.tallyVotes = tallyVotes;
   this.vote = vote;
+  this.votedFor = votedFor;
+  this.tallyVotes = tallyVotes;
+  this.calcVoteWinner = calcVoteWinner;
   this.inviteAttendee = inviteAttendee;
   this.removeAttendee = removeAttendee;
 }

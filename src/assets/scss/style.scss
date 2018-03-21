@@ -32,17 +32,18 @@
   margin: 0;
 }
 
-.attendeeButtons {
-  float:right;
+.smallBtn {
+  display:block;
+  border:none;
+  text-decoration: underline;
+  padding: 2px 0;
+  cursor:pointer;
 }
+
 
 li {
   overflow: auto;
   margin: 20px 0;
-  p {
-    display:inline-block;
-  }
-
   hr {
     margin:5px;
   }
@@ -52,17 +53,30 @@ li {
   float:right;
 }
 
+.voted {
+  color:white;
+  background-color:#363636;
+}
+
+.voted:hover {
+  color:white;
+  background-color:#363636;
+}
+
+.comments {
+  margin-bottom: 1.5rem;
+}
+
+.delete {
+  display: inline-block;
+  float: right;
+}
+
 //register page
 .svg-inline--fa.fa-exclamation-circle {
   color:red;
 }
 
-//mobile
-@media only screen and (max-width: 600px) {
-  .is-flexed {
-    display:block;
-  }
-}
 
 div.homepage {
   height: calc(100vh - 52px);
@@ -70,5 +84,12 @@ div.homepage {
   .google-map {
     height: 100%;
     max-width: 100%;
+  }
+}
+
+//mobile
+@media only screen and (max-width: 600px) {
+  .is-flexed {
+    display:block;
   }
 }

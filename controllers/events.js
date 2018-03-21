@@ -47,26 +47,38 @@ function voteCreateRoute(req,res,next){
     .catch(next);
 }
 
+function voteDeleteRoute(req,res,next){
+  Event.findById(req.params.id)
+    .then(event => {
+      const vote = event.votes.id(req.params.voteId);
+      vote.remove();
+      return event.save();
+    })
+    .then(event => Event.populate(event, { path: 'comments.user attendees votes.voter admin' }))
+    .then(event => res.json(event))
+    .catch(next);
+}
+
 function commentCreateRoute(req,res,next){
   req.body.user = req.currentUser;
   Event.findById(req.params.id)
-    .populate('comments.user attendees votes.voter admin')
     .then(event => {
       event.comments.push(req.body);
       return event.save();
     })
+    .then(event => Event.populate(event, { path: 'comments.user attendees votes.voter admin' }))
     .then(event => res.json(event))
     .catch(next);
 }
 
 function commentDeleteRoute(req,res,next){
   Event.findById(req.params.id)
-    .populate('comments.user attendees votes.voter admin')
     .then(event => {
       const comment = event.comments.id(req.params.commentId);
       comment.remove();
       return event.save();
     })
+    .then(event => Event.populate(event, { path: 'comments.user attendees votes.voter admin' }))
     .then(event => res.json(event))
     .catch(next);
 }
@@ -124,6 +136,7 @@ module.exports = {
   update: updateRoute,
   delete: deleteRoute,
   voteCreate: voteCreateRoute,
+  voteDelete: voteDeleteRoute,
   commentCreate: commentCreateRoute,
   commentDelete: commentDeleteRoute,
   attendeeCreate: attendeeCreateRoute,
