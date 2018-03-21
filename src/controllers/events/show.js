@@ -14,9 +14,8 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
     lng: 0
   };
   const currentUser = $auth.getPayload().sub;
-
-  // may not be able to initialise this boolean here b/c on page reload, the poll will show up again. Do it in HTML?
   vm.displayPoll = true;
+  vm.talliedVotes = {};
 
   Event.findById($state.params.id)
     .then(res => {
@@ -37,7 +36,10 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
         vm.isInvited = true;
       }
     })
-    .then(() => updateInviteList());
+    .then(() => {
+      updateInviteList();
+      tallyVotes();
+    });
 
   function updateInviteList() {
     // get all users
@@ -80,43 +82,50 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
   }
 
   function vote(restaurant) {
-    // stop user from voting if they have voted already
+    //delete user's previous votes
     if (vm.event.votes.filter(obj => obj.voter._id === currentUser).length > 0) {
-      return false;
+      const vote = vm.event.votes.filter(obj => obj.voter._id === currentUser);
+      vote.forEach(vote => {
+        vm.talliedVotes[vote.restaurant.id] -= 1;
+        Event
+          .voteDelete($state.params.id, vote)
+          .then(() => {
+            //add a vote
+            Event.voteCreate($state.params.id, { restaurant: restaurant })
+              .then(res => {
+                vm.event = res.data;
+              })
+              .catch(err => console.error(err));
+          });
+      });
     } else {
-      // add a vote
+    // else just add a vote
       Event
         .voteCreate($state.params.id, { restaurant: restaurant })
         .then(res => {
           vm.event = res.data;
-          // console.log(vm.event.votes);
         })
         .catch(err => console.error(err));
     }
+    if (vm.talliedVotes[restaurant.id]) vm.talliedVotes[restaurant.id] += 1;
+    else vm.talliedVotes[restaurant.id] = 1;
   }
 
-  function tallyVotes(currentRestaurant){
-    let matches = 0;
-    vm.event.votes.forEach(vote => {
-      if(vote.restaurant.id === currentRestaurant.id) matches += 1;
-    });
-    return matches;
-  }
 
-  function calcVoteWinner() {
-    // clear obj before calc
-    vm.talliedVotes = {};
-    vm.voteWinner = [];
-    // put votes into an object with restaurant/votes is key/value pairs
+  function tallyVotes() {
     vm.event.votes.forEach(vote => {
       if (!(vote.restaurant.id in vm.talliedVotes)) {
-        // console.log('key did not exist, added to the talliedVotes obj');
         vm.talliedVotes[vote.restaurant.id] = 1;
       } else {
-        // console.log('key exists, added +1 to value');
         vm.talliedVotes[vote.restaurant.id] += 1;
       }
     });
+  }
+
+
+  function calcVoteWinner() {
+    vm.voteWinner = [];
+    tallyVotes();
     // find the id of the winner
     const winnerId = Object.keys(vm.talliedVotes).reduce((a, b) => vm.talliedVotes[a] > vm.talliedVotes[b] ? a : b);
     // get the winner object
@@ -138,7 +147,6 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
         vm.event = res.data;
       })
       .catch(err => console.error(err));
-
     vm.comment = [];
   }
 

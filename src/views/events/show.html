@@ -53,7 +53,7 @@
                 <br>
                 Yelp Rating: {{ restaurant.rating }}
                 <br>
-                Votes: {{ eventsShow.tallyVotes(restaurant) }}</p>
+                Votes {{ eventsShow.talliedVotes[restaurant.id] || 0 }}
                 <button ng-click="eventsShow.vote(restaurant)" class="button voteBtn"><i class="fas fa-thumbs-up"></i></button>
                 <hr/>
               </li>
