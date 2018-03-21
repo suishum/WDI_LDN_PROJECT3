@@ -7,24 +7,30 @@
       <label class="label" for="name">Username</label>
       <input class="input" placeholder="Username" userholder="Username" name="username" ng-model="authRegister.user.username" minlength="2" required />
       <div ng-messages="authRegister.form.username.$error" ng-if="(authRegister.form.username.$dirty && authRegister.form.username.$invalid) || authRegister.form.$submitted">
-        <div ng-message="required"><i class="fas fa-exclamation-circle"></i> Please fill in this field</div>
+        <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
         <div ng-message="minlength"><i class="fas fa-exclamation-circle"></i> You must use at least 2 characters</div>
       </div>
     </div>
 
     <div class="field">
-      <label class="label" for="name">Name</label>
-      <input class="input" placeholder="Name" userholder="Name" name="name" ng-model="authRegister.user.name" required/>
-      <div ng-messages="authRegister.form.name.$error" ng-if="(authRegister.form.name.$dirty && authRegister.form.name.$invalid) || authRegister.form.$submitted">
+      <label class="label" for="name">First Name</label>
+      <input class="input" placeholder="First Name" userholder="Firstname" name="firstname" ng-model="authRegister.user.firstname" required/>
+      <div ng-messages="authRegister.form.firstname.$error" ng-if="(authRegister.form.firstname.$dirty && authRegister.form.firstname.$invalid) || authRegister.form.$submitted">
         <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required.</div>
       </div>
     </div>
 
     <div class="field">
+      <label class="label" for="name">Last Name</label>
+      <input class="input" placeholder="Last Name" userholder="Lastname" name="lastname" ng-model="authRegister.user.lastname" />
+    </div>
+
+    <div class="field">
       <label class="label" for="name">Email</label>
-      <input class="input" placeholder="Email" userholder="Email" name="email" ng-model="authRegister.user.email" required/>
+      <input class="input" placeholder="Email" userholder="Email" name="email" ng-model="authRegister.user.email" pattern="^.*@.*\..*$" required/>
       <div ng-messages="authRegister.form.email.$error" ng-if="(authRegister.form.email.$dirty && authRegister.form.email.$invalid)|| authRegister.form.$submitted">
-        <div ng-message="required"><i class="fas fa-exclamation-circle"></i>  This field is required.</div>
+        <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required.</div>
+        <div ng-message="pattern"><i class="fas fa-exclamation-circle"></i> This field must have the format of example@email.com</div>
       </div>
     </div>
 
@@ -32,21 +38,22 @@
       <label class="label" for="name">Password</label>
       <input type="password" class="input" placeholder="Password" userholder="Password" name="password" ng-model="authRegister.user.password" minlength="8" required/>
       <div ng-messages="authRegister.form.password.$error" ng-if="(authRegister.form.password.$dirty && authRegister.form.password.$invalid) || authRegister.form.$submitted">
-        <div ng-message="required"><i class="fas fa-exclamation-circle"></i>  This field is required.</div>
+        <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required.</div>
         <div ng-message="minlength"><i class="fas fa-exclamation-circle"></i>  You must use at least 8 characters</div>
       </div>
     </div>
 
     <div class="field">
-      <label class="label" for="name">Password Confirmation</label>
+      <label class="label" for="name">Confirm Password</label>
       <input type="password" class="input" placeholder="Password Confirmation" userholder="PasswordConfirmation" name="passwordConfirmation" ng-model="authRegister.user.passwordConfirmation" minlength="8" required/>
       <div ng-messages="authRegister.form.passwordConfirmation.$error" ng-if="(authRegister.form.passwordConfirmation.$dirty && authRegister.form.passwordConfirmation.$invalid) || authRegister.form.$submitted">
-        <div ng-message="required"><i class="fas fa-exclamation-circle"></i>  This field is required.</div>
-        <div ng-message="minlength"><i class="fas fa-exclamation-circle"></i>  You must use at least 8 characters</div>
+        <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required.</div>
+        <div ng-message="minlength"><i class="fas fa-exclamation-circle"></i> You must use at least 8 characters</div>
       </div>
     </div>
 
     <div class="field">
+      <label class="label" class="label">Upload a Profile Picture</label>
       <div class="control">
         <div class="file">
           <label class="label" class="file-label">
@@ -76,65 +83,17 @@
 
     <div class="field">
       <div class="control">
-        <label class="label" for="name">Preferences</label>
+        <label class="label" for="name">Whats your favourite type of cuisine?</label>
         <div class="select">
           <select name="preferences" ng-model="authRegister.user.preferences" required>
             <option selected disabled value="">Please choose</option>
             <option ng-repeat="category in authRegister.categories">{{ category.title }}</option>
           </select>
           <div ng-messages="authRegister.form.preferences.$error" ng-if="(authRegister.form.preferences.$touched && authRegister.form.preferences.$invalid) || authRegister.form.$submitted">
-            <div ng-message="required"><i class="fas fa-exclamation-circle"></i>  This field is required</div>
+            <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="field">
-      <div class="control">
-      <label class="label" for="location">Your Location</label>
-      <input auto-complete class="input" address="authRegister.user.address"  location="authRegister.user.location" placeholder="eg: London" name="address" ng-model="authRegister.user.address" required/>
-      <div ng-messages="authRegister.form.address.$error" ng-if="(authRegister.form.address.$dirty && authRegister.form.address.$invalid) || authRegister.form.$submitted ">
-        <div  ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
-      </div>
-    </div>
-    </div>
-
-    <div class="field">
-      <label class="label" for="name">Favorites</label>
-
-      <div class="field">
-        <label class="label" for="name">Favorite 1</label>
-        <select class="select" name="favourite1" ng-model="authRegister.user.favorite1" required>
-          <option value="" disabled selected>Choose a restaurant</option>
-          <option name="favorite1" ng-repeat="restaurant in authRegister.restaurants" ng-value="{{ restaurant }}">{{ restaurant.name }} - {{ restaurant.location.zip_code }}</option>
-          <div ng-messages="authRegister.form.favorite1.$error" ng-if="(authRegister.form.favorite1.$dirty && authRegister.form.favorite1.$invalid) || authRegister.form.$submitted">
-            <div class="notification is-danger" ng-message="required"><i class="fas fa-exclamation-circle"></i>  This field is required</div>
-          </div>
-        </select>
-      </div>
-
-      <div class="field">
-        <label class="label" for="name">Favorite 2</label>
-        <select class="select" name="favourite2" ng-model="authRegister.user.favorite2" required>
-          <option value="" disabled selected>Choose a restaurant</option>
-          <option name="favorite2" ng-repeat="restaurant in authRegister.restaurants" ng-value="{{ restaurant }}">{{ restaurant.name }} - {{ restaurant.location.zip_code }}</option>
-          <div ng-messages="authRegister.form.favorite2.$error" ng-if="(authRegister.form.favorite2.$dirty && authRegister.form.favorite2.$invalid) || authRegister.form.$submitted">
-            <div class="notification is-danger" ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
-          </div>
-        </select>
-      </div>
-
-      <div class="field">
-        <label class="label" for="name">Favorite 3</label>
-        <select class="select" name="favourite3" ng-model="authRegister.user.favorite3" required>
-          <option value="" disabled selected>Choose a restaurant</option>
-          <option name="favorite3" ng-repeat="restaurant in authRegister.restaurants" ng-value="{{ restaurant }}">{{ restaurant.name }} - {{ restaurant.location.zip_code }}</option>
-          <div ng-messages="authRegister.form.favorite3.$error" ng-if="(authRegister.form.favorite3.$invalid && authRegister.form.favorite3.$touched) || authRegister.form.$submitted">
-            <div class="notification is-danger" ng-message="required"><i class="fas fa-exclamation-circle"></i>  This field is required</div>
-          </div>
-        </select>
-      </div>
-
     </div>
 
     <button class="button is-primary">Submit</button>

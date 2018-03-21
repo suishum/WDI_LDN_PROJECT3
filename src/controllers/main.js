@@ -10,19 +10,10 @@ function MainCtrl($auth, $state, $scope) {
   vm.isAuthenticated = $auth.isAuthenticated;
 
   function getCurrentUser() {
-    if ($auth.getPayload()) {
-      vm.currentUser = $auth.getPayload().sub;
-      console.log(`authenticated user: ${vm.currentUser}`);
-    }
+    vm.currentUser = $auth.getPayload().sub;
+    console.log(`authenticated user: ${vm.currentUser}`);
   }
 
-  // get the user id of the person logged in by accessing the payload information
-  $scope.$on('loggedIn', () => {
-    // vm.currentUser = $auth.getPayload().sub;
-    // console.log(`immediately after logging in: ${vm.currentUser}`);
-  });
-
-  // console.log(`outside if statement and outside scope: ${vm.currentUser}`);
   function logout() {
     $auth.logout();
     $state.go('home');
@@ -30,7 +21,7 @@ function MainCtrl($auth, $state, $scope) {
 
   vm.logout = logout;
 
-  $scope.$watch(() => vm.isAuthenticated, getCurrentUser, true);
+  $scope.$watch(() => vm.isAuthenticated() === true, getCurrentUser, true);
 }
 
 export default MainCtrl;

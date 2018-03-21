@@ -1,177 +1,145 @@
 module.exports = [{
   username: 'Sui',
-  name: 'Sui',
+  firstname: 'Sui',
+  lastname: 'LastSui',
   email: 'sui@sui.com',
   password: 'sui',
   passwordConfirmation: 'sui',
   photo: 'http://www.placecage.com/c/200/300',
-  preferences: ['a', 'b', 'c'],
-  favorite1: 'favourite1',
-  favorite2: 'favourite2',
-  favorite3: 'favourite3'
+  preferences: 'preference'
 }, {
   username: 'Katie',
-  name: 'Katie',
+  firstname: 'Katie',
+  lastname: 'LastKatie',
   email: 'katie@katie.com',
   password: 'katie',
   passwordConfirmation: 'katie',
   photo: 'http://www.placecage.com/c/200/300',
-  preferences: ['a', 'b', 'c'],
-  favorite1: 'favourite1',
-  favorite2: 'favourite2',
-  favorite3: 'favourite3'
+  preferences: 'preference'
 }, {
   username: 'Fabian',
-  name: 'Fabian',
+  firstname: 'Fabian',
+  lastname: 'LastFabian',
   email: 'fabian@fabian.com',
   password: 'fabian',
   passwordConfirmation: 'fabian',
   photo: 'http://www.placecage.com/c/200/300',
-  preferences: ['a', 'b', 'c'],
-  favorite1: 'favourite1',
-  favorite2: 'favourite2',
-  favorite3: 'favourite3'
+  preferences: 'preference'
 }, {
   username: 'Paula',
-  name: 'Paula',
+  firstname: 'Paula',
+  lastname: 'LastPaula',
   email: 'paula@paula.com',
   password: 'paula',
   passwordConfirmation: 'paula',
   photo: 'http://www.placecage.com/c/200/300',
-  preferences: ['a', 'b', 'c'],
-  favorite1: 'favourite1',
-  favorite2: 'favourite2',
-  favorite3: 'favourite3'
+  preferences: 'preference'
 }, {
   username: 'Helena',
-  name: 'Helena',
+  firstname: 'Helena',
+  lastname: 'LastHelena',
   email: 'helena@helena.com',
   password: 'helena',
   passwordConfirmation: 'helena',
   photo: 'http://www.placecage.com/c/200/300',
-  preferences: ['a', 'b', 'c'],
-  favorite1: 'favourite1',
-  favorite2: 'favourite2',
-  favorite3: 'favourite3'
+  preferences: 'preference'
 }, {
   username: 'Amir',
-  name: 'Amir',
+  firstname: 'Amir',
+  lastname: 'LastAmir',
   email: 'amir@amir.com',
   password: 'amir',
   passwordConfirmation: 'amir',
   photo: 'http://www.placecage.com/c/200/300',
-  preferences: ['a', 'b', 'c'],
-  favorite1: 'favourite1',
-  favorite2: 'favourite2',
-  favorite3: 'favourite3'
+  preferences: 'preference'
 }, {
   username: 'Nic',
-  name: 'Nic',
+  firstname: 'Nic',
+  lastname: 'LastNic',
   email: 'nic@nic.com',
   password: 'nic',
   passwordConfirmation: 'nic',
   photo: 'http://www.placecage.com/c/200/300',
-  preferences: ['a', 'b', 'c'],
-  favorite1: 'favourite1',
-  favorite2: 'favourite2',
-  favorite3: 'favourite3'
+  preferences: 'preference'
 }, {
   username: 'Jess',
-  name: 'Jess',
+  firstname: 'Jess',
+  lastname: 'LastJess',
   email: 'jess@jess.com',
   password: 'jess',
   passwordConfirmation: 'jess',
   photo: 'http://www.placecage.com/c/200/300',
-  preferences: ['a', 'b', 'c'],
-  favorite1: 'favourite1',
-  favorite2: 'favourite2',
-  favorite3: 'favourite3'
+  preferences: 'preference'
 }, {
   username: 'Abi',
-  name: 'Abi',
+  firstname: 'Abi',
+  lastname: 'LastAbi',
   email: 'abi@abi.com',
   password: 'abi',
   passwordConfirmation: 'abi',
   photo: 'http://www.placecage.com/c/200/300',
-  preferences: ['a', 'b', 'c'],
-  favorite1: 'favourite1',
-  favorite2: 'favourite2',
-  favorite3: 'favourite3'
+  preferences: 'preference'
 }, {
   username: 'Reena',
-  name: 'Reena',
+  firstname: 'Reena',
+  lastname: 'LastReena',
   email: 'reena@reena.com',
   password: 'reena',
   passwordConfirmation: 'reena',
   photo: 'http://www.placecage.com/c/200/300',
-  preferences: ['a', 'b', 'c'],
-  favorite1: 'favourite1',
-  favorite2: 'favourite2',
-  favorite3: 'favourite3'
+  preferences: 'preference'
 }, {
   username: 'Tom',
-  name: 'Tom',
+  firstname: 'Tom',
+  lastname: 'LastTom',
   email: 'tom@tom.com',
   password: 'tom',
   passwordConfirmation: 'tom',
   photo: 'http://www.placecage.com/c/200/300',
-  preferences: ['a', 'b', 'c'],
-  favorite1: 'favourite1',
-  favorite2: 'favourite2',
-  favorite3: 'favourite3'
+  preferences: 'preference'
 }, {
   username: 'Aimee',
-  name: 'Aimee',
+  firstname: 'Aimee',
+  lastname: 'LastAimee',
   email: 'aimee@aimee.com',
   password: 'aimee',
   passwordConfirmation: 'aimee',
   photo: 'http://www.placecage.com/c/200/300',
-  preferences: ['a', 'b', 'c'],
-  favorite1: 'favourite1',
-  favorite2: 'favourite2',
-  favorite3: 'favourite3'
+  preferences: 'preference'
 }, {
   username: 'Mark',
-  name: 'Mark',
+  firstname: 'Mark',
+  lastname: 'LastMark',
   email: 'mark@mark.com',
   password: 'mark',
   passwordConfirmation: 'mark',
   photo: 'http://www.placecage.com/c/200/300',
-  preferences: ['a', 'b', 'c'],
-  favorite1: 'favourite1',
-  favorite2: 'favourite2',
-  favorite3: 'favourite3'
+  preferences: 'preference'
 }, {
   username: 'Fabienne',
-  name: 'Fabienne',
+  firstname: 'Fabienne',
+  lastname: 'LastFabienne',
   email: 'fabienne@fabienne.com',
   password: 'fabienne',
   passwordConfirmation: 'fabienne',
   photo: 'http://www.placecage.com/c/200/300',
-  preferences: ['a', 'b', 'c'],
-  favorite1: 'favourite1',
-  favorite2: 'favourite2',
-  favorite3: 'favourite3'
+  preferences: 'preference'
 }, {
   username: 'George',
-  name: 'George',
+  firstname: 'George',
+  lastname: 'LastGeorge',
   email: 'george@george.com',
   password: 'george',
   passwordConfirmation: 'george',
   photo: 'http://www.placecage.com/c/200/300',
-  preferences: ['a', 'b', 'c'],
-  favorite1: 'favourite1',
-  favorite2: 'favourite2',
-  favorite3: 'favourite3'
+  preferences: 'preference'
 }, {
   username: 'Mike',
-  name: 'Mike',
+  firstname: 'Mike',
+  lastname: 'LastMike',
   email: 'mike@mike.com',
   password: 'mike',
   passwordConfirmation: 'mike',
   photo: 'http://www.placecage.com/c/200/300',
-  preferences: ['a', 'b', 'c'],
-  favorite1: 'favourite1',
-  favorite2: 'favourite2',
-  favorite3: 'favourite3'
+  preferences: 'preference'
 }];
