@@ -15,7 +15,11 @@ function googleMap() {
 
       const map = new google.maps.Map($element[0], {
         zoom: $scope.zoom,
-        center: $scope.center
+        center: $scope.center,
+        mapTypeControl: false,
+        fullscreenControl: false,
+        streetViewControl: false,
+        zoomControl: false
       });
       $scope.$watch('center', () => {
         map.setCenter($scope.center);
