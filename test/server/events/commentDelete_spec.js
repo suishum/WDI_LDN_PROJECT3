@@ -51,7 +51,7 @@ const eventData = {
 };
 
 
-describe('GET /api/events/:id/comments', () => {
+describe('DELETE /api/events/:id/comments', () => {
   beforeEach(done => {
     Promise.all([
       User.remove({}),

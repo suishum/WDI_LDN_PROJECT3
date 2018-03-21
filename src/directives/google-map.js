@@ -30,7 +30,6 @@ function googleMap() {
 
       navigator.geolocation.getCurrentPosition(pos => {
         currentLocation = { lat: pos.coords.latitude, lng: pos.coords.longitude };
-        console.log(currentLocation);
         displayRoute();
       });
 

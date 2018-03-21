@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken');
 const { secret } = require('../../../config/environment');
 let token;
 let newEvent;
-let newUser;
 
 //test data
 const userData = {
@@ -13,6 +12,11 @@ const userData = {
   email: 'test@test.com',
   password: 'test',
   passwordConfirmation: 'test'
+};
+
+const winnerData = {
+  'id': 'hawksmoor-seven-dials-london-4',
+  'name': 'Hawksmoor Seven Dials'
 };
 
 const eventData = {
@@ -47,11 +51,12 @@ const eventData = {
   'date': '2018-03-30T23:00:00.000Z',
   'time': '1970-01-01T20:07:00.000Z',
   'comments': [],
-  'votes': []
+  'votes': [],
+  'winner': {}
 };
 
 
-describe('GET /api/events/:id/attendees', () => {
+describe('POST /api/events/:id', () => {
   beforeEach(done => {
     Promise.all([
       User.remove({}),
@@ -61,7 +66,6 @@ describe('GET /api/events/:id/attendees', () => {
       .then(event => newEvent = event)
       .then(() => User.create(userData))
       .then(user => {
-        newUser = user;
         token = jwt.sign({ sub: user._id }, secret, { expiresIn: '6h'});
       })
       .then(() => done());
@@ -69,29 +73,26 @@ describe('GET /api/events/:id/attendees', () => {
 
   it('should return a 401 response without a token', done => {
     api
-      .post(`/api/events/${newEvent._id}/attendees`)
+      .post(`/api/events/${newEvent._id}`)
       .end((err,res) => {
         expect(res.status).to.eq(401);
         done();
       });
   });
 
-  it('should return valid event object with the new attendee added', done => {
+  it('should return valid event object with the winner added', done => {
     api
-      .post(`/api/events/${newEvent._id}/attendees`)
+      .post(`/api/events/${newEvent._id}`)
       .set('Authorization', `Bearer ${token}`)
-      .send(newUser)
+      .send(winnerData)
       .end((err, res) => {
         expect(res.body._id).to.be.a('string');
         expect(res.body.name).to.eq(eventData.name);
         expect(res.body.date).to.eq(eventData.date);
         expect(res.body.time).to.eq(eventData.time);
         expect(res.body.location).to.deep.eq(eventData.location);
-        expect(res.body.attendees[0]._id).to.eq(`${newUser._id}`);
-        expect(res.body.attendees[0].preferences).to.deep.eq(newUser.preferences);
-        expect(res.body.attendees[0].username).to.eq(newUser.username);
-        expect(res.body.attendees[0].email).to.eq(newUser.email);
-        expect(res.body.attendees[0].password).to.eq(newUser.password);
+        expect(res.body.winner.id).to.eq(winnerData.id);
+        expect(res.body.winner.name).to.eq(winnerData.name);
         done();
       });
   });

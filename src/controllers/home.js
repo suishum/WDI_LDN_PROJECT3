@@ -1,21 +1,22 @@
 /* global navigator */
+HomeCtrl.$inject = ['$auth', '$http', '$timeout'];
 
-HomeCtrl.$inject = ['$auth', '$http'];
-
-function HomeCtrl($auth, $http) {
+function HomeCtrl($auth, $http, $timeout) {
   const vm = this;
   vm.currentLocation = {
     lat: 0,
     lng: 0
   };
   vm.top20Restaurants = [];
+  vm.loading = 900;
+  vm.loaded = 0;
+  vm.showPopup = true;
 
   // get lat and lng of current position
   navigator.geolocation.getCurrentPosition(pos => {
-    // console.log(pos);
     vm.currentLocation.lat = pos.coords.latitude;
     vm.currentLocation.lng = pos.coords.longitude;
-    // console.log(vm.currentLocation);
+    $timeout(() => vm.showPopup = false, 3000);
     updateRestaurants();
   });
 

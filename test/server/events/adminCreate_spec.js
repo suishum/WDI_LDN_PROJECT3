@@ -51,7 +51,7 @@ const eventData = {
 };
 
 
-describe('GET /api/events/:id/admin', () => {
+describe('POST /api/events/:id/admin', () => {
   beforeEach(done => {
     Promise.all([
       User.remove({}),
