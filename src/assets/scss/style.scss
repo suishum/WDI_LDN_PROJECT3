@@ -38,7 +38,7 @@
   }
 }
 
-.warning-message {
+.popup-message {
   color:white;
   font-size:28px;
   text-align: center;
@@ -103,13 +103,20 @@ li {
   color:red;
 }
 
-
+//home page
 div.homepage {
   height: calc(100vh - 52px);
   width: 100vw;
   .google-map {
     height: 100%;
     max-width: 100%;
+  }
+}
+
+.modal-content {
+  img {
+    margin:0 auto;
+    display:block;
   }
 }
 
