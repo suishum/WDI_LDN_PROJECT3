@@ -39,7 +39,6 @@
 li {
   overflow: auto;
   margin: 20px 0;
-
   hr {
     margin:5px;
   }
@@ -49,6 +48,13 @@ li {
   float:right;
 }
 
+.voted {
+  color:red;
+}
+
+.voted:hover {
+  color:red;
+}
 //register page
 .svg-inline--fa.fa-exclamation-circle {
   color:red;

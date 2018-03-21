@@ -16,6 +16,7 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
   const currentUser = $auth.getPayload().sub;
   vm.displayPoll = true;
   vm.talliedVotes = {};
+  vm.currentUserVoted = false;
 
   Event.findById($state.params.id)
     .then(res => {
@@ -111,6 +112,10 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
     else vm.talliedVotes[restaurant.id] = 1;
   }
 
+  function votedFor(restaurant){
+    return (vm.event.votes.findIndex(vote => vote.voter._id === currentUser && vote.restaurant.id === restaurant.id) === -1);
+  }
+
 
   function tallyVotes() {
     vm.event.votes.forEach(vote => {
@@ -178,9 +183,10 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
   this.deleteEvent = deleteEvent;
   this.deleteComment = deleteComment;
   this.submitComment = submitComment;
-  this.calcVoteWinner = calcVoteWinner;
-  this.tallyVotes = tallyVotes;
   this.vote = vote;
+  this.votedFor = votedFor;
+  this.tallyVotes = tallyVotes;
+  this.calcVoteWinner = calcVoteWinner;
   this.inviteAttendee = inviteAttendee;
   this.removeAttendee = removeAttendee;
 }
