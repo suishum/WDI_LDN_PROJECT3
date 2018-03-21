@@ -5,8 +5,8 @@
   <form name="authRegister.form" ng-submit="authRegister.handleSubmit()" novalidate>
     <div class="field">
       <label class="label" for="name">Username</label>
-      <input class="input" placeholder="Username" userholder="Username" name="username" ng-model="authRegister.user.username" minlength="2" required />
-      <div ng-messages="authRegister.form.username.$error" ng-if="(authRegister.form.username.$dirty && authRegister.form.username.$invalid) || authRegister.form.$submitted">
+      <input class="input" placeholder="Username" name="username" ng-model="authRegister.user.username" minlength="2" required />
+      <div ng-messages="authRegister.form.username.$error" ng-if="authRegister.form.username.$dirty || authRegister.form.$submitted">
         <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
         <div ng-message="minlength"><i class="fas fa-exclamation-circle"></i> You must use at least 2 characters</div>
       </div>
@@ -14,21 +14,21 @@
 
     <div class="field">
       <label class="label" for="name">First Name</label>
-      <input class="input" placeholder="First Name" userholder="Firstname" name="firstname" ng-model="authRegister.user.firstname" required/>
-      <div ng-messages="authRegister.form.firstname.$error" ng-if="(authRegister.form.firstname.$dirty && authRegister.form.firstname.$invalid) || authRegister.form.$submitted">
+      <input class="input" placeholder="First Name" name="firstname" ng-model="authRegister.user.firstname" required/>
+      <div ng-messages="authRegister.form.firstname.$error" ng-if="authRegister.form.firstname.$dirty || authRegister.form.$submitted">
         <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required.</div>
       </div>
     </div>
 
     <div class="field">
       <label class="label" for="name">Last Name</label>
-      <input class="input" placeholder="Last Name" userholder="Lastname" name="lastname" ng-model="authRegister.user.lastname" />
+      <input class="input" placeholder="Last Name" name="lastname" ng-model="authRegister.user.lastname" />
     </div>
 
     <div class="field">
       <label class="label" for="name">Email</label>
-      <input class="input" placeholder="Email" userholder="Email" name="email" ng-model="authRegister.user.email" pattern="^.*@.*\..*$" required/>
-      <div ng-messages="authRegister.form.email.$error" ng-if="(authRegister.form.email.$dirty && authRegister.form.email.$invalid)|| authRegister.form.$submitted">
+      <input class="input" placeholder="Email" name="email" ng-model="authRegister.user.email" pattern="^.*@.*\..*$" required/>
+      <div ng-messages="authRegister.form.email.$error" ng-if="authRegister.form.email.$dirty || authRegister.form.$submitted">
         <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required.</div>
         <div ng-message="pattern"><i class="fas fa-exclamation-circle"></i> This field must have the format of example@email.com</div>
       </div>
@@ -36,8 +36,8 @@
 
     <div class="field">
       <label class="label" for="name">Password</label>
-      <input type="password" class="input" placeholder="Password" userholder="Password" name="password" ng-model="authRegister.user.password" minlength="8" required/>
-      <div ng-messages="authRegister.form.password.$error" ng-if="(authRegister.form.password.$dirty && authRegister.form.password.$invalid) || authRegister.form.$submitted">
+      <input type="password" class="input" placeholder="Password" name="password" ng-model="authRegister.user.password" minlength="8" required/>
+      <div ng-messages="authRegister.form.password.$error" ng-if="authRegister.form.password.$dirty || authRegister.form.$submitted">
         <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required.</div>
         <div ng-message="minlength"><i class="fas fa-exclamation-circle"></i>  You must use at least 8 characters</div>
       </div>
@@ -45,8 +45,8 @@
 
     <div class="field">
       <label class="label" for="name">Confirm Password</label>
-      <input type="password" class="input" placeholder="Password Confirmation" userholder="PasswordConfirmation" name="passwordConfirmation" ng-model="authRegister.user.passwordConfirmation" minlength="8" required/>
-      <div ng-messages="authRegister.form.passwordConfirmation.$error" ng-if="(authRegister.form.passwordConfirmation.$dirty && authRegister.form.passwordConfirmation.$invalid) || authRegister.form.$submitted">
+      <input type="password" class="input" placeholder="Password Confirmation" name="passwordConfirmation" ng-model="authRegister.user.passwordConfirmation" minlength="8" required/>
+      <div ng-messages="authRegister.form.passwordConfirmation.$error" ng-if="authRegister.form.passwordConfirmation.$dirty || authRegister.form.$submitted">
         <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required.</div>
         <div ng-message="minlength"><i class="fas fa-exclamation-circle"></i> You must use at least 8 characters</div>
       </div>
@@ -89,7 +89,7 @@
             <option selected disabled value="">Please choose</option>
             <option ng-repeat="category in authRegister.categories">{{ category.title }}</option>
           </select>
-          <div ng-messages="authRegister.form.preferences.$error" ng-if="(authRegister.form.preferences.$touched && authRegister.form.preferences.$invalid) || authRegister.form.$submitted">
+          <div ng-messages="authRegister.form.preferences.$error" ng-if="authRegister.form.preferences.$touched || authRegister.form.$submitted">
             <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
           </div>
         </div>

@@ -12,14 +12,11 @@ function register(req, res, next) {
       const token = jwt.sign({ sub: user._id }, secret, { expiresIn: '6h' });
       // Send a message saying successfully registered
       res.json({
-        message: 'Thank you for registering',
+        message: 'We\'ve made an account for you! Log in to make a date.',
         token
       });
     })
-    .catch((err) => {
-      console.log(err);
-      next();
-    });
+    .catch(next);
 }
 
 function login(req, res, next) {
@@ -27,12 +24,12 @@ function login(req, res, next) {
     .then(user => {
       // if we don't find a user in the database or password validation fails, send a message back saying unauthorised
       if(!user || !user.validatePassword(req.body.password)) {
-        return res.status(401).json({ message: 'Unauthorized' });
+        return res.status(401).json({ message: 'Sorry! Your email or password was unrecognised, try again.' }); // to pass messages to the front end
       }
       const token = jwt.sign({ sub: user._id }, secret, { expiresIn: '6h' });
       // Send a message saying successfully registered
       res.json({
-        message: `Welcome back ${user.username}!`,
+        message: `Hiya ${user.username}!`,
         // the token we get here will differ slightly from the token created during registering because the creation time and expiry time is different.
         token
       });
