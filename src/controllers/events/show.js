@@ -82,6 +82,10 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
       .catch(err => console.error(err));
   }
 
+  function hideAdminButton(attendee){
+    return (vm.event.admin.findIndex(admin => admin._id === attendee._id) === -1);
+  }
+
   function vote(restaurant) {
     //delete user's previous votes
     if (vm.event.votes.filter(obj => obj.voter._id === currentUser).length > 0) {
@@ -179,6 +183,7 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
       .then(() => $state.go('home'));
   }
   this.makeAdmin = makeAdmin;
+  this.hideAdminButton = hideAdminButton;
   this.togglePoll = togglePoll;
   this.deleteEvent = deleteEvent;
   this.deleteComment = deleteComment;

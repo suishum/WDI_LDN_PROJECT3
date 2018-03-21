@@ -12,7 +12,7 @@
             <!-- ADMIN ONLY -->
             <div class="attendeeButtons" ng-if="eventsShow.isAdmin">
               <button class="button" ng-click="eventsShow.removeAttendee(attendee)">x</button>
-              <button class="button" ng-click="eventsShow.makeAdmin(attendee)">Make Admin</button>
+              <button class="button" ng-if="eventsShow.hideAdminButton(attendee)" ng-click="eventsShow.makeAdmin(attendee)">Make Organizer</button>
             </div>
             <!-- ADMIN ONLY -->
           </li>
@@ -30,7 +30,7 @@
         </div>
       </div>
       <div class="column is-half">
-        <h2 class="subtitle">Admin</h2>
+        <h2 class="subtitle">Organizers</h2>
         <ul>
           <li ng-repeat="admin in eventsShow.event.admin">
           {{ admin.name }}
