@@ -1,27 +1,36 @@
 <div class="container">
-  <h1 class="title">Edit your Event</h1>
+  <h1 class="title">Edit my Date</h1>
   <form name="eventsEdit.form" ng-submit="eventsEdit.handleSubmit()" novalidate>
     <div class="field">
-      <label class="label" for="name">Event Name</label>
-      <input class="input" placeholder="Name" name="name" ng-model="eventsEdit.event.name"  required/>
-      <!-- <div ng-messages="eventsEdit.form.name.$error" ng-if="eventsEdit.form.name.$dirty || eventsEdit.form.$submitted ">
-      <div ng-message="required">This field is required</div>
-    </div> -->
+      <label class="label" for="name">Change the date name</label>
+      <div class="control has-icons-left">
+        <input class="input" placeholder="Date Name" name="name" ng-model="eventsEdit.event.name" required/>
+        <span class="icon is-small is-left"><i class="fas fa-beer"></i></span>
+      </div>
+      <div ng-messages="eventsEdit.form.name.$error" ng-if="eventsEdit.form.name.$dirty || eventsEdit.form.$submitted ">
+        <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
+      </div>
+    </div>
+  <div class="field">
+    <label class="label" for="date">Change the day</label>
+    <div class="control has-icons-left">
+      <input class="input" type="date" placeholder="Choose a date" name="date" ng-model="eventsEdit.event.date" required/>
+      <span class="icon is-small is-left"><i class="fas fa-calendar-alt"></i></span>
+    </div>
+    <div ng-messages="eventsEdit.form.date.$error" ng-if="eventsEdit.form.date.$dirty || eventsEdit.form.$submitted ">
+      <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
+    </div>
   </div>
   <div class="field">
-    <label class="label" for="date">Date</label>
-    <input class="input" type="date" placeholder="Name" name="date" ng-model="eventsEdit.event.date"  required/>
-    <!-- <div ng-messages="eventsEdit.form.date.$error" ng-if="eventsEdit.form.date.$dirty || eventsEdit.form.$submitted ">
-    <div ng-message="required">This field is required</div>
-  </div> -->
-</div>
-<div class="field">
-  <label class="label" for="time">Time</label>
-  <input class="input" type="time" name="time" step="900" ng-model="eventsEdit.event.time"  required/>
-  <!-- <div ng-messages="eventsEdit.form.time.$error" ng-if="eventsEdit.form.time.$dirty || eventsEdit.form.$submitted ">
-  <div ng-message="required">This field is required</div>
-</div> -->
-</div>
+    <label class="label" for="time">And the time</label>
+    <div class="control has-icons-left">
+      <input class="input" type="time" placeholder="Choose a time" name="time" step="900" ng-model="eventsEdit.event.time"  required/>
+      <span class="icon is-small is-left"><i class="fas fa-clock"></i></span>
+    </div>
+    <div ng-messages="eventsEdit.form.time.$error" ng-if="eventsEdit.form.time.$dirty || eventsEdit.form.$submitted ">
+      <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
+    </div>
+  </div>
 <!--   <div class="field">
 <label class="label" for="location">Location</label>
 <input auto-complete class="input" address="eventsEdit.event.address"  location="eventsEdit.event.location" placeholder="Address" name="address" ng-model="eventsEdit.event.address" required/> -->

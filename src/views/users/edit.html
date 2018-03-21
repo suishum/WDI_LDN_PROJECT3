@@ -1,82 +1,93 @@
 <!-- yarn add angular-messages for form error handling -->
 <div class="container">
-  <h1 class="title">Edit your Profile</h1>
+  <h1 class="title">Edit my Profile</h1>
    <!-- we can link the form to the controller by giving it a name attribute, novalidate means don't validate this form -->
   <form name="usersEdit.form" ng-submit="usersEdit.handleSubmit()" novalidate>
     <div class="field">
       <label for="name">Username</label>
-      <input class="input" userholder="Username" name="username" ng-model="usersEdit.user.username" required/>
-      <!-- <div class="notification is-danger" ng-messages="usersEdit.form.username.$error" ng-if="usersEdit.form.username.$dirty || usersEdit.form.$submitted">
-        <div ng-message="required">This field is required.</div>
-      </div> -->
+      <div class="control has-icons-left">
+        <input class="input" name="username" ng-model="usersEdit.user.username" required/>
+        <span class="icon is-small is-left"><i class="fas fa-user"></i></span>
+      </div>
+      <div ng-messages="usersEdit.form.username.$error" ng-if="usersEdit.form.username.$dirty || usersEdit.form.$submitted">
+        <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
+      </div>
     </div>
 
     <div class="field">
-      <label for="name">Name</label>
-      <input class="input" userholder="Name" name="name" ng-model="usersEdit.user.name" required/>
-      <!-- <div class="notification is-danger" ng-messages="usersEdit.form.name.$error" ng-if="usersEdit.form.name.$dirty || usersEdit.form.$submitted">
-        <div ng-message="required">This field is required.</div>
-      </div> -->
+      <label for="name">First Name</label>
+      <div class="control has-icons-left">
+        <input class="input" name="firstname" ng-model="usersEdit.user.firstname" required/>
+        <span class="icon is-small is-left"><i class="fas fa-caret-right"></i></span>
+      </div>
+      <div ng-messages="usersEdit.form.firstname.$error" ng-if="usersEdit.form.firstname.$dirty || usersEdit.form.$submitted">
+        <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="name">Last Name</label>
+      <div class="control has-icons-left">
+        <input class="input" name="lastname" ng-model="usersEdit.user.lastname" required/>
+        <span class="icon is-small is-left"><i class="fas fa-caret-right"></i></span>
+      </div>
+      <div ng-messages="usersEdit.form.lastname.$error" ng-if="usersEdit.form.lastname.$dirty || usersEdit.form.$submitted">
+        <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
+      </div>
     </div>
 
     <div class="field">
       <label for="name">Email</label>
-      <input class="input" userholder="Email" name="email" ng-model="usersEdit.user.email" required/>
-      <!-- <div class="notification is-danger" ng-messages="usersEdit.form.email.$error" ng-if="usersEdit.form.email.$dirty || usersEdit.form.$submitted">
-        <div ng-message="required">This field is required.</div>
-      </div> -->
+      <div class="control has-icons-left">
+        <input class="input" name="email" ng-model="usersEdit.user.email" required/>
+        <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
+      </div>
+      <div ng-messages="usersEdit.form.email.$error" ng-if="usersEdit.form.email.$dirty || usersEdit.form.$submitted">
+        <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
+      </div>
     </div>
 
     <div class="field">
-      <label for="name">Profile Photo</label>
-      <input class="input" userholder="Photo" name="photo" ng-model="usersEdit.user.photo" required pattern="https?://.+" />
-      <!-- <div ng-messages="usersEdit.form.photo.$error" ng-if="usersEdit.form.photo.$dirty || usersEdit.form.$submitted">
-        <div class="notification is-danger" ng-message="required">This field is required</div>
-        <div class="notification is-danger" ng-message="pattern">This field must begin with http:// or https://</div>
-      </div> -->
-    </div>
-
-    <div class="field">
-      <label for="name">Preferences</label>
+      <label class="label" class="label">Upload a Profile Picture</label>
       <div class="control">
-        <div class="select">
-          <select name="preferences" ng-model="usersEdit.user.preferences" required/>
-            <option selected disabled value="">Please choose</option>
-            <option value="1">Category 1</option>
-            <option value="2">Category 2</option>
-            <option value="3">Category 3</option>
-            <option value="4">Category 4</option>
-            <option value="5">Category 5</option>
-          </select>
-          <!-- <div ng-messages="usersEdit.form.preferences.$error" ng-if="usersEdit.form.preferences.$touched || usersEdit.form.$submitted">
-            <div class="notification is-danger" ng-message="required">This field is required</div>
-          </div> -->
+        <div class="file">
+          <label class="label" class="file-label">
+            <input class="file-input" type="file" ng-model="usersEdit.user.photo" upload-image>
+            <span class="file-cta">
+              <span class="file-icon">
+                <i class="fa fa-upload"></i>
+              </span>
+              <span class="file-label">
+                Choose a file…
+              </span>
+            </span>
+          </label>
         </div>
       </div>
     </div>
 
+    <div class="field" ng-if="usersEdit.user.photo">
+      <label class="label" class="label">Profile Picture Preview</label>
+      <div class="control">
+        <figure class="image is-128x128">
+          <img ng-src="{{ usersEdit.user.photo }}">
+        </figure>
+      </div>
+    </div>
+
     <div class="field">
-      <label for="name">Favorites</label>
       <div class="control">
-        <label for="name">Favorite 1</label>
-        <input class="input" userholder="Favorite1" name="favorite1" ng-model="usersEdit.user.favorite1" required/>
-        <!-- <div ng-messages="usersEdit.form.favorite1.$error" ng-if="usersEdit.form.favorite1.$touched || usersEdit.form.$submitted">
-          <div class="notification is-danger" ng-message="required">This field is required.</div>
-        </div> -->
-      </div>
-      <div class="control">
-        <label for="name">Favorite 2</label>
-        <input class="input" userholder="Favorite2" name="favorite2" ng-model="usersEdit.user.favorite2" required/>
-        <!-- <div ng-messages="usersEdit.form.favorite2.$error" ng-if="usersEdit.form.favorite2.$touched || usersEdit.form.$submitted">
-          <div class="notification is-danger" ng-message="required">This field is required.</div>
-        </div> -->
-      </div>
-      <div class="control">
-        <label for="name">Favorite 3</label>
-        <input class="input" userholder="Favorite3" name="favorite3" ng-model="usersEdit.user.favorite3" required/>
-        <!-- <div ng-messages="usersEdit.form.favorite3.$error" ng-if="usersEdit.form.favorite3.$touched || usersEdit.form.$submitted">
-          <div class="notification is-danger" ng-message="required">This field is required.</div>
-        </div> -->
+        <label class="label" for="name">Whats your favourite type of cuisine?</label>
+        <div class="select">
+          <select name="preferences" ng-model="usersEdit.user.preferences" required>
+            <!-- NEEDS A MINOR FIX -->
+            <option selected disabled value="">Please choose</option>
+            <option ng-repeat="category in usersEdit.categories">{{ category.title }}</option>
+          </select>
+          <div ng-messages="usersEdit.form.preferences.$error" ng-if="usersEdit.form.preferences.$touched || usersEdit.form.$submitted">
+            <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
+          </div>
+        </div>
       </div>
     </div>
 

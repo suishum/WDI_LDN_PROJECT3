@@ -1,15 +1,18 @@
 EventsEditCtrl.$inject = ['Event', '$state'];
 function EventsEditCtrl(Event, $state) {
-  this.event = {};
+  const vm = this;
+  vm.event = {};
+
   Event.findById($state.params.id)
-    .then(res => this.event = res.data);
+    .then(res => vm.event = res.data);
 
   function handleSubmit() {
-    Event.update(this.event)
+    Event.update(vm.event)
       .then(() => $state.go('eventsShow', { id: $state.params.id }));
   }
 
-  this.handleSubmit = handleSubmit;
+  vm.handleSubmit = handleSubmit;
+
 }
 
 export default EventsEditCtrl;
