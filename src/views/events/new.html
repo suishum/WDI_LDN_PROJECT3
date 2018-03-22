@@ -1,93 +1,106 @@
 <div class="container">
-  <h1 class="title">Create a New Event</h1>
+  <h1 class="title">Make a Date</h1>
   <form name="eventsNew.form" ng-submit="eventsNew.handleSubmit()" novalidate>
 
     <div class="field">
-      <label class="label" for="name">Event Name</label>
-      <input class="input" placeholder="Name" name="name" ng-model="eventsNew.event.name" required/>
-      <div ng-messages="eventsNew.form.name.$error" ng-if="eventsNew.form.name.$touched || eventsNew.form.$submitted ">
-        <div class="notification is-danger" ng-message="required">This field is required</div>
+      <label class="label" for="name">Date Name</label>
+      <div class="control has-icons-left">
+        <input class="input" placeholder="Date Name" name="name" ng-model="eventsNew.event.name" required/>
+        <span class="icon is-small is-left"><i class="fas fa-beer"></i></span>
+      </div>
+      <div ng-messages="eventsNew.form.name.$error" ng-if="eventsNew.form.name.$dirty || eventsNew.form.$submitted ">
+        <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
       </div>
     </div>
 
     <div class="field">
-      <label class="label" for="date">Date</label>
-      <input class="input" type="date" placeholder="Name" name="date" ng-model="eventsNew.event.date" required/>
-      <div ng-messages="eventsNew.form.date.$error" ng-if="eventsNew.form.date.$touched || eventsNew.form.$submitted ">
-        <div class="notification is-danger" ng-message="required">This field is required</div>
+      <label class="label" for="date">Pick a day</label>
+      <div class="control has-icons-left">
+        <input class="input" type="date" placeholder="Choose a date" name="date" ng-model="eventsNew.event.date" required/>
+        <span class="icon is-small is-left"><i class="fas fa-calendar-alt"></i></span>
+      </div>
+      <div ng-messages="eventsNew.form.date.$error" ng-if="eventsNew.form.date.$dirty || eventsNew.form.$submitted ">
+        <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
       </div>
     </div>
 
     <div class="field">
-      <label class="label" for="time">Time</label>
-      <input class="input" type="time" placeholder="Name" name="time" step="900" ng-model="eventsNew.event.time" required/>
-      <div ng-messages="eventsNew.form.time.$error" ng-if="eventsNew.form.time.$touched || eventsNew.form.$submitted ">
-        <div class="notification is-danger" ng-message="required">This field is required</div>
+      <label class="label" for="time">And a time</label>
+      <div class="control has-icons-left">
+        <input class="input" type="time" placeholder="Choose a time" name="time" step="900" ng-model="eventsNew.event.time" required/>
+        <span class="icon is-small is-left"><i class="fas fa-clock"></i></span>
+      </div>
+      <div ng-messages="eventsNew.form.time.$error" ng-if="eventsNew.form.time.$dirty || eventsNew.form.$submitted ">
+        <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
       </div>
     </div>
 
     <div class="field">
-      <label class="label" for="location">Location</label>
-      <input auto-complete class="input" address="eventsNew.event.address"  location="eventsNew.event.location" placeholder="Address" name="address" ng-model="eventsNew.event.address" required/>
-      <div ng-messages="eventsNew.form.address.$error" ng-if="eventsNew.form.address.$touched || eventsNew.form.$submitted ">
-        <div class="notification is-danger" ng-message="required">This field is required</div>
+      <label class="label" for="location">Where would you like your date?</label>
+      <div class="control has-icons-left">
+        <input auto-complete class="input" address="eventsNew.event.address"  location="eventsNew.event.location" placeholder="Where would you like your date?" name="address" ng-model="eventsNew.event.address" required/>
+        <span class="icon is-small is-left"><i class="fas fa-map-marker"></i></span>
+      </div>
+      <div ng-messages="eventsNew.form.address.$error" ng-if="eventsNew.form.address.$dirty || eventsNew.form.$submitted ">
+        <div ng-message="required"><i class="fas fa-exclamation-circle"></i> Select your location from the dropdown before picking restaurants!</div>
       </div>
     </div>
 
     <div class="restaurants">
       <div class="dropdowns">
+        <label class="label" for="location">Choose 5 restaurant options for your MateDate!</label>
 
         <div class="field">
           <label class="label" for="name">Restaurant 1</label>
-          <select class="select" name="location"   ng-model="eventsNew.event.restaurants[0]" required>
+          <select class="select" name="restaurant1" ng-model="eventsNew.event.restaurants[0]" required>
             <option value="" disabled selected>Choose a restaurant</option>
             <option ng-repeat="restaurant in eventsNew.restaurants" ng-value="{{ restaurant }}">{{ restaurant.name }} - {{ restaurant.location.zip_code }}</option>
-            <div ng-messages="eventsNew.form.location.$error" ng-if="eventsNew.form.location.$touched || eventsNew.form.$submitted">
-              <div class="notification is-danger" ng-message="required">This field is required</div>
+            <div ng-messages="eventsNew.form.restaurant1.$error" ng-if="eventsNew.form.restaurant1.$dirty || eventsNew.form.$submitted">
+              <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
             </div>
           </select>
         </div>
 
         <div class="field">
           <label class="label" for="name">Restaurant 2</label>
-          <select class="select" placeholder="Restaurant" name="location" ng-model="eventsNew.event.restaurants[1]" required>
+          <select class="select" name="restaurant2" ng-model="eventsNew.event.restaurants[1]" required>
             <option value="" disabled selected>Choose a restaurant</option>
             <option ng-repeat="restaurant in eventsNew.restaurants" ng-value="{{ restaurant }}">{{ restaurant.name }} - {{ restaurant.location.zip_code }}</option>
-            <div ng-messages="eventsNew.form.location.$error" ng-if="eventsNew.form.location.$touched || eventsNew.form.$submitted">
-              <div class="notification is-danger" ng-message="required">This field is required</div>
+            <div ng-messages="eventsNew.form.restaurant2.$error" ng-if="eventsNew.form.restaurant2.$dirty || eventsNew.form.$submitted">
+              <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
             </div>
           </select>
         </div>
 
         <div class="field">
           <label class="label" for="name">Restaurant 3</label>
-          <select class="select" placeholder="Restaurant" name="location" ng-model="eventsNew.event.restaurants[2]" required/>
+          <select class="select" name="restaurant3" ng-model="eventsNew.event.restaurants[2]" required/>
           <option value="" disabled selected>Choose a restaurant</option>
           <option   ng-repeat="restaurant in eventsNew.restaurants" ng-value="{{ restaurant }}">{{ restaurant.name }} - {{ restaurant.location.zip_code }}</option>
-          <div ng-messages="eventsNew.form.location.$error" ng-if="eventsNew.form.location.$touched || eventsNew.form.$submitted">
-            <div class="notification is-danger" ng-message="required">This field is required</div>
+          <div ng-messages="eventsNew.form.restaurant3.$error" ng-if="eventsNew.form.restaurant3.$dirty || eventsNew.form.$submitted">
+            <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
           </div>
         </select>
       </div>
 
       <div class="field">
         <label class="label" for="name">Restaurant 4</label>
-        <select class="select" placeholder="Restaurant" name="location" ng-model="eventsNew.event.restaurants[3]" required/>
+        <select class="select" name="restaurant4" ng-model="eventsNew.event.restaurants[3]" required/>
         <option value="" disabled selected>Choose a restaurant</option>
         <option ng-repeat="restaurant in eventsNew.restaurants" ng-value="{{ restaurant }}">{{ restaurant.name }} - {{ restaurant.location.zip_code }}</option>
-        <div ng-messages="eventsNew.form.location.$error" ng-if="eventsNew.form.location.$touched || eventsNew.form.$submitted">
-          <div class="notification is-danger" ng-message="required">This field is required</div>
+        <div ng-messages="eventsNew.form.restaurant4.$error" ng-if="eventsNew.form.restaurant4.$dirty || eventsNew.form.$submitted">
+          <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
         </div>
       </select>
     </div>
 
     <div class="field">
       <label class="label" for="name">Restaurant 5</label>
-      <select class="select" placeholder="Restaurant" name="location" ng-model="eventsNew.event.restaurants[4]" required/>
+      <select class="select" name="restaurant5" ng-model="eventsNew.event.restaurants[4]" required/>
       <option value="" disabled selected>Choose a restaurant</option>
       <option ng-repeat="restaurant in eventsNew.restaurants" ng-value="{{ restaurant }}">{{ restaurant.name }} - {{ restaurant.location.zip_code }}</option>
-      <div ng-messages="eventsNew.form.location.$error" ng-if="eventsNew.form.location.$touched || eventsNew.form.$submitted">
-        <div class="notification is-danger" ng-message="required">This field is required</div>
+      <div ng-messages="eventsNew.form.restaurant5.$error" ng-if="eventsNew.form.restaurant5.$dirty || eventsNew.form.$submitted">
+        <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
       </div>
     </select>
   </div>
