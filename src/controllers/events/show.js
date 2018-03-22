@@ -1,6 +1,6 @@
-EventsShowCtrl.$inject = ['$http', 'Event', '$state', 'User', '$auth', '$scope'];
+EventsShowCtrl.$inject = ['$http', 'Event', '$state', 'User', '$auth'];
 
-function EventsShowCtrl($http, Event, $state, User, $auth, $scope){
+function EventsShowCtrl($http, Event, $state, User, $auth){
   const vm = this;
   vm.event = {};
   vm.users = [];

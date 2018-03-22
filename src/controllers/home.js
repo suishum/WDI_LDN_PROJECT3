@@ -7,10 +7,6 @@ function HomeCtrl($auth, $http, $timeout) {
     lat: 51.515856,
     lng: -0.072353
   };
-  vm.usersLocation = {
-    lat: 0,
-    lng: 0
-  };
   vm.top20Restaurants = [];
   vm.loading = 900;
   vm.loaded = 0;
@@ -22,8 +18,6 @@ function HomeCtrl($auth, $http, $timeout) {
     navigator.geolocation.getCurrentPosition(pos => {
       vm.currentLocation.lat = pos.coords.latitude;
       vm.currentLocation.lng = pos.coords.longitude;
-      vm.usersLocation.lat = pos.coords.latitude;
-      vm.usersLocation.lng = pos.coords.longitude;
       $timeout(() => vm.showPopup = false, 3000);
       updateRestaurants();
     }, onError);

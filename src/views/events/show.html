@@ -1,24 +1,25 @@
 <div class="flex-show-container">
   <div class="show-child">
-
     <div ng-if="eventsShow.isInvited">
+
       <h1 class="title"> {{ eventsShow.event.name }}</h1>
       <h2 class="subtitle">{{ eventsShow.event.date | date: "fullDate" }} at {{ eventsShow.event.time | date: "shortTime" }}</h2>
 
       <div class="columns">
-        <div class="column is-half">
+        <div class="column is-half-desktop is-full-mobile">
+
+          <!-- ATTENDEES-->
           <h2 class="subtitle">Attendees</h2>
           <ul>
             <li ng-repeat="attendee in eventsShow.event.attendees">
               <div ng-if="eventsShow.isAdmin">
-                <button class="button delete" ng-click="eventsShow.removeAttendee(attendee)">x</button>
+                <button class="delete" ng-click="eventsShow.removeAttendee(attendee)"></button>
               </div>
               <article class="media">
-                <div class="media-left">
-                  <figure class="image is-48x48">
-                    <img ng-src="{{ attendee.photo }}" alt="{{ attendee.username}} profile pic"/>
+                  <figure class="media-left">
+                    <div class="image is-48x48" ng-style="{'background-image': 'url(' + attendee.photo + ')'}">
+                    </div>
                   </figure>
-                </div>
                 <div class="media-content">
                   <div class="content">
                     <p>
@@ -39,19 +40,20 @@
                 <span ng-bind="user.username"></span>
               </ui-select-choices>
             </ui-select>
-            <button class="button" ng-click="eventsShow.inviteAttendee()">Invite</button>
+            <button class="button flow" ng-click="eventsShow.inviteAttendee()">Invite</button>
           </div>
         </div>
-        <div class="column is-half">
+        <!-- ATTENDEES END -->
+        <div class="column is-half-desktop is-full-mobile">
+          <!-- ADMIN-->
           <h2 class="subtitle">Organizers</h2>
           <ul>
             <li ng-repeat="admin in eventsShow.event.admin">
               <article class="media">
-                <div class="media-left">
-                  <figure class="image is-48x48">
-                    <img ng-src="{{ admin.photo }}" alt="{{ admin.name}} profile pic"/>
-                  </figure>
-                </div>
+                <figure class="media-left">
+                  <div class="image is-48x48" ng-style="{'background-image': 'url(' + admin.photo + ')'}">
+                  </div>
+                </figure>
                 <div class="media-content">
                   <div class="content">
                     <p>
@@ -59,19 +61,16 @@
                     </p>
                   </div>
                 </div>
-              </div>
             </article>
           </li>
-        </ul>
-        <div ng-if="eventsShow.isAdmin">
-          <a class="button is-primary" ui-sref="eventsEdit({ id: eventsShow.event._id })">Edit Event</a>
-          <button class="button is-danger" ng-click="eventsShow.deleteEvent()">Delete Event</button>
         </div>
       </div>
-    </div>
+      <hr>
+        <!-- ADMIN END -->
 
-    <div class="columns is-flexed">
-      <div class="column is-half">
+    <div class="events-show restaurants">
+      <!-- POLL AND RESULTS -->
+      <div class="dropdowns">
         <div ng-if="eventsShow.displayPoll">
           <h2 class="subtitle">Restaurants</h2>
           <ul>
@@ -79,77 +78,75 @@
               <button ng-click="eventsShow.vote(restaurant)" ng-if="eventsShow.votedFor(restaurant)" class="button voteBtn"><i class="fas fa-thumbs-up"></i></button>
               <button ng-click="eventsShow.vote(restaurant)" ng-if="!eventsShow.votedFor(restaurant)" class="button voteBtn voted"><i class="fas fa-thumbs-up"></i></button>
               <p>
-                {{ restaurant.name }}
+                <strong>{{ restaurant.name }}</strong>
                 <br>
-                Yelp Rating: {{ restaurant.rating }}
+                {{ restaurant.rating }} ⭐️
                 <br>
                 Votes {{ eventsShow.talliedVotes[restaurant.id] || 0 }}
               </p>
               <hr/>
             </li>
           </ul>
-          <button ng-if="eventsShow.isAdmin" class="button is-danger" ng-if="eventsShow.displayPoll" ng-click="eventsShow.closePoll()">Close Poll</button>
+          <button ng-if="eventsShow.isAdmin" class="button flow" ng-if="eventsShow.displayPoll" ng-click="eventsShow.closePoll()">Close Poll</button>
           <div class="modal is-active" ng-if="eventsShow.closePollClicked">
             <div class="modal-background"></div>
             <div class="modal-content">
               <p ng-if="!eventsShow.zeroVotes" class="popup-message">Wait! If you close this poll you will not be able to reopen it and your mates won't be able to vote on the date. Are you sure?</p>
               <p ng-if="eventsShow.zeroVotes" class="popup-message">You can't close a poll with zero votes!</p>
               <div class="buttons">
-                <button ng-if="!eventsShow.zeroVotes" class="button is-danger" ng-click="eventsShow.closeMessage()">Maybe Not</button>
-                <button ng-if="!eventsShow.zeroVotes"  class="button is-primary" ng-click="eventsShow.togglePoll()">I'm Sure!</button>
+                <button ng-if="!eventsShow.zeroVotes" class="button is-danger flow" ng-click="eventsShow.closeMessage()">Maybe Not</button>
+                <button ng-if="!eventsShow.zeroVotes"  class="button flow" ng-click="eventsShow.togglePoll()">I'm Sure!</button>
               </div>
             </div>
             <button ng-click="eventsShow.closeMessage()" class="modal-close is-large" aria-label="close"></button>
           </div>
         </div>
 
-        <!-- VOTE WINNER -->
         <div ng-if="!eventsShow.displayPoll">
-          <button class="smallBtn" ng-click="eventsShow.displayDirections()">{{ eventsShow.showDirections? 'Restaurant Details' : 'Need directions?' }}</button>
-          <div ng-if="eventsShow.showDirections">
+          <button class="smallBtn" ng-click="eventsShow.displayDirections()">{{ eventsShow.showDirections? 'Click here for restaurant details!' : 'Need directions?' }}</button>
+          <div id="directions" ng-if="eventsShow.showDirections">
             <ul>
               <li ng-repeat="direction in eventsShow.directions" ng-bind-html="direction.instructions">{{ direction.instructions }}<li>
               </ul>
             </div>
 
             <div ng-if="!eventsShow.showDirections">
-              <h2 class="subtitle">Chosen Restaurant</h2>
+              <h2 class="subtitle">Winner, winner, chicken dinner!</h2>
               <p><a href="{{ eventsShow.event.winner.url }}">{{ eventsShow.event.winner.name }}</a>
                 <br>
-                Category: {{ eventsShow.event.winner.categories[0].title }} &nbsp; Rating: {{ eventsShow.event.winner.rating }} &nbsp; Price: {{ eventsShow.event.winner.price }}
-                <img src="{{ eventsShow.event.winner.image_url }}">
+                Category: {{ eventsShow.event.winner.categories[0].title }} &nbsp;  {{ eventsShow.event.winner.rating }} ⭐️ &nbsp; Price: {{ eventsShow.event.winner.price }}
                 <br>
                 Location: {{ eventsShow.event.winner.location.display_address[0] }}, {{ eventsShow.event.winner.location.display_address[1] }}
                 <br>
                 Phone: {{ eventsShow.event.winner.display_phone }}
               </p>
+              <img ng-src="{{ eventsShow.event.winner.image_url }}">
             </div>
           </div>
         </div>
-      </div>
+    <!-- POLL AND RESULTS END -->
 
-      <div class="column is-half">
-        <div class="eventsShowPage" ng-if="eventsShow.displayPoll">
-          <google-map zoom="13" center="eventsShow.event.location" restaurants="eventsShow.event.restaurants"></google-map>
-        </div>
-        <!-- VOTE WINNER -->
-        <div class="eventsShowPage" ng-if="!eventsShow.displayPoll">
-          <google-map zoom="16" center="eventsShow.voteWinnerLocation" restaurants="[eventsShow.event.winner]" origin="{lat: 0, lng: 0}" directions="eventsShow.directions"></google-map>
-        </div>
+    <!-- GOOGLE MAPS -->
+          <google-map zoom="13" ng-if="eventsShow.displayPoll" center="eventsShow.event.location" restaurants="eventsShow.event.restaurants"></google-map>
 
-      </div>
+          <google-map zoom="16"  ng-if="!eventsShow.displayPoll" center="eventsShow.voteWinnerLocation" restaurants="[eventsShow.event.winner]" origin="{lat: 0, lng: 0}" directions="eventsShow.directions"></google-map>
 
+    </div>
+    <hr>
+    <!-- GOOGLE MAPS END -->
+
+    <!-- COMMENTS -->
       <h2 class="subtitle">Comments</h2>
       <ul class="comments">
         <li ng-repeat="comment in eventsShow.event.comments">
           <div class="box">
             <button ng-click="eventsShow.deleteComment(comment)" class="delete">x</button>
             <article class="media">
-              <div class="media-left">
-                <figure class="image is-48x48">
+              <figure class="media-left">
+                <p class="image is-48x48">
                   <img ng-src="{{ comment.user.photo }}" alt="{{ comment.user.name}} profile pic">
+                </p>
                 </figure>
-              </div>
               <div class="media-content">
                 <div class="content">
                   <p>
@@ -166,7 +163,7 @@
       </ul>
 
       <textarea class="textarea" name="content" ng-model="eventsShow.comment"></textarea>
-      <button class="button is-primary" ng-click="eventsShow.submitComment()">Submit</button>
+      <button class="button flow submit-btn" ng-click="eventsShow.submitComment()">Submit</button>
     </div>
     <section ng-if="!eventsShow.isInvited" class="hero is-fullheight">
       <div class="hero-body">
@@ -180,7 +177,7 @@
         </div>
       </div>
     </section>
+  <!-- COMMENTS END -->
+    </div>
   </div>
-
-</div>
 </div>
