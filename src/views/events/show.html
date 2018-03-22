@@ -11,18 +11,18 @@
             <div ng-if="eventsShow.isAdmin">
               <button class="button delete" ng-click="eventsShow.removeAttendee(attendee)">x</button>
             </div>
-              <article class="media">
-                <div class="media-left">
-                  <figure class="image is-48x48">
-                    <img src="{{ attendee.photo }}" alt="{{ attendee.name}} profile pic"/>
-                  </figure>
-                </div>
-                <div class="media-content">
-                  <div class="content">
-                    <p>
-                      {{ attendee.name }}
-                      <button class="smallBtn" ng-if="eventsShow.hideAdminButton(attendee) && eventsShow.isAdmin" ng-click="eventsShow.makeAdmin(attendee)">Make Organizer</button>
-                    </p>
+            <article class="media">
+              <div class="media-left">
+                <figure class="image is-48x48">
+                  <img src="{{ attendee.photo }}" alt="{{ attendee.name}} profile pic"/>
+                </figure>
+              </div>
+              <div class="media-content">
+                <div class="content">
+                  <p>
+                    {{ attendee.name }}
+                    <button class="smallBtn" ng-if="eventsShow.hideAdminButton(attendee) && eventsShow.isAdmin" ng-click="eventsShow.makeAdmin(attendee)">Make Organizer</button>
+                  </p>
                 </div>
               </div>
             </article>
@@ -44,20 +44,20 @@
         <h2 class="subtitle">Organizers</h2>
         <ul>
           <li ng-repeat="admin in eventsShow.event.admin">
-              <article class="media">
-                <div class="media-left">
-                  <figure class="image is-48x48">
-                    <img src="{{ admin.photo }}" alt="{{ admin.name}} profile pic"/>
-                  </figure>
+            <article class="media">
+              <div class="media-left">
+                <figure class="image is-48x48">
+                  <img src="{{ admin.photo }}" alt="{{ admin.name}} profile pic"/>
+                </figure>
+              </div>
+              <div class="media-content">
+                <div class="content">
+                  <p>
+                    {{ admin.name }}
+                  </p>
                 </div>
-                <div class="media-content">
-                  <div class="content">
-                    <p>
-                      {{ admin.name }}
-                    </p>
-                  </div>
-                </div>
-              </article>
+              </div>
+            </article>
           </li>
         </ul>
         <div ng-if="eventsShow.isAdmin">
@@ -75,46 +75,46 @@
             <li ng-repeat="restaurant in eventsShow.event.restaurants">
               <button ng-click="eventsShow.vote(restaurant)" ng-if="eventsShow.votedFor(restaurant)" class="button voteBtn"><i class="fas fa-thumbs-up"></i></button>
               <button ng-click="eventsShow.vote(restaurant)" ng-if="!eventsShow.votedFor(restaurant)" class="button voteBtn voted"><i class="fas fa-thumbs-up"></i></button>
-                <p>
+              <p>
                 {{ restaurant.name }}
                 <br>
                 Yelp Rating: {{ restaurant.rating }}
                 <br>
                 Votes {{ eventsShow.talliedVotes[restaurant.id] || 0 }}
-                </p>
-                <hr/>
-              </li>
-            </ul>
-            <button ng-if="eventsShow.isAdmin" class="button is-danger" ng-if="eventsShow.displayPoll" ng-click="eventsShow.closePoll()">Close Poll</button>
-            <div class="modal is-active" ng-if="eventsShow.closePollClicked">
-                <div class="modal-background"></div>
-                  <div class="modal-content">
-                    <p ng-if="!eventsShow.zeroVotes" class="popup-message">Wait! If you close this poll you will not be able to reopen it and your mates won't be able to vote on the date. Are you sure?</p>
-                      <p ng-if="eventsShow.zeroVotes" class="popup-message">You can't close a poll with zero votes!</p>
-                    <div class="buttons">
-                      <button ng-if="!eventsShow.zeroVotes" class="button is-danger" ng-click="eventsShow.closeMessage()">Maybe Not</button>
-                      <button ng-if="!eventsShow.zeroVotes"  class="button is-primary" ng-click="eventsShow.togglePoll()">I'm Sure!</button>
-                    </div>
-                  </div>
-                  <button ng-click="eventsShow.closeMessage()" class="modal-close is-large" aria-label="close"></button>
+              </p>
+              <hr/>
+            </li>
+          </ul>
+          <button ng-if="eventsShow.isAdmin" class="button is-danger" ng-if="eventsShow.displayPoll" ng-click="eventsShow.closePoll()">Close Poll</button>
+          <div class="modal is-active" ng-if="eventsShow.closePollClicked">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+              <p ng-if="!eventsShow.zeroVotes" class="popup-message">Wait! If you close this poll you will not be able to reopen it and your mates won't be able to vote on the date. Are you sure?</p>
+              <p ng-if="eventsShow.zeroVotes" class="popup-message">You can't close a poll with zero votes!</p>
+              <div class="buttons">
+                <button ng-if="!eventsShow.zeroVotes" class="button is-danger" ng-click="eventsShow.closeMessage()">Maybe Not</button>
+                <button ng-if="!eventsShow.zeroVotes"  class="button is-primary" ng-click="eventsShow.togglePoll()">I'm Sure!</button>
+              </div>
             </div>
+            <button ng-click="eventsShow.closeMessage()" class="modal-close is-large" aria-label="close"></button>
           </div>
-
-          <!-- VOTE WINNER -->
-          <div ng-if="!eventsShow.displayPoll">
-            <h2 class="subtitle">Chosen Restaurant</h2>
-            <p><a href="{{ eventsShow.event.winner.url }}">{{ eventsShow.event.winner.name }}</a>
-              <br>
-              Category: {{ eventsShow.event.winner.categories[0].title }} &nbsp; Rating: {{ eventsShow.event.winner.rating }} &nbsp; Price: {{ eventsShow.event.winner.price }}
-              <img src="{{ eventsShow.event.winner.image_url }}">
-              <br>
-              Location: {{ eventsShow.event.winner.location.display_address[0] }}, {{ eventsShow.event.winner.location.display_address[1] }}
-              <br>
-              Phone: {{ eventsShow.event.winner.display_phone }}
-            </p>
-          </div>
-          <!-- VOTE WINNER -->
         </div>
+
+        <!-- VOTE WINNER -->
+        <div ng-if="!eventsShow.displayPoll">
+          <h2 class="subtitle">Chosen Restaurant</h2>
+          <p><a href="{{ eventsShow.event.winner.url }}">{{ eventsShow.event.winner.name }}</a>
+            <br>
+            Category: {{ eventsShow.event.winner.categories[0].title }} &nbsp; Rating: {{ eventsShow.event.winner.rating }} &nbsp; Price: {{ eventsShow.event.winner.price }}
+            <img src="{{ eventsShow.event.winner.image_url }}">
+            <br>
+            Location: {{ eventsShow.event.winner.location.display_address[0] }}, {{ eventsShow.event.winner.location.display_address[1] }}
+            <br>
+            Phone: {{ eventsShow.event.winner.display_phone }}
+          </p>
+        </div>
+        <!-- VOTE WINNER -->
+      </div>
 
       <div class="column is-half">
         <div class="eventsShowPage" ng-if="eventsShow.displayPoll">
@@ -129,27 +129,27 @@
 
       </div>
 
-  </div>
+    </div>
 
-      <h2 class="subtitle">Comments</h2>
-      <ul class="comments">
-        <li ng-repeat="comment in eventsShow.event.comments">
-          <div class="box">
-            <button ng-click="eventsShow.deleteComment(comment)" class="delete">x</button>
-            <article class="media">
-              <div class="media-left">
-                <figure class="image is-48x48">
-                  <img src="{{ comment.user.photo }}" alt="{{ comment.user.name}} profile pic">
-                </figure>
-              </div>
-              <div class="media-content">
-                <div class="content">
-                  <p>
-                    {{ comment.content }}
-                  </p>
-                  <p>
-                    <strong>{{ comment.user.username }}</strong> at {{ comment.createdAt.split('T')[1].split('.')[0] }} on {{ comment.createdAt.split('T')[0]  }}
-                  </p>
+    <h2 class="subtitle">Comments</h2>
+    <ul class="comments">
+      <li ng-repeat="comment in eventsShow.event.comments">
+        <div class="box">
+          <button ng-click="eventsShow.deleteComment(comment)" class="delete">x</button>
+          <article class="media">
+            <div class="media-left">
+              <figure class="image is-48x48">
+                <img src="{{ comment.user.photo }}" alt="{{ comment.user.name}} profile pic">
+              </figure>
+            </div>
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  {{ comment.content }}
+                </p>
+                <p>
+                  <strong>{{ comment.user.username }}</strong> at {{ comment.createdAt.split('T')[1].split('.')[0] }} on {{ comment.createdAt.split('T')[0]  }}
+                </p>
               </div>
             </div>
           </article>
@@ -172,5 +172,4 @@
       </div>
     </div>
   </section>
-
 </div>
