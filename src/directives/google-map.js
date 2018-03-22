@@ -23,14 +23,15 @@ function googleMap() {
       });
       $scope.$watch('center', () => {
         map.setCenter($scope.center);
+        const marker = new google.maps.Marker({
+          position: $scope.center,
+          map: map,
+          icon: '⭐️'
+        });
+
+        marker.setMap(map);
       }, true);
 
-      // const image = {
-      //   url: '/assets/images/ga-beer-logo.png', // url
-      //   scaledSize: new google.maps.Size(25, 25), // scaled size
-      //   origin: new google.maps.Point(0,0) // origin
-      //   // anchor: new google.maps.Point(0, 0) // anchor
-      // };
 
       const directionsService = new google.maps.DirectionsService();
       const directionsDisplay = new google.maps.DirectionsRenderer({ suppressMarkers: true});
@@ -43,6 +44,9 @@ function googleMap() {
         currentLocation = { lat: pos.coords.latitude, lng: pos.coords.longitude };
         displayRoute();
       });
+
+
+
 
       // DISPLAY ROUTE
       function displayRoute() {
@@ -57,7 +61,8 @@ function googleMap() {
         });
       }
 
-      // directionsDisplay.setPanel(directionsShow);
+      var directionsShow = document.getElementById('directionsShow' );
+      directionsDisplay.setPanel(directionsShow);
 
       $scope.$watch('restaurants', () => {
 
