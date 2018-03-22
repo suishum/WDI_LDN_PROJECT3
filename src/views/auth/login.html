@@ -1,6 +1,5 @@
 <div class="container">
   <h1 class="title">Log in</h1>
-    <!-- <pre>{{ authLogin.form | json }}</pre> -->
     <form name="authLogin.form" ng-submit="authLogin.handleSubmit()">
 
       <div class="field">
@@ -30,4 +29,7 @@
       <button class="button is-primary">Submit</button>
       <!-- <button type="button" ng-click="authLogin.authenticate('facebook')">Log in with Facebook</button> -->
     </form>
+    <div class="registerAccount">
+      <p>Don't have an account yet? <a ui-sref="register">Join us!</a></p>
+    </div>
   </div>

@@ -98,21 +98,6 @@
       </div>
     </div>
 
-    <div class="field">
-      <div class="control">
-        <label class="label" for="name">Whats your favourite type of cuisine?</label>
-        <div class="select">
-          <select name="preferences" ng-model="authRegister.user.preferences" required>
-            <option selected disabled value="">Please choose</option>
-            <option ng-repeat="category in authRegister.categories">{{ category.title }}</option>
-          </select>
-          <div ng-messages="authRegister.form.preferences.$error" ng-if="authRegister.form.preferences.$touched || authRegister.form.$submitted">
-            <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <button class="button is-primary">Submit</button>
   </form>
 
