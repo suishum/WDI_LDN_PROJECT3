@@ -10,7 +10,6 @@ function googleMap() {
       zoom: '=',
       restaurants: '=',
       origin: '=',
-      usersLocation: '=',
       directions: '='
     },
     link($scope, $element) {
@@ -235,7 +234,7 @@ function googleMap() {
         };
 
         var marker = new google.maps.Marker({
-          position: $scope.center,
+          position: currentLocation,
           icon: image
         });
         var infowindow = new google.maps.InfoWindow();

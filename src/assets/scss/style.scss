@@ -1,4 +1,33 @@
 @import "select2";
+//I USED THESE TO STYLE BUTTONS
+.button {
+  line-height:18px;
+  padding: 0.5em 1em;
+  border-radius: 12px;
+  background: #EA6100;
+  font-size: 16px;
+  font-weight: 300;
+  color: white;
+  cursor: pointer;
+  transition: 0.4s;
+  display: inline-block;
+  border: none; }
+  button a {
+    color: white; }
+  button:hover {
+    background: #EA6100;
+    transition: 0.4s; }
+  // button.shadow {
+  //   box-shadow: 0px 4px 23px 0px #000075; }
+  //   button.shadow:hover {
+  //     box-shadow: 0px 2px 12px 0px #000075; }
+  button.flow:hover {
+    -webkit-transition-duration: 500ms;
+    -o-transition-duration: 500ms;
+    transition-duration: 500ms;
+    -webkit-transform: translateY(-5px);
+    transform: translateY(-5px); }
+
 
 * {
   font-family: "Open Sans", sans-serif;
@@ -13,10 +42,19 @@ nav.navbar {
   color: white;
   a {
     color: white;
+    text-decoration: none;
+    &:hover {
+      color:#EA6100;
+    }
     .navbar-item {
       background-color: rgba(0, 0, 0, 0.6);
     }
   }
+}
+
+a {
+  color: #EA6100;
+  text-decoration: underline;
 }
 
 // SHOW PAGE STYLES
@@ -27,6 +65,7 @@ nav.navbar {
   align-items: center;
   justify-content: center;
   .show-child {
+    padding: 1.25rem;
     background-color: white;
     width: 80vw;
     border: 1px solid #d3d3d3;
@@ -126,7 +165,7 @@ nav.navbar {
 //   right: 50%;
 //   transform: translate(50%, 50%);
 // }
->>>>>>> development
+
 
 .subtitle {
   font-weight:bold;
@@ -156,15 +195,44 @@ nav.navbar {
 }
 
 //events show page
-.select2-input {
+.select2-choices {
   width:100% !important;
-  margin: 0;
+  height: 30px !important;
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  box-shadow: none;
+  display: inline-flex;
+  font-size: 1rem;
+  // height: 2.25em;
+  justify-content: flex-start;
+  line-height: 1.5;
+  // position: relative;
+  // vertical-align: top;
+  background-color: white;
+  border-color: #dbdbdb;
+  color: #363636;
+  // box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
 }
 
-.is-half{
+.select2-container-multi .select2-choices .select2-search-field input {
+  width:100% !important;
+}
+
+.is-half-desktop{
   .box {
     padding-left:0;
     padding-right:0;
+  }
+}
+
+.events-show.restaurants {
+  .dropdowns {
+    width: 33%;
+    padding-right: 10px;
+  }
+  .google-map {
+    width: 66%;
   }
 }
 
@@ -181,12 +249,19 @@ nav.navbar {
 }
 
 .smallBtn {
+  outline: none;
   display:block;
   border:none;
   text-decoration: underline;
   padding: 2px 0;
   cursor:pointer;
+  background: transparent;
+  &:hover {
+    color: #EA6100;
+    background: transparent;
+  }
 }
+
 
 div.eventsShowPage {
   height: 600px;
@@ -205,22 +280,31 @@ li {
   }
 }
 
+div.image {
+  background-size: cover;
+}
+
 .voteBtn {
   float:right;
 }
 
 .voted {
   color:white;
-  background-color:#363636;
+  background-color:#1E91D6;
+  border: #1E91D6;
 }
 
 .voted:hover {
-  color:white;
-  background-color:#363636;
+  color:#363636;
+  background-color:#1E91D6;
 }
 
 .comments {
   margin-bottom: 1.5rem;
+}
+
+.submit-btn {
+  margin-top:5px;
 }
 
 .delete {
@@ -259,6 +343,21 @@ div.homepage {
   .is-flexed {
     display:block;
   }
+
+  .events-show.restaurants {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    // align-items:center;
+    .dropdowns {
+      width: 100%;
+    }
+    .google-map {
+      width: 100%;
+    }
+  }
+
+
 }
 
 @media screen and (max-width: 1023px) {
