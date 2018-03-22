@@ -11,6 +11,7 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
   vm.voteWinner;
   vm.zeroVotes = true;
   vm.closePollClicked = false;
+  vm.showDirections = false;
   vm.voteWinnerLocation = {
     lat: 0,
     lng: 0
@@ -196,6 +197,11 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
       .then(() => $state.go('home'));
   }
 
+  function displayDirections() {
+    vm.showDirections = (vm.showDirections) ? false : true;
+    console.log(vm.showDirections);
+  }
+
   this.makeAdmin = makeAdmin;
   this.hideAdminButton = hideAdminButton;
   this.togglePoll = togglePoll;
@@ -210,6 +216,7 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
   this.calcVoteWinner = calcVoteWinner;
   this.inviteAttendee = inviteAttendee;
   this.removeAttendee = removeAttendee;
+  this.displayDirections = displayDirections;
 }
 
 export default EventsShowCtrl;

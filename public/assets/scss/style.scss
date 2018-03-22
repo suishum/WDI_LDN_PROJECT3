@@ -1,0 +1,132 @@
+.subtitle {
+  font-weight:bold;
+}
+
+.is-flexed {
+  display:flex;
+  align-items:center;
+}
+
+//events new page
+.google-map {
+  max-width: 600px;
+  height: 350px;
+}
+
+.restaurants {
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  .dropdowns {
+    width: 50%;
+  }
+  .google-map {
+    width: 50%;
+  }
+}
+
+//events show page
+.select2-input {
+  width:100% !important;
+  margin: 0;
+}
+
+.is-half{
+  .box {
+    padding-left:0;
+    padding-right:0;
+  }
+}
+
+.popup-message {
+  color:white;
+  font-size:28px;
+  text-align: center;
+}
+
+.buttons {
+  display:flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.smallBtn {
+  display:block;
+  border:none;
+  text-decoration: underline;
+  padding: 2px 0;
+  cursor:pointer;
+}
+
+div.eventsShowPage {
+  height: 600px;
+  width: 600px;
+  .google-map {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+li {
+  overflow: auto;
+  margin: 20px 0;
+  hr {
+    margin:5px;
+  }
+}
+
+.voteBtn {
+  float:right;
+}
+
+.voted {
+  color:white;
+  background-color:#363636;
+}
+
+.voted:hover {
+  color:white;
+  background-color:#363636;
+}
+
+.comments {
+  margin-bottom: 1.5rem;
+}
+
+.delete {
+  display: inline-block;
+  float: right;
+}
+
+.directionsShow {
+  display:block;
+}
+
+//register page
+.svg-inline--fa.fa-exclamation-circle {
+  color:red;
+}
+
+//home page
+div.homepage {
+  height: calc(100vh - 52px);
+  width: 100vw;
+  .google-map {
+    height: 100%;
+    max-width: 100%;
+  }
+}
+
+.modal-content {
+  img {
+    margin:0 auto;
+    display:block;
+  }
+}
+
+//mobile
+@media only screen and (max-width: 600px) {
+  .is-flexed {
+    display:block;
+  }
+}
