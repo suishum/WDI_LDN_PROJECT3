@@ -10,7 +10,8 @@ function googleMap() {
       zoom: '=',
       restaurants: '=',
       origin: '=',
-      usersLocation: '='
+      usersLocation: '=',
+      directions: '='
     },
     link($scope, $element) {
 
@@ -261,9 +262,6 @@ function googleMap() {
         displayRoute();
       });
 
-
-
-
       // DISPLAY ROUTE
       function displayRoute() {
         if(!$scope.origin) return false;
@@ -273,7 +271,9 @@ function googleMap() {
           destination: $scope.center,
           travelMode: 'DRIVING'
         }, (response) => {
+          $scope.directions = response.routes[0].legs[0].steps;
           directionsDisplay.setDirections(response);
+          $scope.$apply();
         });
       }
 

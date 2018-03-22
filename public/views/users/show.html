@@ -1,0 +1,22 @@
+<div class="container">
+  <h1 class="title">My Profile</h1>
+  <img ng-src="{{ usersShow.user.photo }}" alt="{{ usersShow.user.username }}'s profile photo">
+  <h2 class="subtitle">Username: {{ usersShow.user.username }}</h2>
+  <h2 class="subtitle">Name: {{ usersShow.user.name }}</h2>
+  <h2 class="subtitle">Email: {{ usersShow.user.email }}</h2>
+  <h2 class="subtitle">Favorites: {{ usersShow.user.favorite1 }}, {{ usersShow.user.favorite2 }}, {{ usersShow.user.favorite3 }}</h2>
+
+  <h1 class="title">My events</h1>
+  <ul>
+    <li ng-repeat="event in usersShow.myEvents"><a ui-sref="eventsShow({ id: event._id })">{{ event.name }}, {{ event.date }}, {{ event.time }}</a></li>
+  </ul>
+
+  <h1 class="title">Joined events</h1>
+  <ul>
+    <li ng-repeat="event in usersShow.joinedEvents"><a ui-sref="eventsShow({ id: event._id })">{{ event.name }}, {{ event.date }}, {{ event.time }}</a></li>
+  </ul>
+
+  <a ui-sref="usersEdit({ id: usersShow.user._id })" class="button">Edit Profile</a>
+  <!-- ADD DELETE BUTTON -->
+
+</div>

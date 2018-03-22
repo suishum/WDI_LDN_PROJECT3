@@ -1,5 +1,5 @@
-<div class="flex-container">
-  <div class="login-register-box">
+<div class="container">
+  <div class="loginRegisterBox">
 
     <!-- PAGE TITLE -->
     <h1 class="title">Log in</h1>
@@ -28,16 +28,13 @@
         <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required.</div>
         <!-- <div ng-message="minlength"><i class="fas fa-exclamation-circle"></i>  You must use at least 8 characters</div> -->
       </div>
-      <div class="button-holder">
-        <button class="button is-primary">Submit</button>
-      </div>
+      <button class="button is-primary">Submit</button>
       <!-- <button type="button" ng-click="authLogin.authenticate('facebook')">Log in with Facebook</button> -->
     </form>
 
     <!-- LINK TO REGISTER -->
-    <div class="register-account">
-      <p>Don't have an account yet?</p>
-      <p><a ui-sref="register">Join us!</a></p>
+    <div class="registerAccount">
+      <p>Don't have an account yet? <a ui-sref="register">Join us!</a></p>
     </div>
 
   </div>
