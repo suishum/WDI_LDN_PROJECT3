@@ -7,7 +7,7 @@
     <!-- REGISTER FORM -->
     <form name="authRegister.form" ng-submit="authRegister.handleSubmit()" novalidate>
       <div class="field">
-        <label class="label" for="name">Username</label>
+        <!-- <label class="label" for="name">Username</label> -->
         <div class="control has-icons-left">
           <input class="input" placeholder="Username" name="username" ng-model="authRegister.user.username" minlength="2" required />
           <span class="icon is-small is-left"><i class="fas fa-user"></i></span>
@@ -19,7 +19,7 @@
       </div>
 
       <div class="field">
-        <label class="label" for="name">First Name</label>
+        <!-- <label class="label" for="name">First Name</label> -->
         <div class="control has-icons-left">
           <input class="input" placeholder="First Name" name="firstname" ng-model="authRegister.user.firstname" required/>
           <span class="icon is-small is-left"><i class="fas fa-caret-right"></i></span>
@@ -30,7 +30,7 @@
       </div>
 
       <div class="field">
-        <label class="label" for="name">Last Name</label>
+        <!-- <label class="label" for="name">Last Name</label> -->
         <div class="control has-icons-left">
           <input class="input" placeholder="Last Name" name="lastname" ng-model="authRegister.user.lastname" />
           <span class="icon is-small is-left"><i class="fas fa-caret-right"></i></span>
@@ -38,7 +38,7 @@
       </div>
 
       <div class="field">
-        <label class="label" for="name">Email</label>
+        <!-- <label class="label" for="name">Email</label> -->
         <div class="control has-icons-left">
           <input class="input" placeholder="Email" name="email" ng-model="authRegister.user.email" pattern="^.*@.*\..*$" required/>
           <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
@@ -50,7 +50,7 @@
       </div>
 
       <div class="field">
-        <label class="label" for="name">Password</label>
+        <!-- <label class="label" for="name">Password</label> -->
         <div class="control has-icons-left">
           <input type="password" class="input" placeholder="Password" name="password" ng-model="authRegister.user.password" minlength="8" required/>
           <span class="icon is-small is-left"><i class="fas fa-unlock"></i></span>
@@ -62,7 +62,7 @@
       </div>
 
       <div class="field">
-        <label class="label" for="name">Confirm Password</label>
+        <!-- <label class="label" for="name">Confirm Password</label> -->
         <div class="control has-icons-left">
           <input type="password" class="input" placeholder="Confirm Password" name="passwordConfirmation" ng-model="authRegister.user.passwordConfirmation" minlength="8" required/>
           <span class="icon is-small is-left"><i class="fas fa-caret-right"></i></span>
@@ -73,7 +73,6 @@
         </div>
       </div>
 
-      <div class="flex-parent">
         <div class="field">
           <label class="label" class="label">Upload a Profile Picture</label>
           <div class="flex-parent">
@@ -95,18 +94,25 @@
           </div>
         </div>
 
-        <div class="field" ng-if="authRegister.user.photo">
-          <label class="label" class="label">Profile Picture Preview</label>
-          <div class="control">
-            <figure class="image is-128x128">
-              <img ng-src="{{ authRegister.user.photo }}">
-            </figure>
+        <div class="flex-parent">
+          <div class="field" ng-if="authRegister.user.photo">
+            <label class="label" class="label">Picture Preview</label>
+            <div class="control">
+              <figure class="image is-128x128">
+                <img ng-src="{{ authRegister.user.photo }}">
+              </figure>
+            </div>
           </div>
         </div>
-      </div>
 
       <button class="button is-primary">Submit</button>
     </form>
+
+    <!-- LINK TO LOGIN -->
+    <div class="register-account">
+      <p>Have an account?</p>
+      <p><a ui-sref="login">Log in!</a></p>
+    </div>
 
   </div>
 </div>
