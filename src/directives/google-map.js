@@ -9,7 +9,8 @@ function googleMap() {
       center: '=',
       zoom: '=',
       restaurants: '=',
-      origin: '='
+      origin: '=',
+      usersLocation: '='
     },
     link($scope, $element) {
 
@@ -220,10 +221,31 @@ function googleMap() {
         ]
       });
 
-
       $scope.$watch('center', () => {
         map.setCenter($scope.center);
       }, true);
+
+      function yourLocationMarker(){
+        const image = {
+          url: '/assets/images/m8d8-mark2.svg', // url
+          scaledSize: new google.maps.Size(50, 50), // scaled size
+          scale: 10,
+          origin: new google.maps.Point(0,0) // origin
+        };
+
+        var marker = new google.maps.Marker({
+          position: $scope.center,
+          icon: image
+        });
+        marker.setMap(map);
+        var infowindow = new google.maps.InfoWindow();
+        google.maps.event.addListener(marker, 'click', (function(marker) {
+          return function() {
+            infowindow.setContent('You\'re Here!');
+            infowindow.open(map, marker);
+          };
+        })(marker));
+      }
 
 
       const directionsService = new google.maps.DirectionsService();
@@ -235,6 +257,7 @@ function googleMap() {
 
       navigator.geolocation.getCurrentPosition(pos => {
         currentLocation = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+        yourLocationMarker();
         displayRoute();
       });
 
@@ -265,7 +288,6 @@ function googleMap() {
       };
 
       $scope.$watch('restaurants', () => {
-
         var infowindow = new google.maps.InfoWindow();
         var marker, i;
         for (i = 0; i < $scope.restaurants.length; i++) {
