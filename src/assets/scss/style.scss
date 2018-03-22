@@ -2,12 +2,6 @@ body {
   background-color: #d3d3d3;
 }
 
-.nav-wrapper {
-  position: absolute;
-  z-index: 2;
-  width: 100%;
-}
-
 nav.navbar {
   background-color: rgba(0, 0, 0, 0.6);
   color: white;
@@ -179,6 +173,9 @@ li {
   float: right;
 }
 
+#directions {
+  font-size: 12px;
+}
 
 //register page
 .svg-inline--fa.fa-exclamation-circle {

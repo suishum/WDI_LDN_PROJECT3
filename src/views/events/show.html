@@ -105,7 +105,7 @@
             <button class="smallBtn" ng-click="eventsShow.displayDirections()">{{ eventsShow.showDirections? 'Restaurant Details' : 'Need directions?' }}</button>
             <div ng-if="eventsShow.showDirections">
               <ul>
-                <li ng-repeat="direction in eventsShow.directions" ng-bind-html="direction.instructions">{{ direction.instructions }}<li>
+                <li id="directions" ng-repeat="direction in eventsShow.directions" ng-bind-html="direction.instructions">{{ direction.instructions }}<li>
               </ul>
             </div>
 
