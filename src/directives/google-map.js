@@ -238,7 +238,6 @@ function googleMap() {
           position: $scope.center,
           icon: image
         });
-        marker.setMap(map);
         var infowindow = new google.maps.InfoWindow();
         google.maps.event.addListener(marker, 'click', (function(marker) {
           return function() {
@@ -246,6 +245,7 @@ function googleMap() {
             infowindow.open(map, marker);
           };
         })(marker));
+        marker.setMap(map);
       }
 
 
