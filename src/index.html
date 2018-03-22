@@ -4,7 +4,9 @@
   <base href="/">
   <meta charset="utf-8">
   <title>WDI32 Group Project</title>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmPvJAnbxWywS1dbHe_oxKH29pGquokk4&libraries=places"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js" integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js" integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c" crossorigin="anonymous"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmPvJAnbxWywS1dbHe_oxKH29pGquokk4&libraries=places"></script>
 </head>
 <body ng-controller="MainCtrl as main">
   <div class="nav-wrapper">
@@ -34,9 +36,9 @@
     </nav>
 
     <!-- FLASH MESSAGE -->
-    <div ng-if="main.flashMessage" class="notification is-{{ main.flashMessage.type }}">
+    <!-- <div ng-if="main.flashMessage" class="notification is-{{ main.flashMessage.type }}">
       {{ main.flashMessage.content }}
-    </div>
+    </div> -->
   </div>
 
   <ui-view></ui-view>

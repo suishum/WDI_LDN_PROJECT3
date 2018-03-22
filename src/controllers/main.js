@@ -10,7 +10,7 @@ function MainCtrl($auth, $state, $scope, $rootScope, $timeout) {
   vm.isAuthenticated = $auth.isAuthenticated;
 
   function getCurrentUser() {
-    vm.currentUser = $auth.getPayload().sub;
+    if ($auth.getPayload()) vm.currentUser = $auth.getPayload().sub;
     // console.log(`authenticated user: ${vm.currentUser}`);
   }
 

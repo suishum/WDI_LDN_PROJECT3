@@ -243,6 +243,7 @@ function googleMap() {
           return function() {
             infowindow.setContent('You\'re Here!');
             infowindow.open(map, marker);
+            setTimeout(() => infowindow.close(), 3000);
           };
         })(marker));
         marker.setMap(map);
