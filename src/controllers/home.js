@@ -4,8 +4,8 @@ HomeCtrl.$inject = ['$auth', '$http', '$timeout'];
 function HomeCtrl($auth, $http, $timeout) {
   const vm = this;
   vm.currentLocation = {
-    lat: 0,
-    lng: 0
+    lat: 51.515856,
+    lng: -0.072353
   };
   vm.usersLocation = {
     lat: 0,

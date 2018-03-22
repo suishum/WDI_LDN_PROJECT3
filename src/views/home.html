@@ -1,11 +1,10 @@
 <div class="modal is-active" ng-if="home.showPopup" ng-style="{'z-index': home.loading }">
   <div class="modal-background"></div>
-    <div class="modal-content">
-
-        <div ng-if="main.flashMessage" class="notification is-{{ main.flashMessage.type }}">
+    <div class="modal-content popup-message">
+        <p ng-if="main.flashMessage">
           {{ main.flashMessage.content }}
-        </div>
-        <p ng-if="!main.flashMessage" class="popup-message">
+        </p>
+        <p ng-if="!main.flashMessage">
         Finding some tasty places for you and your mates!
       </p>
       <img src="https://loading.io/spinners/microsoft/lg.rotating-balls-spinner.gif" width="100px" height="100px" alt="loading">
