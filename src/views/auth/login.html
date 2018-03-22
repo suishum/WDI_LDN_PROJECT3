@@ -1,7 +1,11 @@
 <div class="container">
-  <h1 class="title">Log in</h1>
-    <form name="authLogin.form" ng-submit="authLogin.handleSubmit()">
+  <div class="loginRegisterBox">
 
+    <!-- PAGE TITLE -->
+    <h1 class="title">Log in</h1>
+
+    <!-- LOGIN FORM -->
+    <form name="authLogin.form" ng-submit="authLogin.handleSubmit()">
       <div class="field">
         <label class="label" for="email">Email</label>
         <div class="control has-icons-left">
@@ -13,7 +17,6 @@
         <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required.</div>
         <div ng-message="pattern"><i class="fas fa-exclamation-circle"></i> This field must have the format of example@email.com</div>
       </div>
-
       <div class="field">
         <label class="label" for="password">Password</label>
         <div class="control has-icons-left">
@@ -25,11 +28,14 @@
         <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required.</div>
         <!-- <div ng-message="minlength"><i class="fas fa-exclamation-circle"></i>  You must use at least 8 characters</div> -->
       </div>
-
       <button class="button is-primary">Submit</button>
       <!-- <button type="button" ng-click="authLogin.authenticate('facebook')">Log in with Facebook</button> -->
     </form>
+
+    <!-- LINK TO REGISTER -->
     <div class="registerAccount">
       <p>Don't have an account yet? <a ui-sref="register">Join us!</a></p>
     </div>
+
   </div>
+</div>
