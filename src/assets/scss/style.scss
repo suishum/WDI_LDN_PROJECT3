@@ -1,3 +1,6 @@
+
+@import "select2";
+
 body {
   background-color: #d3d3d3;
 }
@@ -72,15 +75,16 @@ nav.navbar {
 //   right: 50%;
 //   transform: translate(50%, 50%);
 // }
+>>>>>>> development
 
 .subtitle {
   font-weight:bold;
 }
 
-.is-flexed {
-  display:flex;
-  align-items:center;
-}
+// .is-flexed {
+//   display:flex;
+//   align-items:center;
+// }
 
 //events new page
 .google-map {
