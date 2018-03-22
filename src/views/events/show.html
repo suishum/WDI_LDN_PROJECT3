@@ -102,16 +102,25 @@
 
           <!-- VOTE WINNER -->
           <div ng-if="!eventsShow.displayPoll">
-            <h2 class="subtitle">Chosen Restaurant</h2>
-            <p><a href="{{ eventsShow.event.winner.url }}">{{ eventsShow.event.winner.name }}</a>
-              <br>
-              Category: {{ eventsShow.event.winner.categories[0].title }} &nbsp; Rating: {{ eventsShow.event.winner.rating }} &nbsp; Price: {{ eventsShow.event.winner.price }}
-              <img src="{{ eventsShow.event.winner.image_url }}">
-              <br>
-              Location: {{ eventsShow.event.winner.location.display_address[0] }}, {{ eventsShow.event.winner.location.display_address[1] }}
-              <br>
-              Phone: {{ eventsShow.event.winner.display_phone }}
-            </p>
+            <button class="smallBtn" ng-click="eventsShow.displayDirections()">{{ eventsShow.showDirections? 'Restaurant Details' : 'Need directions?' }}</button>
+            <div ng-if="eventsShow.showDirections">
+              <ul>
+                <li ng-repeat="direction in eventsShow.directions" ng-bind-html="direction.instructions">{{ direction.instructions }}<li>
+              </ul>
+            </div>
+
+            <div ng-if="!eventsShow.showDirections">
+              <h2 class="subtitle">Chosen Restaurant</h2>
+              <p><a href="{{ eventsShow.event.winner.url }}">{{ eventsShow.event.winner.name }}</a>
+                <br>
+                Category: {{ eventsShow.event.winner.categories[0].title }} &nbsp; Rating: {{ eventsShow.event.winner.rating }} &nbsp; Price: {{ eventsShow.event.winner.price }}
+                <img src="{{ eventsShow.event.winner.image_url }}">
+                <br>
+                Location: {{ eventsShow.event.winner.location.display_address[0] }}, {{ eventsShow.event.winner.location.display_address[1] }}
+                <br>
+                Phone: {{ eventsShow.event.winner.display_phone }}
+              </p>
+            </div>
           </div>
           <!-- VOTE WINNER -->
         </div>
@@ -122,10 +131,7 @@
         </div>
         <!-- VOTE WINNER -->
         <div class="eventsShowPage" ng-if="!eventsShow.displayPoll">
-          <google-map zoom="16" center="eventsShow.voteWinnerLocation" restaurants="[eventsShow.event.winner]" origin="{lat: 0, lng: 0}"></google-map>
-          <button class="smallBtn" ng-click="eventsShow.displayDirections()">Need directions?</button>
-          <div ng-if="eventsShow.showDirections" id="directionsShow">
-          </div>
+          <google-map zoom="16" center="eventsShow.voteWinnerLocation" restaurants="[eventsShow.event.winner]" origin="{lat: 0, lng: 0}" directions="eventsShow.directions"></google-map>
         </div>
 
       </div>

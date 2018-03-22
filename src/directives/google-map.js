@@ -9,7 +9,8 @@ function googleMap() {
       center: '=',
       zoom: '=',
       restaurants: '=',
-      origin: '='
+      origin: '=',
+      directions: '='
     },
     link($scope, $element) {
 
@@ -23,13 +24,13 @@ function googleMap() {
       });
       $scope.$watch('center', () => {
         map.setCenter($scope.center);
-        const marker = new google.maps.Marker({
-          position: $scope.center,
-          map: map,
-          icon: '⭐️'
-        });
-
-        marker.setMap(map);
+        // const marker = new google.maps.Marker({
+        //   position: $scope.center,
+        //   map: map,
+        //   icon: '⭐️'
+        // });
+        //
+        // marker.setMap(map);
       }, true);
 
 
@@ -45,9 +46,6 @@ function googleMap() {
         displayRoute();
       });
 
-
-
-
       // DISPLAY ROUTE
       function displayRoute() {
         if(!$scope.origin) return false;
@@ -57,7 +55,9 @@ function googleMap() {
           destination: $scope.center,
           travelMode: 'DRIVING'
         }, (response) => {
+          $scope.directions = response.routes[0].legs[0].steps;
           directionsDisplay.setDirections(response);
+          $scope.$apply();
         });
       }
 
