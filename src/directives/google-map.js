@@ -21,6 +21,13 @@ function googleMap() {
         map.setCenter($scope.center);
       }, true);
 
+      // const image = {
+      //   url: '/assets/images/ga-beer-logo.png', // url
+      //   scaledSize: new google.maps.Size(25, 25), // scaled size
+      //   origin: new google.maps.Point(0,0) // origin
+      //   // anchor: new google.maps.Point(0, 0) // anchor
+      // };
+
       const directionsService = new google.maps.DirectionsService();
       const directionsDisplay = new google.maps.DirectionsRenderer({ suppressMarkers: true});
       directionsDisplay.setMap(map);
