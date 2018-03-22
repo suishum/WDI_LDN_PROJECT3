@@ -1,13 +1,7 @@
-UsersEditCtrl.$inject = ['User', '$state', '$http'];
-function UsersEditCtrl(User, $state, $http) {
+UsersEditCtrl.$inject = ['User', '$state'];
+function UsersEditCtrl(User, $state) {
   const vm = this;
   vm.user = {};
-  vm.categories = [];
-
-  $http.get('/api/categories')
-    .then(res => {
-      vm.categories = res.data;
-    });
 
   User.findById($state.params.id)
     .then(res => vm.user = res.data);

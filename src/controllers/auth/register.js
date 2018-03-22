@@ -2,12 +2,6 @@ AuthRegisterCtrl.$inject = ['$auth', '$state', '$http', '$rootScope']; // $auth 
 
 function AuthRegisterCtrl($auth, $state, $http, $rootScope) {
   const vm = this;
-  vm.categories = [];
-
-  $http.get('/api/categories')
-    .then(res => {
-      vm.categories = res.data;
-    });
 
   vm.user = {};
   vm.restaurants = [];

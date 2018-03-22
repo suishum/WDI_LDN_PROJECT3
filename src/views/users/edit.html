@@ -75,22 +75,6 @@
       </div>
     </div>
 
-    <div class="field">
-      <div class="control">
-        <label class="label" for="name">Whats your favourite type of cuisine?</label>
-        <div class="select">
-          <select name="preferences" ng-model="usersEdit.user.preferences" required>
-            <!-- NEEDS A MINOR FIX -->
-            <option selected disabled value="">Please choose</option>
-            <option ng-repeat="category in usersEdit.categories">{{ category.title }}</option>
-          </select>
-          <div ng-messages="usersEdit.form.preferences.$error" ng-if="usersEdit.form.preferences.$touched || usersEdit.form.$submitted">
-            <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <button class="button is-primary">Submit</button>
   </form>
 
