@@ -123,7 +123,7 @@
         <!-- VOTE WINNER -->
         <div class="eventsShowPage" ng-if="!eventsShow.displayPoll">
           <google-map zoom="16" center="eventsShow.voteWinnerLocation" restaurants="[eventsShow.event.winner]" origin="{lat: 0, lng: 0}"></google-map>
-          <div class="directionsShow">
+          <div ng-if="showDirections" id="directionsShow">
           </div>
         </div>
 

@@ -34,8 +34,7 @@ function googleMap() {
 
 
       const directionsService = new google.maps.DirectionsService();
-      const directionsDisplay = new google.maps.DirectionsRenderer();
-      // const directionsDisplay = new google.maps.DirectionsRenderer({ suppressMarkers: true});
+      const directionsDisplay = new google.maps.DirectionsRenderer({ suppressMarkers: true});
       directionsDisplay.setMap(map);
 
       $scope.$watch('center', () => map.setCenter($scope.center), true);
@@ -43,7 +42,6 @@ function googleMap() {
 
       navigator.geolocation.getCurrentPosition(pos => {
         currentLocation = { lat: pos.coords.latitude, lng: pos.coords.longitude };
-
         displayRoute();
       });
 
@@ -63,7 +61,8 @@ function googleMap() {
         });
       }
 
-      // directionsDisplay.setPanel(directionsShow);
+      var directionsShow = document.getElementById('directionsShow' );
+      directionsDisplay.setPanel(directionsShow);
 
       $scope.$watch('restaurants', () => {
 
