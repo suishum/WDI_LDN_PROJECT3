@@ -25,27 +25,27 @@ nav.navbar {
   }
 }
 
-// .hero {
-//   height: 220px;
-//   background: black;
-//   color: white;
-//   position: relative;
-//   text-align: center;
-//   padding: 0.5em 1em; }
+// SHOW PAGE STYLES
+.flex-show-container {
+  width: 100vw;
+  padding-top: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .show-child {
+    background-color: white;
+    width: 80vw;
+    border: 1px solid #d3d3d3;
+  }
+}
 
+// FORM STYLES
 .flex-container {
   height: 100vh;
   width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
-  // SHOW PAGE STYLES
-  .show-child {
-    background-color: white;
-    width: 80vw;
-    border: 1px solid #d3d3d3;
-  }
-  // FORM STYLES
   .form-child {
     background-color: white;
     width: 75vw;
