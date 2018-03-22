@@ -10,6 +10,7 @@ function EventsNewCtrl(Event, $state, $http, $scope, $auth) {
     }
   };
   vm.restaurants = [];
+  vm.locationFound = false;
 
   const currentUserId = $auth.getPayload().sub;
 
@@ -27,8 +28,8 @@ function EventsNewCtrl(Event, $state, $http, $scope, $auth) {
       })
         .then(res => {
           vm.restaurants = res.data.businesses;
+          vm.locationFound = true;
         });
-
     }
   }
 

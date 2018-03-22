@@ -1,3 +1,7 @@
+* {
+  font-family: "Open Sans", sans-serif;
+}
+
 body {
   background-color: #d3d3d3;
 }
@@ -11,9 +15,6 @@ body {
 nav.navbar {
   background-color: rgba(0, 0, 0, 0.6);
   color: white;
-  .navbar-menu {
-    background-color: rgba(0, 0, 0, 0.6);
-  }
   a {
     color: white;
     .navbar-item {
@@ -36,6 +37,51 @@ nav.navbar {
   display: flex;
   align-items: center;
   justify-content: center;
+  .center-child {
+    background-color: white;
+    width: 75vw;
+    border: 1px solid #d3d3d3;
+    text-align: center;
+    margin-top: 50px;
+    padding: 24px;
+    .page-switch {
+      background-color: #00d1b2;
+      border-color: transparent;
+      color: #fff;
+      padding: 5px 9px;
+      border-width: 1px;
+      width: 50%;
+      border-radius: 3px;
+      display: block;
+      margin: 12px auto;
+    }
+    input {
+      text-align: center;
+    }
+    .extra-padding {
+      padding-bottom: 12px;
+    }
+    .extra-margin {
+      margin-bottom: 8px;
+    }
+    .dropdowns {
+      div {
+        select {
+          width: 80%;
+          padding: 5px 18px;
+          height: 36px;
+          border: 1px solid #dbdbdb;
+          background-color: white;
+          cursor: pointer;
+          font-size: 16px;
+        }
+      }
+    }
+    button {
+      margin-top: 12px;
+      width: 50%;
+    }
+  }
 }
 
 .flex-parent {
@@ -50,7 +96,6 @@ nav.navbar {
 
 .login-register-box {
  background-color: white;
- // height: 50vh;
  width: 50vw;
  border: 1px solid #d3d3d3;
  text-align: center;
@@ -185,7 +230,7 @@ li {
 
 //register page
 .svg-inline--fa.fa-exclamation-circle {
-  color:red;
+  color: red;
 }
 
 //home page
@@ -212,8 +257,8 @@ div.homepage {
   }
 }
 
-// @media screen and (max-width: 1023px) {
-//   .navbar-menu {
-//     background-color: none;
-//   }
-// }
+@media screen and (max-width: 1023px) {
+  .navbar-menu {
+    background-color: transparent;
+  }
+}
