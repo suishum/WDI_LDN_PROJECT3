@@ -14,13 +14,13 @@
               <article class="media">
                 <div class="media-left">
                   <figure class="image is-48x48">
-                    <img src="{{ attendee.photo }}" alt="{{ attendee.name}} profile pic"/>
+                    <img ng-src="{{ attendee.photo }}" alt="{{ attendee.username}} profile pic"/>
                   </figure>
                 </div>
                 <div class="media-content">
                   <div class="content">
                     <p>
-                      {{ attendee.name }}
+                      {{ attendee.username }}
                       <button class="smallBtn" ng-if="eventsShow.hideAdminButton(attendee) && eventsShow.isAdmin" ng-click="eventsShow.makeAdmin(attendee)">Make Organizer</button>
                     </p>
                 </div>
@@ -31,10 +31,10 @@
         <div ng-if="eventsShow.isAdmin" class="invite">
           <ui-select multiple theme="select2" ng-model="eventsShow.selected.value">
             <ui-select-match placeholder="Select person..." selected>
-              {{$item.name}} &lt;{{$item.email}}&gt;
+              {{$item.username}} &lt;{{$item.email}}&gt;
             </ui-select-match>
             <ui-select-choices repeat="user in (eventsShow.users | filter: $select.search)">
-              <span ng-bind="user.name"></span>
+              <span ng-bind="user.username"></span>
             </ui-select-choices>
           </ui-select>
           <button class="button" ng-click="eventsShow.inviteAttendee()">Invite</button>
@@ -47,13 +47,13 @@
               <article class="media">
                 <div class="media-left">
                   <figure class="image is-48x48">
-                    <img src="{{ admin.photo }}" alt="{{ admin.name}} profile pic"/>
+                    <img ng-src="{{ admin.photo }}" alt="{{ admin.name}} profile pic"/>
                   </figure>
                 </div>
                 <div class="media-content">
                   <div class="content">
                     <p>
-                      {{ admin.name }}
+                      {{ admin.username }}
                     </p>
                   </div>
                 </div>
@@ -106,7 +106,7 @@
             <p><a href="{{ eventsShow.event.winner.url }}">{{ eventsShow.event.winner.name }}</a>
               <br>
               Category: {{ eventsShow.event.winner.categories[0].title }} &nbsp; Rating: {{ eventsShow.event.winner.rating }} &nbsp; Price: {{ eventsShow.event.winner.price }}
-              <img src="{{ eventsShow.event.winner.image_url }}">
+              <img ng-src="{{ eventsShow.event.winner.image_url }}">
               <br>
               Location: {{ eventsShow.event.winner.location.display_address[0] }}, {{ eventsShow.event.winner.location.display_address[1] }}
               <br>
@@ -139,7 +139,7 @@
             <article class="media">
               <div class="media-left">
                 <figure class="image is-48x48">
-                  <img src="{{ comment.user.photo }}" alt="{{ comment.user.name}} profile pic">
+                  <img ng-src="{{ comment.user.photo }}" alt="{{ comment.user.name}} profile pic">
                 </figure>
               </div>
               <div class="media-content">
