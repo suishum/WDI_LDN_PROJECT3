@@ -31,6 +31,7 @@
         <a class="navbar-item" ng-click="main.clicked = !main.clicked" ng-if="main.isAuthenticated()" ui-sref="usersShow({ id: main.currentUser })">My Profile</a>
         <a class="navbar-item" ng-click="main.clicked = !main.clicked" ng-if="!main.isAuthenticated()" ui-sref="login">Login</a>
         <a class="navbar-item" ng-click="main.clicked = !main.clicked" ng-if="!main.isAuthenticated()" ui-sref="register">Register</a>
+        <!-- <a class="navbar-item" ng-click="" ng-if="" ui-sref="register">Login/Register</a> -->
         <a class="navbar-item" ng-click="main.clicked = !main.clicked; main.logout()" ng-if="main.isAuthenticated()">Logout</a>
       </div>
     </div>
