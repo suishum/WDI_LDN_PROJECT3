@@ -25,6 +25,13 @@ function googleMap() {
         map.setCenter($scope.center);
       }, true);
 
+      // const image = {
+      //   url: '/assets/images/ga-beer-logo.png', // url
+      //   scaledSize: new google.maps.Size(25, 25), // scaled size
+      //   origin: new google.maps.Point(0,0) // origin
+      //   // anchor: new google.maps.Point(0, 0) // anchor
+      // };
+
       const directionsService = new google.maps.DirectionsService();
       const directionsDisplay = new google.maps.DirectionsRenderer({ suppressMarkers: true});
       directionsDisplay.setMap(map);
@@ -53,17 +60,33 @@ function googleMap() {
       // directionsDisplay.setPanel(directionsShow);
 
       $scope.$watch('restaurants', () => {
+
         var infowindow = new google.maps.InfoWindow();
         var marker, i;
         for (i = 0; i < $scope.restaurants.length; i++) {
+          const contentString = '<div id="content">'+
+          '<div id="siteNotice">'+
+          '</div>'+
+          `<h1 id="firstHeading" class="firstHeading">${$scope.restaurants[i].name}</h1>` +
+          '<div id="bodyContent">'+
+          `<img style="max-width:70px" src="${$scope.restaurants[i].image_url}">
+          <p>${$scope.restaurants[i].location.address1}<br>
+          ${$scope.restaurants[i].location.city}<br>
+          ${$scope.restaurants[i].location.zip_code}<br>
+          ⭐️ ${$scope.restaurants[i].rating}<br>
+          <strong>${$scope.restaurants[i].price}<strong>
+          </p>` +
+          '</div>' +
+          '</div>';
+
           const myLatLng = { lat: parseFloat($scope.restaurants[i].coordinates.latitude), lng: parseFloat($scope.restaurants[i].coordinates.longitude)};
           marker = new google.maps.Marker({
             position: myLatLng,
             map: map
           });
-          google.maps.event.addListener(marker, 'click', (function(marker, i) {
+          google.maps.event.addListener(marker, 'click', (function(marker) {
             return function() {
-              infowindow.setContent($scope.restaurants[i].name);
+              infowindow.setContent(contentString);
               infowindow.open(map, marker);
             };
           })(marker, i));
