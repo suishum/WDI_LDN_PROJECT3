@@ -1,6 +1,6 @@
-EventsShowCtrl.$inject = ['$http', 'Event', '$state', 'User', '$auth'];
+EventsShowCtrl.$inject = ['$http', 'Event', '$state', 'User', '$auth', '$scope'];
 
-function EventsShowCtrl($http, Event, $state, User, $auth){
+function EventsShowCtrl($http, Event, $state, User, $auth, $scope){
   const vm = this;
   vm.event = {};
   vm.users = [];
@@ -11,6 +11,7 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
   vm.voteWinner;
   vm.zeroVotes = true;
   vm.closePollClicked = false;
+  vm.showDirections = false;
   vm.voteWinnerLocation = {
     lat: 0,
     lng: 0
@@ -19,6 +20,7 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
   vm.displayPoll = true;
   vm.talliedVotes = {};
   vm.currentUserVoted = false;
+  vm.directions = [];
 
   Event.findById($state.params.id)
     .then(res => {
@@ -183,17 +185,17 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
 
   function togglePoll() {
     calcVoteWinner();
-    if (vm.displayPoll === true) {
-      vm.displayPoll = false;
-    } else {
-      vm.displayPoll = true;
-    }
+    vm.displayPoll = (vm.displayPoll) ? false : true;
     vm.closePollClicked = false;
   }
 
   function deleteEvent(){
     Event.remove($state.params.id)
       .then(() => $state.go('home'));
+  }
+
+  function displayDirections() {
+    vm.showDirections = !vm.showDirections;
   }
 
   this.makeAdmin = makeAdmin;
@@ -210,6 +212,7 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
   this.calcVoteWinner = calcVoteWinner;
   this.inviteAttendee = inviteAttendee;
   this.removeAttendee = removeAttendee;
+  this.displayDirections = displayDirections;
 }
 
 export default EventsShowCtrl;

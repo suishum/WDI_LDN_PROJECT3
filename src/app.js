@@ -30,7 +30,9 @@ import googleMap from './directives/google-map';
 import autoComplete from './directives/auto-complete';
 import uploadImage from './directives/upload-image';
 
+import 'fontawesome';
 import 'bulma';
+import 'select2/dist/css/select2.css';
 import './assets/scss/style.scss';
 
 angular.module('project3', ['ui.router', 'satellizer', 'ui.select', 'ngSanitize', 'angular-filepicker', 'ngMessages'])

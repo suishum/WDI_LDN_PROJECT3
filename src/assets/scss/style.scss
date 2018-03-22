@@ -1,3 +1,5 @@
+@import "select2";
+
 * {
   font-family: "Open Sans", sans-serif;
 }
@@ -130,6 +132,7 @@ nav.navbar {
 //   right: 50%;
 //   transform: translate(50%, 50%);
 // }
+>>>>>>> development
 
 .subtitle {
   font-weight:bold;
@@ -231,9 +234,6 @@ li {
   float: right;
 }
 
-.directionsShow {
-  display:block;
-}
 
 //register page
 .svg-inline--fa.fa-exclamation-circle {

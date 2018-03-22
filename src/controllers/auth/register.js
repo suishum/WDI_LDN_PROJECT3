@@ -13,7 +13,6 @@ function AuthRegisterCtrl($auth, $state, $http, $rootScope) {
     $auth.signup(vm.user)
     // satellizer doesnt give the user a token immediately after registering (without extra logic), therefore we will redirect to the login page for now and get them to log in so we can drop a token in.
       .then((res) => {
-        // console.log(res);
         $rootScope.$broadcast('flashMessage', {
           type: 'success',
           content: res.data.message // this is from controllers/auth.js in the backend

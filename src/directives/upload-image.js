@@ -1,6 +1,4 @@
 uploadImage.$inject = ['filepickerService'];
-
-// uploadImage.$inject = ['filepickerService'];
 function uploadImage(filepickerService) {
   return {
     restrict: 'A',
