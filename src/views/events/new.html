@@ -68,7 +68,7 @@
             <!-- <label class="label" for="name">Restaurant 1</label> -->
             <select class="select" name="restaurant1" ng-model="eventsNew.event.restaurants[0]" required>
               <option value="" disabled selected> &nbsp; Choose a restaurant</option>
-              <option ng-repeat="restaurant in eventsNew.restaurants" ng-value="{{ restaurant }}">{{ restaurant.name }} - {{ restaurant.location.zip_code }}</option>
+              <option ng-repeat="restaurant in eventsNew.restaurants" ng-value="{{ restaurant }}"> &nbsp; {{ restaurant.name }} - {{ restaurant.location.zip_code }}</option>
               <div ng-messages="eventsNew.form.restaurant1.$error" ng-if="eventsNew.form.restaurant1.$dirty || eventsNew.form.$submitted">
                 <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
               </div>
@@ -79,7 +79,7 @@
             <!-- <label class="label" for="name">Restaurant 2</label> -->
             <select class="select" name="restaurant2" ng-model="eventsNew.event.restaurants[1]" required>
               <option value="" disabled selected> &nbsp; Choose a restaurant</option>
-              <option ng-repeat="restaurant in eventsNew.restaurants" ng-value="{{ restaurant }}">{{ restaurant.name }} - {{ restaurant.location.zip_code }}</option>
+              <option ng-repeat="restaurant in eventsNew.restaurants" ng-value="{{ restaurant }}"> &nbsp; {{ restaurant.name }} - {{ restaurant.location.zip_code }}</option>
               <div ng-messages="eventsNew.form.restaurant2.$error" ng-if="eventsNew.form.restaurant2.$dirty || eventsNew.form.$submitted">
                 <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
               </div>
@@ -90,7 +90,7 @@
             <!-- <label class="label" for="name">Restaurant 3</label> -->
             <select class="select" name="restaurant3" ng-model="eventsNew.event.restaurants[2]" required>
               <option value="" disabled selected> &nbsp; Choose a restaurant</option>
-              <option   ng-repeat="restaurant in eventsNew.restaurants" ng-value="{{ restaurant }}">{{ restaurant.name }} - {{ restaurant.location.zip_code }}</option>
+              <option   ng-repeat="restaurant in eventsNew.restaurants" ng-value="{{ restaurant }}"> &nbsp; {{ restaurant.name }} - {{ restaurant.location.zip_code }}</option>
               <div ng-messages="eventsNew.form.restaurant3.$error" ng-if="eventsNew.form.restaurant3.$dirty || eventsNew.form.$submitted">
                 <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
               </div>
@@ -101,7 +101,7 @@
             <!-- <label class="label" for="name">Restaurant 4</label> -->
             <select class="select" name="restaurant4" ng-model="eventsNew.event.restaurants[3]" required>
               <option value="" disabled selected> &nbsp; Choose a restaurant</option>
-              <option ng-repeat="restaurant in eventsNew.restaurants" ng-value="{{ restaurant }}">{{ restaurant.name }} - {{ restaurant.location.zip_code }}</option>
+              <option ng-repeat="restaurant in eventsNew.restaurants" ng-value="{{ restaurant }}"> &nbsp; {{ restaurant.name }} - {{ restaurant.location.zip_code }}</option>
               <div ng-messages="eventsNew.form.restaurant4.$error" ng-if="eventsNew.form.restaurant4.$dirty || eventsNew.form.$submitted">
                 <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
               </div>
@@ -112,7 +112,7 @@
             <!-- <label class="label" for="name">Restaurant 5</label> -->
             <select class="select" name="restaurant5" ng-model="eventsNew.event.restaurants[4]" required>
               <option value="" disabled selected> &nbsp; Choose a restaurant</option>
-              <option ng-repeat="restaurant in eventsNew.restaurants" ng-value="{{ restaurant }}">{{ restaurant.name }} - {{ restaurant.location.zip_code }}</option>
+              <option ng-repeat="restaurant in eventsNew.restaurants" ng-value="{{ restaurant }}"> &nbsp; {{ restaurant.name }} - {{ restaurant.location.zip_code }}</option>
               <div ng-messages="eventsNew.form.restaurant5.$error" ng-if="eventsNew.form.restaurant5.$dirty || eventsNew.form.$submitted">
                 <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
               </div>

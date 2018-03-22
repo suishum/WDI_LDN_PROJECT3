@@ -30,12 +30,31 @@ nav.navbar {
   width: 100vw;
   padding-top: 70px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  min-height: 100vh;
   .show-child {
     background-color: white;
-    width: 80vw;
+    width: 70vw;
     border: 1px solid #d3d3d3;
+    padding: 50px;
+    // flex-flow: row wrap;
+    .profile-pic {
+      width: 300px;
+      margin: 0 auto;
+      display: block;
+    }
+    .profile-info {
+      width: 250px;
+      margin: 0 auto;
+      display: block;
+    }
+    .extra-margin-top {
+      margin-top: 20px;
+    }
+    .list-box {
+      border: 1px solid #dbdbdb;
+      padding: 10px;
+    }
   }
 }
 
@@ -96,11 +115,19 @@ nav.navbar {
 .flex-parent {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
-// .relative-parent {
-//   position: relative;
+// .flex-child {
+//   display: flex;
+//   flex-direction: column;
+//   width: 50%;
+// }
+
+// .flex-top-inline {
+//   display: flex;
+//   justify-content: space-evenly;
+//   margin-top: 50px;
 // }
 
 .login-register-box {
