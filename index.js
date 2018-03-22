@@ -16,6 +16,7 @@ app.use(morgan('dev'));
 app.use(express.static(`${__dirname}/public`));
 
 app.use('/api', router);
+app.use('/*', (req, res) => res.sendFile(`${__dirname}/public/index.html`));
 
 app.use((err, req,res,next) => {
   if (err.name === 'ValidationError') {
