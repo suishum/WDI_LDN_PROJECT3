@@ -1,3 +1,84 @@
+body {
+  background-color: #d3d3d3;
+}
+
+.nav-wrapper {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+}
+
+nav.navbar {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  .navbar-menu {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  a {
+    color: white;
+    .navbar-item {
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+  }
+}
+
+// .hero {
+//   height: 220px;
+//   background: black;
+//   color: white;
+//   position: relative;
+//   text-align: center;
+//   padding: 0.5em 1em; }
+
+.flex-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-parent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// .relative-parent {
+//   position: relative;
+// }
+
+.login-register-box {
+ background-color: white;
+ // height: 50vh;
+ width: 50vw;
+ border: 1px solid #d3d3d3;
+ text-align: center;
+ // border-radius: 50px;
+ margin-top: 50px;
+ padding: 24px;
+ form {
+   button {
+     margin-top: 12px;
+     width: 50%;
+   }
+ }
+ .register-account {
+   padding: 5px 36px;
+   margin-top: 12px;
+   p {
+     text-align: center;
+   }
+ }
+}
+
+// .middle-modal {
+//   position: absolute;
+//   // top: 50%;
+//   right: 50%;
+//   transform: translate(50%, 50%);
+// }
+
 .subtitle {
   font-weight:bold;
 }
@@ -106,7 +187,7 @@ li {
 
 //home page
 div.homepage {
-  height: calc(100vh - 52px);
+  height: 100vh;
   width: 100vw;
   .google-map {
     height: 100%;
@@ -127,3 +208,9 @@ div.homepage {
     display:block;
   }
 }
+
+// @media screen and (max-width: 1023px) {
+//   .navbar-menu {
+//     background-color: none;
+//   }
+// }
