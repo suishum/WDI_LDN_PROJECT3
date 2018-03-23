@@ -271,7 +271,7 @@ function googleMap() {
           destination: $scope.center,
           travelMode: 'DRIVING'
         }, (response) => {
-          $scope.directions = response.routes[0].legs[0].steps;
+          if (response.routes[0]) $scope.directions = response.routes[0].legs[0].steps;
           directionsDisplay.setDirections(response);
           $scope.$apply();
         });

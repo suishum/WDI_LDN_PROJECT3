@@ -24,7 +24,9 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
   vm.displayPoll = true;
   vm.talliedVotes = {};
   vm.currentUserVoted = false;
-  vm.directions = [];
+  vm.directions = [ {
+    instructions: 'The directions from your location are not availiable at this time.'
+  }];
 
   Event.findById($state.params.id)
     .then(res => {
