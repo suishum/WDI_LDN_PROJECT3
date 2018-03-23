@@ -384,8 +384,19 @@ div.image {
   float: right;
 }
 
-#directions {
+.directions {
   font-size: 12px;
+  transition: all 3s ease-in-out;
+}
+
+.hidden {
+  height: 0;
+  opacity : 0;
+}
+
+.expanded {
+  height: 1000px;
+  opacity:1;
 }
 
 //register page
