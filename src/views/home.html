@@ -1,15 +1,19 @@
 <div class="modal is-active" ng-if="home.showPopup" ng-style="{'z-index': home.loading }">
   <div class="modal-background"></div>
     <div class="modal-content popup-message">
-        <p ng-if="main.flashMessage">
+        <p class="title primary" ng-if="main.flashMessage">
           {{ main.flashMessage.content }}
         </p>
-        <p ng-if="!main.flashMessage">
-        Finding some tasty places for you and your mates!
+        <p class="title secondary" ng-if="!main.flashMessage">
+        Looking For Tasty Food..
       </p>
-      <img src="../assets/images/loading.gif" width="100px" height="100px" alt="loading">
+      <img src="../assets/images/m8d8-loading.gif" width="150px" height="150px" alt="loading">
     </div>
 </div>
+
+<a class="home-logo" ng-click="home.showLogo = false" ng-if="home.showLogo">
+  <img src="../assets/images/m8d8-logo-01.svg" alt="m8d8 bruva">
+</a>
 
 <div class="homepage" ng-style="{'z-index': home.loaded }">
   <google-map zoom="14" center="home.currentLocation" restaurants="home.top20Restaurants"></google-map>

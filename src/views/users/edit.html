@@ -1,81 +1,80 @@
-<!-- yarn add angular-messages for form error handling -->
-<div class="container">
-  <h1 class="title">Edit my Profile</h1>
-   <!-- we can link the form to the controller by giving it a name attribute, novalidate means don't validate this form -->
-  <form name="usersEdit.form" ng-submit="usersEdit.handleSubmit()" novalidate>
-    <div class="field">
-      <label for="name">Username</label>
-      <div class="control has-icons-left">
-        <input class="input" name="username" ng-model="usersEdit.user.username" required/>
-        <span class="icon is-small is-left"><i class="fas fa-user"></i></span>
-      </div>
-      <div ng-messages="usersEdit.form.username.$error" ng-if="usersEdit.form.username.$dirty || usersEdit.form.$submitted">
-        <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
-      </div>
-    </div>
-
-    <div class="field">
-      <label for="name">First Name</label>
-      <div class="control has-icons-left">
-        <input class="input" name="firstname" ng-model="usersEdit.user.firstname" required/>
-        <span class="icon is-small is-left"><i class="fas fa-caret-right"></i></span>
-      </div>
-      <div ng-messages="usersEdit.form.firstname.$error" ng-if="usersEdit.form.firstname.$dirty || usersEdit.form.$submitted">
-        <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
-      </div>
-    </div>
-
-    <div class="field">
-      <label for="name">Last Name</label>
-      <div class="control has-icons-left">
-        <input class="input" name="lastname" ng-model="usersEdit.user.lastname" required/>
-        <span class="icon is-small is-left"><i class="fas fa-caret-right"></i></span>
-      </div>
-      <div ng-messages="usersEdit.form.lastname.$error" ng-if="usersEdit.form.lastname.$dirty || usersEdit.form.$submitted">
-        <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
-      </div>
-    </div>
-
-    <div class="field">
-      <label for="name">Email</label>
-      <div class="control has-icons-left">
-        <input class="input" name="email" ng-model="usersEdit.user.email" required/>
-        <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
-      </div>
-      <div ng-messages="usersEdit.form.email.$error" ng-if="usersEdit.form.email.$dirty || usersEdit.form.$submitted">
-        <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
-      </div>
-    </div>
-
-    <div class="field">
-      <label class="label" class="label">Upload a Profile Picture</label>
-      <div class="control">
-        <div class="file">
-          <label class="label" class="file-label">
-            <input class="file-input" type="file" ng-model="usersEdit.user.photo" upload-image>
-            <span class="file-cta">
-              <span class="file-icon">
-                <i class="fa fa-upload"></i>
-              </span>
-              <span class="file-label">
-                Choose a file…
-              </span>
-            </span>
-          </label>
+<div class="flex-container">
+  <div class="form-child">
+    <h1 class="title secondary form-title">Edit my Profile</h1>
+    <form name="usersEdit.form" ng-submit="usersEdit.handleSubmit()" novalidate>
+      <div class="field">
+        <label class="label" for="name">Username</label>
+        <div class="control has-icons-left">
+          <input class="input" name="username" ng-model="usersEdit.user.username" required/>
+          <span class="icon is-small is-left"><i class="fas fa-user"></i></span>
+        </div>
+        <div ng-messages="usersEdit.form.username.$error" ng-if="usersEdit.form.username.$dirty || usersEdit.form.$submitted">
+          <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
         </div>
       </div>
-    </div>
 
-    <div class="field" ng-if="usersEdit.user.photo">
-      <label class="label" class="label">Profile Picture Preview</label>
-      <div class="control">
-        <figure class="image is-128x128">
-          <img ng-src="{{ usersEdit.user.photo }}">
-        </figure>
+      <div class="field">
+        <label class="label" for="name">First Name</label>
+        <div class="control has-icons-left">
+          <input class="input" name="firstname" ng-model="usersEdit.user.firstname" required/>
+          <span class="icon is-small is-left"><i class="fas fa-caret-right"></i></span>
+        </div>
+        <div ng-messages="usersEdit.form.firstname.$error" ng-if="usersEdit.form.firstname.$dirty || usersEdit.form.$submitted">
+          <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
+        </div>
       </div>
-    </div>
 
-    <button class="button is-primary">Submit</button>
-  </form>
+      <div class="field">
+        <label class="label" for="name">Last Name</label>
+        <div class="control has-icons-left">
+          <input class="input" name="lastname" ng-model="usersEdit.user.lastname" required/>
+          <span class="icon is-small is-left"><i class="fas fa-caret-right"></i></span>
+        </div>
+        <div ng-messages="usersEdit.form.lastname.$error" ng-if="usersEdit.form.lastname.$dirty || usersEdit.form.$submitted">
+          <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
+        </div>
+      </div>
 
+      <div class="field">
+        <label class="label" for="name">Email</label>
+        <div class="control has-icons-left">
+          <input class="input" name="email" ng-model="usersEdit.user.email" required/>
+          <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
+        </div>
+        <div ng-messages="usersEdit.form.email.$error" ng-if="usersEdit.form.email.$dirty || usersEdit.form.$submitted">
+          <div ng-message="required"><i class="fas fa-exclamation-circle"></i> This field is required</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label" class="label">Upload a Profile Picture</label>
+        <div class="control">
+          <div class="file">
+            <label class="label" class="file-label">
+              <input class="file-input" type="file" ng-model="usersEdit.user.photo" upload-image>
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="fa fa-upload"></i>
+                </span>
+                <span class="file-label">
+                  Choose a file…
+                </span>
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="field" ng-if="usersEdit.user.photo">
+        <label class="label" class="label">Profile Picture Preview</label>
+        <div class="control">
+          <figure class="image is-128x128">
+            <img ng-src="{{ usersEdit.user.photo }}">
+          </figure>
+        </div>
+      </div>
+
+      <button class="button is-primary">Submit</button>
+    </form>
+  </div>
 </div>

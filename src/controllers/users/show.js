@@ -31,12 +31,12 @@ function UsersShowCtrl(User, $state, $auth, $http) {
       // console.log(vm.joinedEvents);
     });
 
-  // function remove() {
-  //   User.remove(vm.user)
-  //     .then(() => $state.go('home'));
-  // }
-  //
-  // vm.remove = remove;
+  function remove() {
+    User.remove(vm.user)
+      .then(() => $state.go('home'));
+  }
+
+  vm.remove = remove;
 }
 
 export default UsersShowCtrl;

@@ -11,6 +11,7 @@ function HomeCtrl($auth, $http, $timeout) {
   vm.loading = 900;
   vm.loaded = 0;
   vm.showPopup = true;
+  vm.showLogo = true;
 
   initGeolocation();
   // get lat and lng of current position

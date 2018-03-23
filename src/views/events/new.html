@@ -1,6 +1,6 @@
 <div class="flex-container">
   <div class="form-child">
-    <h1 class="title">Make a Date</h1>
+    <h1 class="title secondary">Make a Date</h1>
     <form name="eventsNew.form" ng-submit="eventsNew.handleSubmit()" novalidate>
 
       <div ng-if="!eventsNew.locationFound">
@@ -119,12 +119,12 @@
             </select>
           </div>
         </div>
-    
+
         <google-map zoom="13" center="eventsNew.event.location" restaurants="eventsNew.restaurants"></google-map>
 
       </div>
 
-      <button class="button is-primary submit" ng-if="eventsNew.locationFound">Submit</button>
+      <button class="button secondary-background submit" ng-if="eventsNew.locationFound">Submit</button>
     </form>
   </div>
 </div>

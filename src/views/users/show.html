@@ -1,6 +1,6 @@
 <div class="flex-show-container">
   <div class="show-child">
-    <h1 class="title">My Profile</h1>
+    <h1 class="title secondary">My Profile</h1>
     <div class="columns">
       <div class="column">
         <img class="profile-pic" ng-src="{{ usersShow.user.photo }}" alt="{{ usersShow.user.username }}'s profile photo">
@@ -12,8 +12,10 @@
           <h2 class="subtitle">Name: <strong>{{ usersShow.user.firstname }}</strong></h2>
           <h2 class="subtitle">Email: <strong>{{ usersShow.user.email }}</strong></h2>
 
-          <a ui-sref="usersEdit({ id: usersShow.user._id })" class="button">Edit</a>
-          <!-- ADD DELETE BUTTON -->
+          <div class="flex-parent">
+            <a ui-sref="usersEdit({ id: usersShow.user._id })" class="button secondary-background show-ed-btn">Edit</a>
+            <a class="button primary-background show-ed-btn" ng-click="usersShow.remove()">Delete</a>
+          </div>
         </div>
       </div>
     </div>
@@ -21,16 +23,16 @@
     <div class="extra-margin-top">
       <div class="columns">
         <div class="column">
-          <h1 class="title">My events</h1>
+          <h1 class="title secondary">My events</h1>
           <ul>
-            <li class="list-box" ng-repeat="event in usersShow.myEvents"><a ui-sref="eventsShow({ id: event._id })"><strong>{{ event.name }}</strong><br/> {{ event.date | date: "fullDate" }}, {{ event.time | date: "shortTime" }}</a></li>
+            <li class="list-box" ng-repeat="event in usersShow.myEvents"><a ui-sref="eventsShow({ id: event._id })"><strong>{{ event.name }}</strong><br/> <span>{{ event.date | date: "fullDate" }}, {{ event.time | date: "shortTime" }}</span></a></li>
           </ul>
         </div>
 
         <div class="column">
-          <h1 class="title">Joined events</h1>
+          <h1 class="title secondary">Joined events</h1>
           <ul>
-            <li class="list-box" ng-repeat="event in usersShow.joinedEvents"><a ui-sref="eventsShow({ id: event._id })"><strong>{{ event.name }}</strong><br/> {{ event.date | date: "fullDate" }}, {{ event.time | date: "shortTime" }}</a></li>
+            <li class="list-box" ng-repeat="event in usersShow.joinedEvents"><a ui-sref="eventsShow({ id: event._id })"><strong>{{ event.name }}</strong><br/> <span>{{ event.date | date: "fullDate" }}, {{ event.time | date: "shortTime" }}</span></a></li>
           </ul>
         </div>
       </div>

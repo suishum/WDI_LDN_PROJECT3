@@ -14,7 +14,7 @@
     <nav class="navbar">
       <div class="navbar-brand">
         <a class="navbar-item" href="/">
-          <img src="./assets/images/m8d8-logo.png" alt="MateDate">
+          <img class="white-out" src="./assets/images/m8d8-logo-01.svg" alt="MateDate">
         </a>
         <div class="navbar-burger ng-class:main.clicked ? 'is-active' : 'is-not-active'" data-target="#mobile-menu" ng-click="main.clicked = !main.clicked" >
           <span></span>
@@ -28,7 +28,7 @@
           <a class="navbar-item" ng-click="main.clicked = false" ng-if="main.isAuthenticated()" ui-sref="usersShow({ id: main.currentUser })">My Profile</a>
           <!-- <a class="navbar-item" ng-click="main.clicked = false" ng-if="!main.isAuthenticated()" ui-sref="login">Login</a> -->
           <!-- <a class="navbar-item" ng-click="main.clicked = false" ng-if="!main.isAuthenticated()" ui-sref="register">Register</a> -->
-          <a class="navbar-item" ng-click="main.clicked = false" ng-if="!main.isAuthenticated()" ui-sref="login">Login/Register</a>
+          <a class="navbar-item" ng-click="main.clicked = false" ng-if="!main.isAuthenticated()" ui-sref="login">Login / Register</a>
           <a class="navbar-item" ng-click="main.clicked = false; main.logout()" ng-if="main.isAuthenticated()">Logout</a>
         </div>
       </div>
