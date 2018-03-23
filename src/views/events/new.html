@@ -1,6 +1,6 @@
 <div class="flex-container">
   <div class="form-child">
-    <h1 class="title secondary">Make a Date</h1>
+    <h1 class="title">Make a Date</h1>
     <form name="eventsNew.form" ng-submit="eventsNew.handleSubmit()" novalidate>
 
       <div ng-if="!eventsNew.locationFound">
@@ -42,10 +42,7 @@
         <div ng-if="!eventsNew.locationFound">
           <label class="label extra-margin" for="location">..and a location</label>
         </div>
-        <div ng-if="eventsNew.locationFound">
-          <a class="page-switch" ng-click="eventsNew.locationFound = false"><i class="fas fa-arrow-left"></i></a>
-          <!-- <label class="label extra-margin" for="location">Change location for different restaurants</label> -->
-        </div>
+
 
         <div class="control has-icons-left">
           <input auto-complete class="input" address="eventsNew.event.address"  location="eventsNew.event.location" placeholder="Where would you like your date?" name="address" ng-model="eventsNew.event.address" required/>
@@ -55,7 +52,7 @@
           <div ng-message="required"><i class="fas fa-exclamation-circle"></i> Select your location from the dropdown before picking restaurants!</div>
         </div>
         <div ng-if="eventsNew.event.address && eventsNew.locationFound === false">
-          <a class="page-switch" ng-click="eventsNew.locationFound = true"><i class="fas fa-arrow-right"></i></a>
+          <a class="page-switch-right" ng-click="eventsNew.locationFound = true"><i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
 
@@ -122,6 +119,10 @@
 
         <google-map zoom="13" center="eventsNew.event.location" restaurants="eventsNew.restaurants"></google-map>
 
+      </div>
+      <div ng-if="eventsNew.locationFound">
+        <a class="page-switch-left" ng-click="eventsNew.locationFound = false"><i class="fas fa-arrow-left"></i></a>
+        <!-- <label class="label extra-margin" for="location">Change location for different restaurants</label> -->
       </div>
 
       <button class="button secondary-background submit" ng-if="eventsNew.locationFound">Submit</button>

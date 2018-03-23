@@ -6,6 +6,10 @@ $secondary-color: #1E91D6;
   font-family: "Open Sans", sans-serif;
 }
 
+body {
+  background-color: lighten( $primary-color, 40% );
+}
+
 .primary {
   color: $primary-color;
 }
@@ -47,7 +51,7 @@ $secondary-color: #1E91D6;
 }
 
 .show-ed-btn {
-  width: 100px;
+  width: 50%;
 }
 
 //I USED THESE TO STYLE BUTTONS
@@ -80,10 +84,6 @@ $secondary-color: #1E91D6;
     transition-duration: 500ms;
     -webkit-transform: translateY(-5px);
     transform: translateY(-5px); }
-
-body {
-  background-color: lighten( $primary-color, 40% );
-}
 
 nav.navbar {
   background-color: rgba(0, 0, 0, 0.6);
@@ -124,6 +124,10 @@ a {
   }
 }
 
+a.navbar-item.ng-scope {
+  text-align: center;
+}
+
 // SHOW PAGE STYLES
 .flex-show-container {
   width: 100vw;
@@ -147,6 +151,12 @@ a {
       width: 250px;
       margin: 0 auto;
       display: block;
+      h2 {
+        padding: 20px 10px;
+        &:nth-child(3) {
+          padding-bottom: 50px;
+        }
+      }
     }
     .extra-margin-top {
       margin-top: 20px;
@@ -172,22 +182,43 @@ a {
     background-color: white;
     width: 75vw;
     border: 1px solid $primary-color;
-    text-align: center;
+    // text-align: center;
     margin-top: 50px;
     padding: 24px;
-    .page-switch {
+    h1.title {
+      text-align: center;
+    }
+    .align-center {
+      text-align: center;
+    }
+    .page-switch-right {
       background-color: lighten( $secondary-color, 10% );
       border-color: transparent;
       color: #fff;
       padding: 5px 9px;
       border-width: 1px;
       width: 50%;
-      border-radius: 3px;
+      border-radius: 12px;
       display: block;
-      margin: 12px auto;
+      margin: 12px 0;
+      text-align: center;
+      float: right;
+    }
+    .page-switch-left {
+      background-color: lighten( $secondary-color, 10% );
+      border-color: transparent;
+      color: #fff;
+      padding: 5px 9px;
+      border-width: 1px;
+      width: 50%;
+      border-radius: 12px;
+      display: block;
+      margin: 12px 0;
+      text-align: center;
+      float: left;
     }
     input {
-      text-align: center;
+      // text-align: center;
     }
     .extra-padding {
       padding-bottom: 12px;
@@ -211,6 +242,9 @@ a {
     .submit {
       margin-top: 12px;
       width: 50%;
+      &.extra-margin-top {
+        margin-top: 60px;
+      }
     }
   }
 }
@@ -225,14 +259,21 @@ a {
  background-color: white;
  width: 50vw;
  border: 1px solid $primary-color;
- text-align: center;
+ // text-align: center;
  // border-radius: 50px;
  margin-top: 50px;
  padding: 24px;
+ h1.title {
+   text-align: center;
+ }
+ label.label {
+   text-align: center;
+ }
  form {
    button {
-     margin-top: 12px;
+     margin: 12px auto;
      width: 50%;
+     display: block;
    }
  }
  .register-account {

@@ -1,6 +1,6 @@
 <div class="flex-container">
   <div class="form-child">
-    <h1 class="title secondary form-title">Edit my Profile</h1>
+    <h1 class="title">Edit my Profile</h1>
     <form name="usersEdit.form" ng-submit="usersEdit.handleSubmit()" novalidate>
       <div class="field">
         <label class="label" for="name">Username</label>
@@ -47,34 +47,40 @@
       </div>
 
       <div class="field">
-        <label class="label" class="label">Upload a Profile Picture</label>
-        <div class="control">
-          <div class="file">
-            <label class="label" class="file-label">
-              <input class="file-input" type="file" ng-model="usersEdit.user.photo" upload-image>
-              <span class="file-cta">
-                <span class="file-icon">
-                  <i class="fa fa-upload"></i>
+        <label class="label align-center" class="label">Upload a Profile Picture</label>
+        <div class="flex-parent">
+          <div class="control">
+            <div class="file">
+              <label class="label" class="file-label">
+                <input class="file-input" type="file" ng-model="usersEdit.user.photo" upload-image>
+                <span class="file-cta">
+                  <span class="file-icon">
+                    <i class="fa fa-upload"></i>
+                  </span>
+                  <span class="file-label">
+                    Choose a file…
+                  </span>
                 </span>
-                <span class="file-label">
-                  Choose a file…
-                </span>
-              </span>
-            </label>
+              </label>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="field" ng-if="usersEdit.user.photo">
-        <label class="label" class="label">Profile Picture Preview</label>
-        <div class="control">
-          <figure class="image is-128x128">
-            <img ng-src="{{ usersEdit.user.photo }}">
-          </figure>
+        <label class="label align-center" class="label">Profile Picture Preview</label>
+        <div class="flex-parent">
+          <div class="control">
+            <figure class="image is-128x128">
+              <img ng-src="{{ usersEdit.user.photo }}">
+            </figure>
+          </div>
         </div>
       </div>
 
-      <button class="button is-primary">Submit</button>
+      <div class="flex-parent">
+        <button class="button is-primary submit extra-margin-top secondary-background">Submit</button>
+      </div>
     </form>
   </div>
 </div>
