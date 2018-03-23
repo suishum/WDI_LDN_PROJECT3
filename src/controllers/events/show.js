@@ -16,6 +16,10 @@ function EventsShowCtrl($http, Event, $state, User, $auth){
     lat: 0,
     lng: 0
   };
+  vm.origin= {
+    lat: 0,
+    lng: 0
+  };
   const currentUser = $auth.getPayload().sub;
   vm.displayPoll = true;
   vm.talliedVotes = {};

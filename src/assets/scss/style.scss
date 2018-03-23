@@ -299,6 +299,7 @@ a {
 }
 
 .events-show.restaurants {
+  align-items: flex-start;
   .dropdowns {
     width: 33%;
     padding-right: 10px;
@@ -386,7 +387,7 @@ div.image {
 
 .directions {
   font-size: 12px;
-  transition: all 3s ease-in-out;
+  transition: height 3s ease-in-out;
 }
 
 .hidden {
@@ -395,7 +396,8 @@ div.image {
 }
 
 .expanded {
-  height: 1000px;
+  height: 600px;
+  overflow:scroll;
   opacity:1;
 }
 
@@ -431,7 +433,6 @@ div.homepage {
     display:flex;
     flex-direction: column;
     justify-content: center;
-    // align-items:center;
     .dropdowns {
       width: 100%;
     }

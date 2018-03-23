@@ -46,7 +46,8 @@
                 <li ng-repeat="direction in eventsShow.directions" ng-bind-html="direction.instructions">{{ direction.instructions }}<li>
                 </ul>
 
-              <div ng-if="!eventsShow.showDirections">
+              <div class="directions" ng-class="{'hidden':
+              eventsShow.showDirections}">
                 <h2 class="subtitle">Winner, winner, chicken dinner!</h2>
                 <p><a href="{{ eventsShow.event.winner.url }}">{{ eventsShow.event.winner.name }}</a>
                   <br>
@@ -69,7 +70,7 @@
       <!-- GOOGLE MAPS -->
             <google-map zoom="13" ng-if="eventsShow.displayPoll" center="eventsShow.event.location" restaurants="eventsShow.event.restaurants"></google-map>
 
-            <google-map zoom="16"  ng-if="!eventsShow.displayPoll" center="eventsShow.voteWinnerLocation" restaurants="[eventsShow.event.winner]" origin="{lat: 0, lng: 0}" directions="eventsShow.directions"></google-map>
+            <google-map zoom="16"  ng-if="!eventsShow.displayPoll" center="eventsShow.voteWinnerLocation" restaurants="[eventsShow.event.winner]" origin="eventsShow.origin" directions="eventsShow.directions"></google-map>
 
       </div>
       <hr>
