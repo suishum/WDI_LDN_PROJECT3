@@ -13,16 +13,14 @@ function HomeCtrl($auth, $http, $timeout) {
   vm.showPopup = true;
   vm.showLogo = true;
 
-  initGeolocation();
-  // get lat and lng of current position
-  function initGeolocation() {
-    navigator.geolocation.getCurrentPosition(pos => {
-      vm.currentLocation.lat = pos.coords.latitude;
-      vm.currentLocation.lng = pos.coords.longitude;
-      $timeout(() => vm.showPopup = false, 3000);
-      updateRestaurants();
-    }, onError);
-  }
+
+  navigator.geolocation.getCurrentPosition(pos => {
+    vm.currentLocation.lat = pos.coords.latitude;
+    vm.currentLocation.lng = pos.coords.longitude;
+    $timeout(() => vm.showPopup = false, 3000);
+    updateRestaurants();
+  }, onError);
+
 
   function onError() {
     $timeout(() => vm.showPopup = false, 3000);
