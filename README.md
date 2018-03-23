@@ -1,6 +1,6 @@
 # MateDate
 ### Sui Shum and Katie Moore
-
+Heroku Link: https://matedate.herokuapp.com
 ---
 ## Project Brief
 We were assigned teams and given one week to create a RESTful MEAN full stack app. We create MateDate, an app that allows users to create and plan events, using the google places, google maps, and yelp APIs. The admin can then add other users to their event, all attendees of an event can then vote on their preferred restaurant. The admin can close the poll at which point the app calculates a winner (and breaks any ties), provides more information on the restaurant,  displays a google-map with the winner pinned, and directions from the user's location (if available).
@@ -12,15 +12,16 @@ After fleshing out some feature ideas to make sure the idea had enough scope to 
 
 <img width="1268" alt="trello" src="https://user-images.githubusercontent.com/31917459/37826214-81616650-2e8a-11e8-8e4f-5c708a544dee.png">
 
-##Design Phase
+## Design Phase
 We started out by drawing some simple wireframes for our RESTful routes for each resource. This also highlighted some feature ideas we had not previously thought about.
 
 We added these wireframes to our Trello Board so that we would both have easy access to all of our planning materials. Below are some examples:
 
-![wireframe1](https://user-images.githubusercontent.com/31917459/37826281-b2b45226-2e8a-11e8-8a4f-4de456c40a85.jpg)
-![wireframe1](https://user-images.githubusercontent.com/31917459/37826283-b43fbf2c-2e8a-11e8-88c1-d57d46db55a5.jpg)
+<img style="width:200px; display:inline" src="https://user-images.githubusercontent.com/31917459/37826281-b2b45226-2e8a-11e8-8a4f-4de456c40a85.jpg">
 
-##Build Process
+<img style="width:200px; display:inline" src="https://user-images.githubusercontent.com/31917459/37826283-b43fbf2c-2e8a-11e8-88c1-d57d46db55a5.jpg">
+
+## Build Process
 We were both very concerned with sharing the work fairly and as such initially each of us focused on one resource each (events and users) and split any non-resource specific files equally. We continued in this manner for the entirety of the backend and the basics of the front end views and routes.
 
 Once the basic app was complete we were very open about which of the more novel and difficult functionality we would like to tackle. An example of one such feature is shown below:
