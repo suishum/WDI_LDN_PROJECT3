@@ -136,7 +136,7 @@
             </article>
           </li>
         </ul>
-        <div class="flex-parent">
+        <div ng-if="eventsShow.isAdmin" class="flex-parent">
           <a ui-sref="eventsEdit({ id: eventsShow.event._id })" class="button secondary-background show-ed-btn">Edit</a>
           <a class="button primary-background show-ed-btn" ng-click="eventsShow.deleteEvent()">Delete</a>
         </div>
